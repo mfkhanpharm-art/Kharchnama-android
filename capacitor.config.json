@@ -1,0 +1,9 @@
+{
+  "appId": "com.kharcha.app",
+  "appName": "Kharcha",
+  "webDir": "www",
+  "android": { "backgroundColor": "#F3F4F7" },
+  "plugins": {
+    "LocalNotifications": { "smallIcon": "ic_stat_kharcha", "iconColor": "#0F7B5F" }
+  }
+}
