@@ -1,4 +1,4 @@
-<title>Kharcha Expense Book</title>
+<title>Kharchnama</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@500;600;700&display=swap">
@@ -302,7 +302,7 @@ input[type=month]{width:100%;background:var(--surface);border:1px solid var(--li
 </style>
 
 <header class="top"><div class="wrap">
-  <div class="brand"><span class="logo" id="logoSlot" aria-hidden="true"></span><div>Kharcha<small id="syncLbl">Expense book</small></div></div>
+  <div class="brand"><span class="logo" id="logoSlot" aria-hidden="true"></span><div>Kharchnama<small id="syncLbl">Expense book</small></div></div>
   <div class="monthnav" aria-label="Period">
     <button id="pPrev" aria-label="Previous period"></button>
     <span id="pLbl"></span>
@@ -690,7 +690,7 @@ function insights(r){
     if(nwe&&nwd&&wd){const a=we/nwe,b=wd/nwd;if(a>b*1.25)out.push(["info","Weekends cost "+Math.round((a/b-1)*100)+"% more","Day-to-day spending averages "+fmt(a)+" on weekends vs "+fmt(b)+" on weekdays."])}}
   const small=c.exp.filter(t=>t.amt<1000);if(small.length>=8)out.push(["info",small.length+" small purchases total "+fmt(sum(small)),"Items under "+fmt(1000)+" make up "+Math.round(sum(small)/c.e*100)+"% of spending."]);
   return out}
-function summaryText(r){const st=stats(r);let s="Kharcha summary: "+r.label+"\nIncome: "+fmt(st.i)+"\nSpent: "+fmt(st.e)+"\nSaved: "+fmt(st.i-st.e)+"\n\nTop categories:\n";
+function summaryText(r){const st=stats(r);let s="Kharchnama summary: "+r.label+"\nIncome: "+fmt(st.i)+"\nSpent: "+fmt(st.e)+"\nSaved: "+fmt(st.i-st.e)+"\n\nTop categories:\n";
   byCat(st.exp).slice(0,5).forEach(([id,v])=>{s+="- "+catInfo(id).name+": "+fmt(v)+" ("+Math.round(v/Math.max(1,st.e)*100)+"%)\n"});
   s+="\nInsights:\n";insights(r).forEach(x=>{s+="- "+x[1]+". "+x[2]+"\n"});return s}
 
@@ -884,21 +884,21 @@ async function exportXLSX(list,label){
   const wb=XLSX.utils.book_new();const ws=XLSX.utils.json_to_sheet(rowsFor(list));ws["!cols"]=[{wch:11},{wch:9},{wch:18},{wch:11},{wch:22},{wch:30}];XLSX.utils.book_append_sheet(wb,ws,"Entries");
   const exp=list.filter(t=>t.type==="exp"),inc=list.filter(t=>t.type==="inc");const tot=sum(exp);
   XLSX.utils.book_append_sheet(wb,XLSX.utils.json_to_sheet(byCat(exp).map(([id,v])=>({Category:catInfo(id).name,Entries:exp.filter(t=>t.cat===id).length,Amount:v,Share:Math.round(v/Math.max(1,tot)*1000)/10+"%"}))),"By category");
-  XLSX.utils.book_append_sheet(wb,XLSX.utils.aoa_to_sheet([["Kharcha report",label],["Income",sum(inc)],["Spent",tot],["Saved",sum(inc)-tot],["Entries",list.length],["Currency",cur()]]),"Summary");
-  const out=XLSX.write(wb,{type:"array",bookType:"xlsx"});if(await saveFile("kharcha-"+label.replace(/[^\w]+/g,"-").toLowerCase()+".xlsx",new Blob([out],{type:"application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"})))toast("Excel saved")}
+  XLSX.utils.book_append_sheet(wb,XLSX.utils.aoa_to_sheet([["Kharchnama report",label],["Income",sum(inc)],["Spent",tot],["Saved",sum(inc)-tot],["Entries",list.length],["Currency",cur()]]),"Summary");
+  const out=XLSX.write(wb,{type:"array",bookType:"xlsx"});if(await saveFile("kharchnama-"+label.replace(/[^\w]+/g,"-").toLowerCase()+".xlsx",new Blob([out],{type:"application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"})))toast("Excel saved")}
 async function exportPDF(r){
   const st=stats(r);if(!st.tx.length)return toast("No entries in this period.");toast("Preparing PDF…");
   try{await loadScript("https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js");await loadScript("https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js")}catch(e){return toast("Couldn't load the PDF tool. Check your connection.")}
   const doc=new window.jspdf.jsPDF({unit:"pt",format:"a4"});const W=doc.internal.pageSize.getWidth();const money=n=>{const v=Math.round(Math.abs(n));return(n<0?"-":"")+(/^[\x20-\x7E]+$/.test(cur())?cur():"Rs")+" "+v.toLocaleString("en-US")};
   doc.setFillColor(14,27,46);doc.rect(0,0,W,92,"F");doc.setFillColor(15,123,95);doc.rect(0,88,W,4,"F");
-  doc.setTextColor(255);doc.setFont("helvetica","bold");doc.setFontSize(21);doc.text("Kharcha financial report",40,44);doc.setFontSize(11);doc.setFont("helvetica","normal");doc.text(r.label+"   |   generated "+niceDate(today()),40,66);
+  doc.setTextColor(255);doc.setFont("helvetica","bold");doc.setFontSize(21);doc.text("Kharchnama financial report",40,44);doc.setFontSize(11);doc.setFont("helvetica","normal");doc.text(r.label+"   |   generated "+niceDate(today()),40,66);
   const boxes=[["Income",st.i,[43,93,168]],["Spent",st.e,[194,59,78]],["Saved",st.i-st.e,[18,128,92]]];const bw=(W-80-20)/3;
   boxes.forEach((b,i)=>{const x=40+i*(bw+10);doc.setDrawColor(227,230,236);doc.setFillColor(248,249,251);doc.roundedRect(x,110,bw,58,8,8,"FD");doc.setTextColor(102,112,133);doc.setFontSize(9);doc.text(b[0].toUpperCase(),x+12,130);doc.setTextColor(...b[2]);doc.setFont("helvetica","bold");doc.setFontSize(15);doc.text(money(b[1]),x+12,154);doc.setFont("helvetica","normal")});
   const cats=byCat(st.exp);doc.autoTable({startY:190,head:[["Category","Entries","Amount","Share"]],body:cats.map(([id,v])=>[catInfo(id).name,st.exp.filter(t=>t.cat===id).length,money(v),Math.round(v/Math.max(1,st.e)*100)+"%"]),theme:"grid",headStyles:{fillColor:[14,27,46]},styles:{fontSize:10},columnStyles:{1:{halign:"right"},2:{halign:"right"},3:{halign:"right"}},margin:{left:40,right:40}});
   let y=doc.lastAutoTable.finalY+24;doc.setTextColor(14,23,38);doc.setFont("helvetica","bold");doc.setFontSize(13);doc.text("Key findings",40,y);y+=6;doc.setFont("helvetica","normal");doc.setFontSize(10);
   insights(r).slice(0,8).forEach(x=>{const lines=doc.splitTextToSize("-  "+x[1]+". "+x[2],W-80);if(y+lines.length*13>800){doc.addPage();y=40}y+=14;doc.text(lines,40,y);y+=(lines.length-1)*13});
   doc.autoTable({startY:y+20,head:[["Date","Type","Category","Wallet","Note","Amount"]],body:rowsFor(st.tx).map(x=>[x.Date,x.Type,x.Category,x.Wallet,x.Note,money(x.Amount)]),theme:"striped",headStyles:{fillColor:[15,123,95]},styles:{fontSize:9},columnStyles:{5:{halign:"right"}},margin:{left:40,right:40}});
-  if(await saveFile("kharcha-report-"+r.label.replace(/[^\w]+/g,"-").toLowerCase()+".pdf",doc.output("blob")))toast("PDF saved")}
+  if(await saveFile("kharchnama-report-"+r.label.replace(/[^\w]+/g,"-").toLowerCase()+".pdf",doc.output("blob")))toast("PDF saved")}
 function toCSV(){const rows=[["date","type","category","amount","note","wallet"]];rowsFor(S.txs).forEach(x=>rows.push([x.Date,x.Type.toLowerCase(),x.Category,x.Amount,x.Note,x.Wallet]));
   return rows.map(r=>r.map(v=>{v=String(v);return/[",\n]/.test(v)?'"'+v.replace(/"/g,'""')+'"':v}).join(",")).join("\n")}
 function parseCSV(text){const rows=[];let row=[],f="",q=false;for(let i=0;i<text.length;i++){const c=text[i];
@@ -912,8 +912,8 @@ async function importCSV(text){const rows=parseCSV(text);if(!rows.length)return 
     const type=/inc/i.test(r[ti]||"")?"inc":"exp";const cat=names[(r[ci]||"").trim().toLowerCase()]||(type==="inc"?"oinc":"other");const w=(r[wi]||"").trim().toLowerCase();
     await putTx({id:uidGen()+n,type,cat,amt:Math.abs(amt),date:d,note:(r[ni]||"").trim(),acct:an[w]||OLD_METHOD[r[wi]]||"cash",ts:Date.now()+n},true);n++}
   saveLocal();render();toast("Imported "+n+" entries"+(skip?", skipped "+skip:""))}
-async function restoreJSON(text){let o;try{o=JSON.parse(text)}catch(e){return toast("That isn't a Kharcha backup file.")}
-  if(!o||!Array.isArray(o.txs))return toast("That isn't a Kharcha backup file.");
+async function restoreJSON(text){let o;try{o=JSON.parse(text)}catch(e){return toast("That isn't a Kharchnama backup file.")}
+  if(!o||!Array.isArray(o.txs))return toast("That isn't a Kharchnama backup file.");
   if(o.settings){S.settings=normSettings(Object.assign({},o.settings,{pinHash:S.settings.pinHash}));saveSettings()}
   let n=0;for(const t of o.txs){if(t&&t.id&&t.date&&t.amt){await putTx(t,true);n++}}saveLocal();render();renderPanel();toast("Restored "+n+" entries")}
 let fileMode="";
@@ -985,7 +985,7 @@ async function runImport(kind,file,text,password){
   S.imp.stage="busy";S.imp.err="";S.imp.msg=kind==="slip"?"Faygul is reading your salary slip…":kind==="sms"?"Faygul is reading your messages…":"Faygul is reading your statement…";renderPanel();
   try{
     let payload=text!=null?{text,images:[]}:await readFile(file,password);
-    if(payload.images.length&&(!sampleCap||!(await canSeeImages())))throw{user:NATIVE?"Reading photos and scanned PDFs needs Faygul's AI. Add your API key in More → Faygul AI, or upload a text PDF, Excel or CSV instead.":"Reading photos and scanned PDFs needs Faygul's AI. Open Kharcha from claude.ai while signed in, or upload a text PDF, Excel or CSV instead."};
+    if(payload.images.length&&(!sampleCap||!(await canSeeImages())))throw{user:NATIVE?"Reading photos and scanned PDFs needs Faygul's AI. Add your API key in More → Faygul AI, or upload a text PDF, Excel or CSV instead.":"Reading photos and scanned PDFs needs Faygul's AI. Open Kharchnama from claude.ai while signed in, or upload a text PDF, Excel or CSV instead."};
     if(kind==="slip"){let slip=null;if(sampleCap){try{slip=await aiSlip(payload)}catch(e){}}if(!slip&&payload.text)slip=slipOffline(payload.text);
       if(!slip||!slip.net)throw{user:"Couldn't find a net pay amount on that slip. Try a clearer photo or the original PDF."};S.imp.slip=slip;S.imp.stage="slip";renderPanel();return}
     let list=[];if(sampleCap){try{list=await aiTx(payload,kind==="sms"?"sms":"statement")}catch(e){}}
@@ -1060,7 +1060,7 @@ function salaryCard(){const slips=(S.settings.slips||[]).slice().sort((a,b)=>b.m
   const last=slips[0],prev=slips[1];const fy=slips.filter(s=>s.month>=fyStart());const tax=fy.reduce((a,s)=>a+taxOf(s),0);const avg=slips.slice(0,6).reduce((a,s)=>a+s.net,0)/Math.min(6,slips.length);const ch=prev?pctChange(last.net,prev.net):null;const unmatched=slips.filter(s=>!s.matchedTxId||!S.txs.some(t=>t.id===s.matchedTxId)).length;
   return '<div class="card"><div class="row" style="margin-bottom:10px">'+h2("briefcase","Salary")+'<button class="btn pill" data-panel="imports">Slips</button></div><div class="slipgrid" style="margin-top:0"><div><small>Latest net · '+esc(slipMonthLabel(last.month))+'</small><b class="num">'+fmt(last.net)+'</b>'+(ch!==null&&Math.abs(ch)>=.5?'<small style="color:'+(ch>=0?"var(--good)":"var(--bad)")+'">'+(ch>=0?"▲ ":"▼ ")+Math.abs(ch).toFixed(1)+'%</small>':"")+'</div><div><small>Avg net (6 slips)</small><b class="num">'+fmt(avg)+'</b></div><div><small>Tax this fiscal year</small><b class="num">'+fmt(tax)+'</b></div></div>'+(unmatched?'<div class="status" style="margin-top:10px">'+I("alert")+unmatched+' slip'+(unmatched>1?"s":"")+' not yet matched to a bank credit.</div>':'<div class="status" style="margin-top:10px">'+I("check")+'All slips matched to bank credits.</div>')+'</div>'}
 
-/* ================= Android app features (active only inside the Kharcha Android app) ================= */
+/* ================= Android app features (active only inside the Kharchnama Android app) ================= */
 const NATIVE=!!window.KN;
 S.smsPending=lsGet("kharcha.smsPending",[]);S.bioAvail=false;S.smsGranted=false;
 function smsCfg(){return Object.assign({enabled:false,mode:"review",wallet:"bank"},lsGet("kharcha.smscfg",{}))}
@@ -1103,7 +1103,7 @@ function tryBio(){if(!NATIVE||!S.bioAvail||S.unlocked||!S.settings.pinHash)retur
 document.getElementById("sheetHost").addEventListener("click",async e=>{const b=e.target.closest("button");if(!b||!S.panel)return;const k=S.panel.kind;
   if(k==="sms"){
     if(b.hasAttribute("data-smsen")){const on=!smsCfg().enabled;setSmsCfg({enabled:on});if(on){const r=await KN.sms.request();S.smsGranted=!!r.granted;if(S.smsGranted){toast("SMS auto-import is on");const n=await smsScan(30);if(n)toast("Found "+n+" transaction"+(n>1?"s":"")+" in your SMS")}}renderPanel();render();return}
-    if(b.hasAttribute("data-smsallow")){const r=await KN.sms.request();S.smsGranted=!!r.granted;renderPanel();if(S.smsGranted)smsScan(30);else toast("Allow SMS in Android Settings → Apps → Kharcha → Permissions.");return}
+    if(b.hasAttribute("data-smsallow")){const r=await KN.sms.request();S.smsGranted=!!r.granted;renderPanel();if(S.smsGranted)smsScan(30);else toast("Allow SMS in Android Settings → Apps → Kharchnama → Permissions.");return}
     if(b.hasAttribute("data-smsscan")){lsSet("kharcha.smsDone",[]);toast("Scanning messages…");const n=await smsScan(30);toast(n?"Found "+n+" new transaction"+(n>1?"s":""):"No new bank transactions found");return}}
   if(k==="ai"){const msg=t=>{const m=document.getElementById("aiMsg");if(m)m.textContent=t};
     if(b.hasAttribute("data-aisave")){const v=document.getElementById("aiKey").value.trim();try{if(v)localStorage.setItem("kharcha.aikey",v);localStorage.setItem("kharcha.aimodel",document.getElementById("aiModel").value)}catch(e){}renderPanel();toast(v?"API key saved":"Model saved");return}
@@ -1118,14 +1118,14 @@ const ONB={sms:"wait",notif:"wait",bio:"wait",running:false};
 function onbChip(s){return s==="ok"?'<span class="when auto">Allowed</span>':s==="no"?'<span class="when over">Not allowed</span>':s==="na"?'<span class="when soon">Not available</span>':s==="ask"?'<span class="when today">Asking…</span>':'<span class="when soon">Waiting</span>'}
 function drawOnb(){const h=document.getElementById("onbHost");if(!h)return;const done=!ONB.running&&ONB.sms!=="wait"&&ONB.notif!=="wait";
   const row=(ic,c,t,d,s)=>'<div class="onbrow">'+ico(ic,c,true)+'<div style="min-width:0"><b>'+t+'</b><small>'+d+'</small></div>'+onbChip(s)+'</div>';
-  h.innerHTML='<div class="onb" role="dialog" aria-modal="true" aria-label="Welcome to Kharcha"><div class="onbtop"><div class="fig">'+advisorSVG()+'</div><div><div class="eyebrow" style="color:rgba(255,255,255,.65)">Welcome to Kharcha</div><h2 style="color:#fff;font-size:21px;margin-top:4px">Assalam o alaikum, I\'m Faygul</h2><div class="status" style="color:rgba(255,255,255,.75);margin-top:6px">Let\'s set up your phone so I can track money for you automatically.</div></div></div>'+
+  h.innerHTML='<div class="onb" role="dialog" aria-modal="true" aria-label="Welcome to Kharchnama"><div class="onbtop"><div class="fig">'+advisorSVG()+'</div><div><div class="eyebrow" style="color:rgba(255,255,255,.65)">Welcome to Kharchnama</div><h2 style="color:#fff;font-size:21px;margin-top:4px">Assalam o alaikum, I\'m Faygul</h2><div class="status" style="color:rgba(255,255,255,.75);margin-top:6px">Let\'s set up your phone so I can track money for you automatically.</div></div></div>'+
   '<div class="onbbody"><div class="card" style="padding:4px 16px">'+
   row("msg","#2B5DA8","Read bank SMS","Adds transactions from bank and wallet messages. OTPs and personal texts are ignored, and nothing leaves your phone.",ONB.sms)+
   row("clock","#B5851B","Notifications","Reminds you when bills are due.",ONB.notif)+
   row("lock","#0F7B5F","Fingerprint unlock",ONB.bio==="ok"?"Available. Turn it on by setting a PIN in More → App lock.":"Your phone's fingerprint or face unlock can protect the app.",ONB.bio)+
-  '</div>'+(ONB.sms==="no"||ONB.notif==="no"?'<div class="status">You can allow these later in Android Settings → Apps → Kharcha → Permissions.</div>':"")+
+  '</div>'+(ONB.sms==="no"||ONB.notif==="no"?'<div class="status">You can allow these later in Android Settings → Apps → Kharchnama → Permissions.</div>':"")+
   '<div class="status">Faygul\'s chat needs your Anthropic API key. Add it any time in More → Faygul AI.</div>'+
-  '<div class="btns"><button class="btn primary" data-onb="'+(done?"go":"ask")+'" style="flex:1"'+(ONB.running?" disabled":"")+'>'+(done?"Start using Kharcha":ONB.running?"Waiting for your answer…":"Allow permissions")+'</button>'+(done?"":'<button class="btn" data-onb="skip">Later</button>')+'</div></div></div>'}
+  '<div class="btns"><button class="btn primary" data-onb="'+(done?"go":"ask")+'" style="flex:1"'+(ONB.running?" disabled":"")+'>'+(done?"Start using Kharchnama":ONB.running?"Waiting for your answer…":"Allow permissions")+'</button>'+(done?"":'<button class="btn" data-onb="skip">Later</button>')+'</div></div></div>'}
 async function runOnb(){if(ONB.running)return;ONB.running=true;
   try{const b=await KN.bio.available();ONB.bio=b&&b.available?"ok":"na"}catch(e){ONB.bio="na"}
   ONB.sms="ask";drawOnb();try{const r=await KN.sms.request();ONB.sms=r&&r.granted?"ok":"no"}catch(e){ONB.sms="no"}
@@ -1164,7 +1164,7 @@ function mdLite(t){const lines=esc(t).split("\n");let html="",inList=false,para=
 function greeting(){const r=R(),st=stats(r);const name="";return "Assalam o alaikum. I'm "+ADV_NAME+", your financial adviser. I've looked over your book"+(isSample()?" (currently sample data)":"")+": you've spent **"+fmt(st.e)+"** in "+r.label+(st.i?" against **"+fmt(st.i)+"** income":"")+".\n\nAsk me for a summary, a budget plan, ways to save, or how to invest what you've saved."}
 function msgHTML(m){return '<div class="msg '+(m.role==="user"?"me":"")+'">'+(m.role==="user"?"":'<span class="av">'+advisorHead()+'</span>')+'<div class="bub">'+(m.pending&&!m.content?'<span class="typing"><i></i><i></i><i></i></span>':mdLite(m.content))+'</div></div>'}
 function renderChat(){if(!S.chatOpen)return;const host=document.getElementById("chatHost");
-  if(!host.firstChild){host.innerHTML='<div class="chat" role="dialog" aria-modal="true" aria-label="Chat with '+ADV_NAME+'"><div class="chathead"><div class="wrap"><div class="fig">'+advisorSVG()+'</div><div class="who"><b>'+ADV_NAME+'</b><small>Personal financial adviser</small><div class="creds"><span>Budgeting</span><span>Investing</span><span>Debt & tax</span></div></div><button class="closeb" data-chatclose aria-label="Close chat">'+I("x")+'</button></div></div><div class="msgs" id="msgs"><div class="wrap" id="msgsIn" style="display:flex;flex-direction:column;gap:12px"></div></div><div class="chatfoot"><div class="wrap"><div class="chips" id="chatChips"></div><form id="chatForm"><textarea id="chatIn" rows="1" placeholder="Ask about your money…" aria-label="Message"></textarea><button class="send" type="submit" aria-label="Send">'+I("send")+'</button></form><div class="disclaim">AI adviser using your Kharcha data. General guidance, not regulated financial advice. <button data-chatclear style="border:0;background:none;color:var(--accent);font-weight:700;font-size:11px;padding:0">Clear chat</button></div></div></div></div>'}
+  if(!host.firstChild){host.innerHTML='<div class="chat" role="dialog" aria-modal="true" aria-label="Chat with '+ADV_NAME+'"><div class="chathead"><div class="wrap"><div class="fig">'+advisorSVG()+'</div><div class="who"><b>'+ADV_NAME+'</b><small>Personal financial adviser</small><div class="creds"><span>Budgeting</span><span>Investing</span><span>Debt & tax</span></div></div><button class="closeb" data-chatclose aria-label="Close chat">'+I("x")+'</button></div></div><div class="msgs" id="msgs"><div class="wrap" id="msgsIn" style="display:flex;flex-direction:column;gap:12px"></div></div><div class="chatfoot"><div class="wrap"><div class="chips" id="chatChips"></div><form id="chatForm"><textarea id="chatIn" rows="1" placeholder="Ask about your money…" aria-label="Message"></textarea><button class="send" type="submit" aria-label="Send">'+I("send")+'</button></form><div class="disclaim">AI adviser using your Kharchnama data. General guidance, not regulated financial advice. <button data-chatclear style="border:0;background:none;color:var(--accent);font-weight:700;font-size:11px;padding:0">Clear chat</button></div></div></div></div>'}
   const r=R();const chips=["Summarize my "+r.kind,"Analyse my salary slips","Give me a budget plan","How can I save more?","Where should I invest my savings?","Build an emergency fund","Review my goals"];
   document.getElementById("chatChips").innerHTML=chips.map(c=>'<button class="chip" data-chatq="'+esc(c)+'">'+esc(c)+'</button>').join("");
   const list=[{role:"assistant",content:greeting()}].concat(S.chat);
@@ -1179,13 +1179,13 @@ function ctxData(){
     walletBalances:Object.fromEntries(Object.entries(balances()).map(([k,v])=>[acctInfo(k).name,Math.round(v)])),goals:(set.goals||[]).map(g=>({name:g.name,target:g.target,saved:g.saved})),
     recurring:(set.recurring||[]).map(x=>({note:x.note,amount:x.amt,freq:x.freq,type:x.type})),salarySlips:(S.settings.slips||[]).slice().sort((a,b)=>b.month.localeCompare(a.month)).slice(0,12).map(s=>({month:s.month,employer:s.employer,gross:s.gross,net:s.net,incomeTax:taxOf(s),deductions:s.deductions,matchedToBankCredit:!!(s.matchedTxId&&S.txs.some(t=>t.id===s.matchedTxId))})),pakistanFiscalYearStarts:fyStart(),appInsights:insights(r).map(x=>x[1]+". "+x[2]),
     recentEntries:inR(r).slice().sort((a,b)=>b.date.localeCompare(a.date)).slice(0,60).map(t=>[t.date,t.type,catInfo(t.cat,t.type).name,Math.round(t.amt),t.note||""])}}
-const PERSONA="You are "+ADV_NAME+", a seasoned personal financial adviser (CFA charterholder, 15 years advising salaried professionals and families) who lives inside the user's Kharcha expense app. The user is based in Pakistan.\n\n"+
+const PERSONA="You are "+ADV_NAME+", a seasoned personal financial adviser (CFA charterholder, 15 years advising salaried professionals and families) who lives inside the user's Kharchnama expense app. The user is based in Pakistan.\n\n"+
 "Expertise to draw on: budgeting (50/30/20 and zero-based), cash-flow planning, emergency funds (3–6 months of essential expenses), debt payoff (avalanche vs snowball, credit card and BNPL traps), saving and investing in Pakistan (National Savings schemes, bank term deposits, conventional and Shariah-compliant mutual funds, money market funds, PSX equities, gold, real estate, Voluntary Pension Schemes, Roshan Digital Account), inflation and real returns, compounding, goal planning (Hajj/Umrah, education, marriage, home, car), income tax basics (filer vs non-filer, withholding on profit and transactions), zakat basics, insurance and takaful, and spending psychology.\n\n"+
 "Rules:\n- Ground every personal statement in the DATA provided. Quote specific figures in "+cur()+". Never invent transactions.\n- Profit rates, tax rules and fund returns change: speak in typical ranges or principles, and tell the user to confirm current rates with the provider or FBR. Never guarantee returns.\n- Give a clear recommendation with reasoning and next steps, like a real adviser would. Ask one clarifying question only when essential (e.g. risk tolerance, time horizon, existing debt).\n- For large or irreversible decisions, suggest confirming with a licensed adviser.\n- If isSampleData is true, say briefly that the figures are example data.\n- Style: confident, warm, professional. Plain text, short paragraphs or '-' bullets, **bold** for key numbers. No emoji. Usually under 200 words unless the user asks for detail.";
 async function sendChat(q){
   q=(q||"").trim();if(!q||S.chatBusy)return;S.chat.push({role:"user",content:q});const ans={role:"assistant",content:"",pending:true};S.chat.push(ans);S.chatBusy=true;renderChat();
   const done=t=>{ans.content=t;delete ans.pending;S.chatBusy=false;S.chat=S.chat.slice(-40);lsSet("kharcha.chat",S.chat.filter(m=>!m.pending));renderChat()};
-  if(!sampleCap)return done("I can't connect from this view. Open Kharcha from claude.ai while signed in and I'll be able to advise you.");
+  if(!sampleCap)return done("I can't connect from this view. Open Kharchnama from claude.ai while signed in and I'll be able to advise you.");
   let hist=S.chat.filter(m=>!m.pending&&m.content).slice(-14).map(m=>({role:m.role,content:m.content}));while(hist.length&&hist[0].role!=="user")hist.shift();
   hist[0]={role:"user",content:PERSONA+"\n\nDATA (JSON, refreshed now):\n"+JSON.stringify(ctxData())+"\n\n---\nClient: "+hist[0].content};
   if(hist.length>1){const last=hist[hist.length-1];last.content="(Latest data as above; today is "+today()+")\n"+last.content}
@@ -1224,9 +1224,9 @@ async function act(a,b){
   if(a==="pdf")return exportPDF(r);
   if(a==="xlsx")return exportXLSX(inR(r),r.label);
   if(a==="xlsxall")return exportXLSX(S.txs,"all entries");
-  if(a==="csv"){if(!S.txs.length)return toast("No entries to export yet.");const csv=toCSV();if(downloads&&await saveFile("kharcha-"+today()+".csv",new Blob([csv],{type:"text/csv"})))return toast("CSV saved");
+  if(a==="csv"){if(!S.txs.length)return toast("No entries to export yet.");const csv=toCSV();if(downloads&&await saveFile("kharchnama-"+today()+".csv",new Blob([csv],{type:"text/csv"})))return toast("CSV saved");
     const box=document.getElementById("csvBox");if(box)box.innerHTML='<div class="status" style="margin:10px 0 6px">Copy this text and save it as a .csv file.</div><pre class="csv" tabindex="0">'+esc(csv)+'</pre>';return}
-  if(a==="backup"){const blob=new Blob([JSON.stringify({app:"kharcha",version:4,exported:new Date().toISOString(),settings:Object.assign({},S.settings,{pinHash:""}),txs:S.txs})],{type:"application/json"});if(await saveFile("kharcha-backup-"+today()+".json",blob))toast("Backup saved");return}
+  if(a==="backup"){const blob=new Blob([JSON.stringify({app:"kharcha",version:4,exported:new Date().toISOString(),settings:Object.assign({},S.settings,{pinHash:""}),txs:S.txs})],{type:"application/json"});if(await saveFile("kharchnama-backup-"+today()+".json",blob))toast("Backup saved");return}
   if(a==="restore"){fileMode="restore";const f=document.getElementById("fileIn");f.accept=".json,application/json";f.click();return}
   if(a==="import"){fileMode="csv";const f=document.getElementById("fileIn");f.accept=".csv,text/csv";f.click();return}
   if(a==="wipe"){if(!b.classList.contains("armed")){b.classList.add("armed");b.textContent="Tap again to delete "+S.txs.length+" entries";setTimeout(()=>{if(b.isConnected){b.classList.remove("armed");b.textContent="Delete all entries"}},4000);return}

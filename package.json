@@ -2,7 +2,7 @@
   "name": "kharcha-android",
   "version": "1.0.0",
   "private": true,
-  "description": "Kharcha personal finance app with Faygul, Android build",
+  "description": "Kharchnama personal finance app with Faygul, Android build",
   "scripts": {
     "sync": "npx cap sync android"
   },

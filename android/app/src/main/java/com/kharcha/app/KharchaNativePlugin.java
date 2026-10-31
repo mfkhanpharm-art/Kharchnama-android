@@ -27,7 +27,7 @@ import com.getcapacitor.annotation.Permission;
 import com.getcapacitor.annotation.PermissionCallback;
 
 /**
- * Native features for Kharcha: reading bank SMS from the inbox, hearing new SMS live,
+ * Native features for Kharchnama: reading bank SMS from the inbox, hearing new SMS live,
  * and fingerprint / face unlock. Message text stays on the phone unless the user
  * chooses to send it to Faygul for categorisation.
  */
@@ -192,7 +192,7 @@ public class KharchaNativePlugin extends Plugin {
                 }
             );
             BiometricPrompt.PromptInfo info = new BiometricPrompt.PromptInfo.Builder()
-                .setTitle("Unlock Kharcha")
+                .setTitle("Unlock Kharchnama")
                 .setSubtitle(reason)
                 .setNegativeButtonText("Use PIN")
                 .setAllowedAuthenticators(BiometricManager.Authenticators.BIOMETRIC_WEAK)

@@ -1,4 +1,4 @@
-/* Kharcha Android bridge: connects the web app to native features through Capacitor. */
+/* Kharchnama Android bridge: connects the web app to native features through Capacitor. */
 (function(){
   "use strict";
   var Cap=window.Capacitor;

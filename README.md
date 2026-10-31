@@ -1,6 +1,6 @@
-# Kharcha for Android
+# Kharchnama for Android
 
-Personal expense book with Faygul, your AI financial adviser. This is the Android build of the Kharcha app.
+Personal expense book with Faygul, your AI financial adviser. This is the Android build of the Kharchnama app.
 
 ## What the Android app adds
 - **SMS auto-import**: reads bank and wallet transaction SMS (inbox scan and new messages live). OTPs and promotions are ignored, duplicates are skipped, and you can review before anything is added.
@@ -11,7 +11,7 @@ Personal expense book with Faygul, your AI financial adviser. This is the Androi
 - **Faygul** uses your own Anthropic API key (More → Faygul AI). The key is stored only on the phone.
 
 ## Get the APK (no computer needed)
-Every push to `main` builds the app on GitHub Actions. When the build finishes (about 5 minutes), open the repository's **Releases** page on your phone, tap the latest `Kharcha-N.apk`, and allow installing from your browser when Android asks. Later builds install over the previous one and keep your data.
+Every push to `main` builds the app on GitHub Actions. When the build finishes (about 5 minutes), open the repository's **Releases** page on your phone, tap the latest `Kharchnama-N.apk`, and allow installing from your browser when Android asks. Later builds install over the previous one and keep your data.
 
 ## Build it yourself
 1. Install Node 20, JDK 17 and Android Studio.

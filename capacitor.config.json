@@ -1,6 +1,6 @@
 {
   "appId": "com.kharcha.app",
-  "appName": "Kharcha",
+  "appName": "Kharchnama",
   "webDir": "www",
   "android": { "backgroundColor": "#F3F4F7" },
   "plugins": {
