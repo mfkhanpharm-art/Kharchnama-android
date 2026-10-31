@@ -1,5 +1,7 @@
 apply plugin: 'com.android.application'
 
+def buildNumber = Integer.parseInt(System.getenv('GITHUB_RUN_NUMBER') ?: '1')
+
 android {
     namespace "com.kharcha.app"
     compileSdk rootProject.ext.compileSdkVersion
@@ -7,7 +9,7 @@ android {
         applicationId "com.kharcha.app"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode (System.getenv('GITHUB_RUN_NUMBER') ?: '1').toInteger()
+        versionCode buildNumber
         versionName "1.0.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         aaptOptions {
