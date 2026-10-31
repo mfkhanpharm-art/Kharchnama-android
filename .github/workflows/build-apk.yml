@@ -7,6 +7,12 @@ on:
 
 permissions:
   contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: kharchnama-build
+  cancel-in-progress: false
 
 jobs:
   build:
@@ -67,3 +73,21 @@ jobs:
           name: Kharchnama build ${{ github.run_number }}
           body: Open this page on your Android phone and tap the .apk file to install.
           files: Kharchnama-${{ github.run_number }}.apk
+
+      - name: Prepare update site
+        env:
+          NOTES: ${{ github.event.head_commit.message }}
+        run: node scripts/make-site.js Kharchnama-${{ github.run_number }}.apk
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+  deploy-updates:
+    needs: build
+    runs-on: ubuntu-24.04
+    environment:
+      name: github-pages
+    steps:
+      - name: Publish updates to GitHub Pages
+        uses: actions/deploy-pages@v4

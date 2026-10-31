@@ -4,7 +4,7 @@
   var Cap=window.Capacitor;
   if(!Cap||!Cap.isNativePlatform||!Cap.isNativePlatform())return;
   var reg=function(n){return Cap.registerPlugin(n)};
-  var Native=reg("KharchaNative"),Notif=reg("LocalNotifications"),Files=reg("Filesystem"),Share=reg("Share"),App=reg("App"),Bar=reg("StatusBar");
+  var Native=reg("KharchaNative"),Notif=reg("LocalNotifications"),Files=reg("Filesystem"),Share=reg("Share"),App=reg("App"),Bar=reg("StatusBar"),WV=reg("WebView");
 
   function b64(blob){return new Promise(function(res,rej){var fr=new FileReader();fr.onload=function(){var s=String(fr.result);res(s.slice(s.indexOf(",")+1))};fr.onerror=rej;fr.readAsDataURL(blob)})}
   function hash(s){var h=0;for(var i=0;i<s.length;i++){h=(h*31+s.charCodeAt(i))|0}return Math.abs(h)%2000000000+1}
@@ -49,11 +49,40 @@
       out.push({id:hash(x.key),title:x.title,body:x.body,schedule:{at:at,allowWhileIdle:true},smallIcon:"ic_stat_kharcha",iconColor:"#0F7B5F"})});
     if(out.length)await Notif.schedule({notifications:out.slice(0,60)})}catch(e){}finally{notifyBusy=false}}
 
+
+  /* ===== App updates =====
+     NATIVE_VER changes only when Android-level code changes (needs a new APK).
+     Everything else ships as a web update from GitHub Pages and loads on the next open. */
+  var NATIVE_VER=2;
+  var SITE="https://mfkhanpharm-art.github.io/Kharchnama-android/";
+  var WEB_VER=+(window.KHN_WEB_VER||0);
+  var BOOT_KEY="kharchnama.otaBoot";
+  // Safety net: if an update fails to start three times, go back to the built-in version.
+  try{var bt=JSON.parse(localStorage.getItem(BOOT_KEY)||"null");
+    if(bt&&!bt.ok&&bt.ver===WEB_VER){bt.tries=(bt.tries||0)+1;localStorage.setItem(BOOT_KEY,JSON.stringify(bt));
+      if(bt.tries>3){localStorage.removeItem(BOOT_KEY);WV.setServerAssetPath({path:"public"}).then(function(){return WV.persistServerBasePath()}).catch(function(){})}}}catch(e){}
+  async function updCheck(){
+    var r=await fetch(SITE+"version.json?t="+Date.now(),{cache:"no-store"});
+    if(!r.ok)throw{code:r.status===404?"not_published":"unavailable",message:"HTTP "+r.status};
+    var v=await r.json();
+    return{remote:v,web:WEB_VER,native:NATIVE_VER,needApk:(+v.native||1)>NATIVE_VER,webNewer:(+v.web||0)>WEB_VER,apkUrl:SITE+(v.apk||"Kharchnama.apk")}}
+  async function updApply(v,onProgress){
+    var files=v.files||[];if(!files.length||files.indexOf("index.html")<0)throw{code:"bad_manifest",message:"Update is incomplete"};
+    var dir="ota/"+v.web;
+    for(var i=0;i<files.length;i++){var f=files[i];var res=await fetch(SITE+f+"?v="+v.web,{cache:"no-store"});if(!res.ok)throw{code:"download",message:"Couldn't download "+f};
+      await Files.writeFile({path:dir+"/"+f,data:await b64(await res.blob()),directory:"DATA",recursive:true});if(onProgress)onProgress((i+1)/files.length)}
+    var u=await Files.getUri({path:dir,directory:"DATA"});var path=decodeURIComponent(String(u.uri).replace(/^file:\/\//,""));
+    localStorage.setItem(BOOT_KEY,JSON.stringify({ver:+v.web,tries:0,ok:false}));
+    try{var old=await Files.readdir({path:"ota",directory:"DATA"});for(var k=0;k<old.files.length;k++){var n=old.files[k].name||old.files[k];if(String(n)!==String(v.web)&&String(n)!==String(WEB_VER))await Files.rmdir({path:"ota/"+n,directory:"DATA",recursive:true}).catch(function(){})}}catch(e){}
+    await WV.setServerBasePath({path:path});await WV.persistServerBasePath()}
+  function bootOk(){try{var b=JSON.parse(localStorage.getItem(BOOT_KEY)||"null");if(b&&b.ver===WEB_VER&&!b.ok){b.ok=true;localStorage.setItem(BOOT_KEY,JSON.stringify(b))}}catch(e){}}
+
   var VENDOR={"xlsx.full.min.js":"vendor/xlsx.full.min.js","jspdf.umd.min.js":"vendor/jspdf.umd.min.js","jspdf.plugin.autotable.min.js":"vendor/jspdf.plugin.autotable.min.js","pdf.min.js":"vendor/pdf.min.js","pdf.worker.min.js":"vendor/pdf.worker.min.js"};
 
   window.KN={
     sample:sample,downloads:downloads,notify:notify,
     notifRequest:function(){return Notif.requestPermissions()},
+    update:{check:updCheck,apply:updApply,bootOk:bootOk,webVer:WEB_VER,nativeVer:NATIVE_VER,openApk:function(url){return Native.openUrl({url:url})},appInfo:function(){return Native.appInfo()}},
     mapSrc:function(src){var f=String(src).split("/").pop();return VENDOR[f]||src},
     sms:{status:function(){return Native.smsStatus()},request:function(){return Native.requestSms()},read:function(since){return Native.readSms({since:Math.floor(since),limit:400})}},
     bio:{available:function(){return Native.biometricAvailable()},auth:function(){return Native.biometricAuth({reason:"Unlock your expense book"})}},

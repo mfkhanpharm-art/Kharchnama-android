@@ -8,6 +8,7 @@ import android.content.IntentFilter;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Build;
+import android.content.pm.PackageInfo;
 import android.provider.Telephony;
 import android.telephony.SmsMessage;
 
@@ -156,6 +157,35 @@ public class KharchaNativePlugin extends Plugin {
         }
         JSObject r = new JSObject();
         r.put("messages", out);
+        call.resolve(r);
+    }
+
+    /** Opens a link (for example the new APK download) in the phone's browser. */
+    @PluginMethod
+    public void openUrl(PluginCall call) {
+        String url = call.getString("url");
+        if (url == null) { call.reject("No url"); return; }
+        try {
+            Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+            i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            getContext().startActivity(i);
+            call.resolve();
+        } catch (Exception e) {
+            call.reject("Couldn't open link: " + e.getMessage());
+        }
+    }
+
+    /** Installed app version, used to decide whether an update needs a new APK. */
+    @PluginMethod
+    public void appInfo(PluginCall call) {
+        JSObject r = new JSObject();
+        try {
+            PackageInfo pi = getContext().getPackageManager().getPackageInfo(getContext().getPackageName(), 0);
+            r.put("versionName", pi.versionName);
+            r.put("build", Build.VERSION.SDK_INT >= 28 ? pi.getLongVersionCode() : pi.versionCode);
+        } catch (Exception e) {
+            r.put("build", 0);
+        }
         call.resolve(r);
     }
 

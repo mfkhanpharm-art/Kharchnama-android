@@ -17,7 +17,8 @@ const fontCss=[];
 fs.writeFileSync(path.join(www,"fonts.css"),fontCss.join("\n"));
 let app=fs.readFileSync(path.join(root,"web","app.html"),"utf8");
 app=app.replace(/<link rel="preconnect"[^>]*>\s*/,"").replace(/<link rel="stylesheet" href="https:\/\/fonts\.googleapis\.com[^>]*>/,'<link rel="stylesheet" href="fonts.css">');
-app=app.replace("<script>",'<script src="vendor/capacitor.js"></script>\n<script src="vendor/native.js"></script>\n<script>');
+const WEB_VER=+(process.env.GITHUB_RUN_NUMBER||0);
+app=app.replace("<script>",'<script>window.KHN_WEB_VER='+WEB_VER+';</script>\n<script src="vendor/capacitor.js"></script>\n<script src="vendor/native.js"></script>\n<script>');
 const shell=`<!doctype html>
 <html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">

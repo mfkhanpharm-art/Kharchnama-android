@@ -553,7 +553,7 @@ function cloudErr(e){if(e&&e.code==="quota_exceeded")toast("Storage is full. Bac
 function syncLabel(){document.getElementById("syncLbl").textContent=S.mode==="cloud"?(S.cloudReady?"Synced to your account":"Connecting…"):"Saved on this device"}
 
 async function initCloud(){
-  if(window.KN){downloads=KN.downloads;sampleCap=KN.sample;afterLoad();const onb=maybeOnboard();try{KN.start({back:nativeBack,relock,smsScan,smsIngest});KN.bio.available().then(r=>{S.bioAvail=!!(r&&r.available);tryBio()}).catch(()=>{});if(!onb)KN.sms.status().then(r=>{S.smsGranted=!!(r&&r.granted);if(S.smsGranted)smsScan()}).catch(()=>{})}catch(e){}return}
+  if(window.KN){downloads=KN.downloads;sampleCap=KN.sample;afterLoad();try{KN.update&&KN.update.bootOk()}catch(e){}setTimeout(()=>checkUpdates(true),2500);const onb=maybeOnboard();try{KN.start({back:nativeBack,relock,smsScan,smsIngest});KN.bio.available().then(r=>{S.bioAvail=!!(r&&r.available);tryBio()}).catch(()=>{});if(!onb)KN.sms.status().then(r=>{S.smsGranted=!!(r&&r.granted);if(S.smsGranted)smsScan()}).catch(()=>{})}catch(e){}return}
   if(!window.claude||!window.claude.use){afterLoad();return}
   try{
     const [d,u,dl,sm]=await Promise.all([claude.use("db"),claude.use("user"),claude.use("downloads"),claude.use("sample")]);
@@ -714,7 +714,7 @@ function renderHome(){
   const r=R(),st=stats(r),set=view(),p=stats(prevR(r));const B=set.budget?set.budget*budgetFactor(r):0;const left=B-st.e;const ch=pctChange(st.e,p.e);
   const cats=byCat(st.exp);const recent=st.tx.slice().sort((a,b)=>b.date.localeCompare(a.date)||(b.ts||0)-(a.ts||0)).slice(0,5);
   const bal=balances();const tot=Object.values(bal).reduce((a,b)=>a+b,0);const up=upcoming(10);
-  let h=bannerHTML()+smsCard()+kindsHTML();
+  let h=updCard()+bannerHTML()+smsCard()+kindsHTML();
   h+='<div class="card hero"><div style="min-width:0"><div class="eyebrow">Spent · '+esc(r.label)+'</div><div class="big num">'+fmt(st.e)+'</div><div class="sub">'+(B?'<span>'+(left>=0?fmt(left)+" left":fmt(-left)+" over budget")+'</span>':'<span>No budget set</span>')+(ch!==null?'<span>'+(ch>=0?"▲ ":"▼ ")+Math.abs(ch).toFixed(0)+'% vs last '+r.kind+'</span>':"")+'</div></div>'+ring(st.e,B)+'</div>';
   h+='<div class="trio"><div class="tile"><span class="chip-ic" style="color:var(--inc)">'+I("down")+'</span><div class="eyebrow">Income</div><div class="v inc num">'+fmt(st.i)+'</div></div><div class="tile"><span class="chip-ic" style="color:var(--good)">'+I("piggy")+'</span><div class="eyebrow">Saved</div><div class="v '+(st.i-st.e>=0?"net":"neg")+' num">'+fmt(st.i-st.e)+'</div></div><div class="tile"><span class="chip-ic">'+I("calendar")+'</span><div class="eyebrow">Per day</div><div class="v num">'+fmt(st.e/Math.max(1,r.elapsed||r.days))+'</div></div></div>';
   h+='<div class="card"><div class="row" style="margin-bottom:12px">'+h2("wallet","Wallets")+'<span class="pill2 num">'+fmt(tot)+'</span></div><div class="scroller">'+
@@ -770,7 +770,7 @@ function renderMore(){
     ["accounts","wallet","Wallets","Cash, bank, cards and balances","#2B5DA8"],["recurring","repeat","Recurring & bills","Automatic entries and reminders","#7A55B5"],
     ["counter","calc","Cash counter","Count notes and coins","#14858A"],["lock","lock","App lock",S.settings.pinHash?"PIN is on":"Protect with a 4-digit PIN","#C23B4E"],
     ["backup","download","Backup & export","Excel, PDF, CSV and restore","#475467"],["prefs","sliders","Preferences","Currency, week start, categories","#667085"]];
-  if(NATIVE)tiles.splice(1,0,["sms","msg","SMS auto-import",smsCfg().enabled?"On · reading bank SMS":"Read bank SMS automatically","#2B5DA8"],["ai","sparkles","Faygul AI",(function(){try{return localStorage.getItem("kharcha.aikey")?"Connected":"Add your API key"}catch(e){return "Add your API key"}})(),"#7A55B5"]);
+  if(NATIVE)tiles.splice(1,0,["sms","msg","SMS auto-import",smsCfg().enabled?"On · reading bank SMS":"Read bank SMS automatically","#2B5DA8"],["updates","download","App updates",S.upd.state==="web"||S.upd.state==="apk"?"Update available":"Build "+(KN.update?KN.update.webVer:""),"#12805C"],["ai","sparkles","Faygul AI",(function(){try{return localStorage.getItem("kharcha.aikey")?"Connected":"Add your API key"}catch(e){return "Add your API key"}})(),"#7A55B5"]);
   let h='<div class="card advcard" data-chat style="cursor:pointer"><div class="fig">'+advisorSVG()+'</div><div><h2 style="color:#fff">'+ADV_NAME+'</h2><div class="status" style="margin:4px 0 10px">Personal financial adviser · budgeting, saving, investing, salary, debt and tax basics.</div><button class="btn accent" data-chat>'+I("msg")+'Start a conversation</button></div></div>';
   h+='<div class="moregrid">'+tiles.map(t=>'<button class="mtile" data-panel="'+t[0]+'">'+ico(t[1],t[4],true)+'<b>'+t[2]+'</b><small>'+esc(t[3])+'</small></button>').join("")+'</div>';
   h+='<div class="card"><div class="status"><i class="dot '+(S.mode==="cloud"&&S.cloudReady?"on":"")+'"></i>'+(S.mode==="cloud"&&S.cloudReady?"Private to your account and synced across devices.":"Stored on this device only.")+' '+S.txs.length+' entries. No ads, no call access, delete anytime.</div></div>';
@@ -786,7 +786,7 @@ function openPanel(kind,arg){S.panel={kind,arg};if(kind==="sms"&&NATIVE)KN.sms.s
 function closePanel(){S.panel=null;S.draft=null;document.getElementById("sheetHost").innerHTML=""}
 function sheet(icn,title,body){return '<div class="scrim" data-close></div><div class="sheet" role="dialog" aria-modal="true" aria-label="'+esc(title)+'"><div class="grab"></div><div class="wrap"><div class="row">'+h2(icn,title)+'<button class="btn" data-close style="padding:7px 13px">Done</button></div>'+body+'</div></div>'}
 function renderPanel(){const p=S.panel;if(!p)return;const host=document.getElementById("sheetHost");const old=host.querySelector(".sheet");const keep=old?old.scrollTop:0;
-  host.innerHTML={entry:pEntry,imports:pImports,sms:pSMS,ai:pAI,budgets:pBudgets,goals:pGoals,accounts:pAccounts,recurring:pRecurring,counter:pCounter,lock:pLock,backup:pBackup,prefs:pPrefs}[p.kind](p.arg);
+  host.innerHTML={entry:pEntry,imports:pImports,sms:pSMS,ai:pAI,updates:pUpdates,budgets:pBudgets,goals:pGoals,accounts:pAccounts,recurring:pRecurring,counter:pCounter,lock:pLock,backup:pBackup,prefs:pPrefs}[p.kind](p.arg);
   const sh=host.querySelector(".sheet");if(sh)sh.scrollTop=keep}
 function makeDraft(arg){
   if(arg&&arg.id){const t=arg;const rec=t.rec?(S.settings.recurring||[]).find(x=>x.id===t.rec):null;
@@ -1134,6 +1134,33 @@ async function runOnb(){if(ONB.running)return;ONB.running=true;
 function finishOnb(){lsSet("kharcha.onboarded",true);document.getElementById("onbHost").innerHTML="";render();if(S.smsGranted)smsScan(30).then(n=>{if(n)toast("Found "+n+" transaction"+(n>1?"s":"")+" in your SMS")});drawAdv()}
 function maybeOnboard(){if(!NATIVE||lsGet("kharcha.onboarded",false))return false;drawOnb();document.getElementById("advHost").innerHTML="";setTimeout(runOnb,900);return true}
 document.getElementById("onbHost").addEventListener("click",e=>{const b=e.target.closest("[data-onb]");if(!b)return;const k=b.dataset.onb;if(k==="ask")runOnb();else finishOnb()});
+
+/* ================= app updates (Android) ================= */
+S.upd={state:"idle",info:null,progress:0,err:""};
+async function checkUpdates(silent){if(!NATIVE||!KN.update)return;S.upd.state="checking";S.upd.err="";if(S.panel&&S.panel.kind==="updates")renderPanel();
+  try{const i=await KN.update.check();S.upd.info=i;S.upd.state=i.needApk?"apk":i.webNewer?"web":"latest"}
+  catch(e){S.upd.state=silent?"idle":"error";S.upd.err=e&&e.code==="not_published"?"Updates aren't published yet. Turn on GitHub Pages for the repository.":"Couldn't check for updates. Check your internet connection."}
+  render();if(S.panel&&S.panel.kind==="updates")renderPanel()}
+async function applyUpdate(){const i=S.upd.info;if(!i||!i.webNewer)return;S.upd.state="downloading";S.upd.progress=0;if(!S.panel||S.panel.kind!=="updates")openPanel("updates");else renderPanel();
+  try{await KN.update.apply(i.remote,p=>{S.upd.progress=p;const b=document.getElementById("updBar");if(b)b.style.width=Math.round(p*100)+"%";const t=document.getElementById("updPct");if(t)t.textContent=Math.round(p*100)+"%"})}
+  catch(e){S.upd.state="error";S.upd.err=(e&&e.message)||"The update didn't finish. Try again.";renderPanel()}}
+function updCard(){if(!NATIVE||!S.upd.info||(S.upd.state!=="web"&&S.upd.state!=="apk"))return "";const apk=S.upd.state==="apk";const n=S.upd.info.remote.notes||"";
+  return '<div class="card" style="display:grid;grid-template-columns:42px 1fr;gap:12px;align-items:center;border-color:#BFE3D4;background:#F3FBF7">'+ico(apk?"download":"sparkles","#0F7B5F",true)+'<div style="min-width:0"><b>'+(apk?"New app version available":"Update ready")+'</b><div class="status">'+esc(n?n.slice(0,90):(apk?"Includes phone-level improvements.":"New features and fixes."))+'</div><div class="btns" style="margin-top:8px">'+(apk?'<button class="btn accent" data-updapk>'+I("download")+'Download</button>':'<button class="btn accent" data-updgo>'+I("sparkles")+'Update now</button>')+'<button class="btn" data-panel="updates">Details</button></div></div></div>'}
+function pUpdates(){const u=S.upd,i=u.info;const ver=NATIVE&&KN.update?KN.update.webVer:0;let b='<div class="card" style="display:flex;flex-direction:column;gap:10px"><div class="row"><div><div class="eyebrow">Installed</div><b class="num" style="font-size:17px">Kharchnama · build '+ver+'</b></div>'+ico("check","#0F7B5F",true)+'</div>';
+  if(u.state==="checking")b+='<div class="status"><span class="typing"><i></i><i></i><i></i></span>Checking for updates…</div>';
+  else if(u.state==="latest")b+='<div class="status">'+I("check")+'You have the latest version.</div>';
+  else if(u.state==="web")b+='<div class="status" style="color:var(--good)">'+I("sparkles")+'Build '+i.remote.web+' is ready. It installs inside the app in a few seconds.</div>';
+  else if(u.state==="apk")b+='<div class="status" style="color:var(--inc)">'+I("download")+'Build '+i.remote.web+' needs a new app download because it changes phone features. Your data stays.</div>';
+  else if(u.state==="downloading")b+='<div class="status">Downloading update… <b id="updPct">'+Math.round(u.progress*100)+'%</b></div><div class="bar" style="height:8px"><i id="updBar" style="width:'+Math.round(u.progress*100)+'%;--c:var(--accent)"></i></div><div class="status">Kharchnama will restart by itself when it\'s done.</div>';
+  else if(u.state==="error")b+='<div class="status" style="color:var(--bad)">'+I("alert")+esc(u.err)+'</div>';
+  if(i&&i.remote.notes&&(u.state==="web"||u.state==="apk"))b+='<div class="slip" style="gap:6px"><div class="eyebrow">What\'s new</div><div style="font-size:13.5px;white-space:pre-line">'+esc(i.remote.notes)+'</div></div>';
+  b+='<div class="btns">'+(u.state==="web"?'<button class="btn accent" data-updgo style="flex:1">'+I("sparkles")+'Update now</button>':u.state==="apk"?'<button class="btn accent" data-updapk style="flex:1">'+I("download")+'Download new version</button>':"")+(u.state!=="downloading"?'<button class="btn" data-updcheck>'+I("restore")+'Check now</button>':"")+'</div></div>';
+  b+='<div class="status">Kharchnama checks for updates each time it opens. Most updates install inside the app. Updates that change phone features, such as SMS or fingerprint, download a new version from your Kharchnama page; install it over the current app and your data stays.</div>';
+  return sheet("download","App updates",b)}
+document.addEventListener("click",e=>{const b=e.target.closest("button");if(!b||!NATIVE)return;
+  if(b.hasAttribute("data-updgo")){applyUpdate();return}
+  if(b.hasAttribute("data-updapk")){const i=S.upd.info;if(i)KN.update.openApk(i.apkUrl).catch(()=>toast("Couldn't open the download. Visit your Kharchnama page instead."));return}
+  if(b.hasAttribute("data-updcheck")){checkUpdates(false);return}});
 
 /* ================= adviser: floating figure ================= */
 let advPos=lsGet("kharcha.advpos",null);
