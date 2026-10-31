@@ -53,6 +53,7 @@
 
   window.KN={
     sample:sample,downloads:downloads,notify:notify,
+    notifRequest:function(){return Notif.requestPermissions()},
     mapSrc:function(src){var f=String(src).split("/").pop();return VENDOR[f]||src},
     sms:{status:function(){return Native.smsStatus()},request:function(){return Native.requestSms()},read:function(since){return Native.readSms({since:Math.floor(since),limit:400})}},
     bio:{available:function(){return Native.biometricAvailable()},auth:function(){return Native.biometricAuth({reason:"Unlock your expense book"})}},

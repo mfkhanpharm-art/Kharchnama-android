@@ -289,6 +289,15 @@ table.rep{width:100%;border-collapse:collapse;font-size:13.5px}
 .facebig svg{width:100%;height:100%;display:block}
 .status .i{width:15px;height:15px}
 input[type=month]{width:100%;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:11px 12px;font-size:16px;font-weight:600}
+.onb{position:fixed;inset:0;z-index:65;background:var(--bg);display:flex;flex-direction:column;overflow:auto;padding-bottom:env(safe-area-inset-bottom,0px)}
+.onbtop{background:linear-gradient(140deg,var(--navy),var(--navy-2));color:#fff;display:grid;grid-template-columns:96px 1fr;gap:14px;align-items:end;padding:max(20px,env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) 0 max(16px,env(safe-area-inset-left,0px))}
+.onbtop .fig{width:96px;margin-bottom:-4px}.onbtop .fig svg{display:block;width:100%;height:auto;animation:breathe 4.5s ease-in-out infinite;transform-origin:50% 100%}
+.onbtop > div:last-child{padding-bottom:18px;min-width:0}
+.onbbody{max-width:560px;width:100%;margin:0 auto;display:flex;flex-direction:column;gap:14px;padding:16px max(16px,env(safe-area-inset-right,0px)) 20px max(16px,env(safe-area-inset-left,0px))}
+.onbrow{display:grid;grid-template-columns:42px 1fr auto;gap:12px;align-items:center;padding:12px 0;border-bottom:1px solid var(--line)}
+.onbrow:last-child{border-bottom:0}
+.onbrow b{display:block;font-weight:800}.onbrow small{display:block;color:var(--muted);font-weight:600;font-size:12.5px;line-height:1.35;margin-top:2px}
+.onbrow > div{min-width:0}
 @media (prefers-reduced-motion:reduce){.sheet,.chat{animation:none}#adv svg,.chathead .fig svg{animation:none}.pins.shake{animation:none}.sw2,.sw2::after{transition:none}}
 </style>
 
@@ -314,6 +323,7 @@ input[type=month]{width:100%;background:var(--surface);border:1px solid var(--li
 <div id="chatHost"></div>
 <div id="sheetHost"></div>
 <div id="lockHost"></div>
+<div id="onbHost"></div>
 <div id="toastHost"></div>
 <input type="file" id="fileIn" hidden>
 
@@ -543,7 +553,7 @@ function cloudErr(e){if(e&&e.code==="quota_exceeded")toast("Storage is full. Bac
 function syncLabel(){document.getElementById("syncLbl").textContent=S.mode==="cloud"?(S.cloudReady?"Synced to your account":"Connecting…"):"Saved on this device"}
 
 async function initCloud(){
-  if(window.KN){downloads=KN.downloads;sampleCap=KN.sample;afterLoad();try{KN.start({back:nativeBack,relock,smsScan,smsIngest});KN.bio.available().then(r=>{S.bioAvail=!!(r&&r.available);tryBio()}).catch(()=>{});KN.sms.status().then(r=>{S.smsGranted=!!(r&&r.granted);if(S.smsGranted)smsScan()}).catch(()=>{})}catch(e){}return}
+  if(window.KN){downloads=KN.downloads;sampleCap=KN.sample;afterLoad();const onb=maybeOnboard();try{KN.start({back:nativeBack,relock,smsScan,smsIngest});KN.bio.available().then(r=>{S.bioAvail=!!(r&&r.available);tryBio()}).catch(()=>{});if(!onb)KN.sms.status().then(r=>{S.smsGranted=!!(r&&r.granted);if(S.smsGranted)smsScan()}).catch(()=>{})}catch(e){}return}
   if(!window.claude||!window.claude.use){afterLoad();return}
   try{
     const [d,u,dl,sm]=await Promise.all([claude.use("db"),claude.use("user"),claude.use("downloads"),claude.use("sample")]);
@@ -1103,9 +1113,31 @@ document.getElementById("sheetHost").addEventListener("click",async e=>{const b=
 });
 document.addEventListener("change",e=>{if(!S.panel||S.panel.kind!=="sms")return;if(e.target.id==="smsMode")setSmsCfg({mode:e.target.value});if(e.target.id==="smsWallet")setSmsCfg({wallet:e.target.value})});
 
+/* ================= first-launch permissions (Android) ================= */
+const ONB={sms:"wait",notif:"wait",bio:"wait",running:false};
+function onbChip(s){return s==="ok"?'<span class="when auto">Allowed</span>':s==="no"?'<span class="when over">Not allowed</span>':s==="na"?'<span class="when soon">Not available</span>':s==="ask"?'<span class="when today">Asking…</span>':'<span class="when soon">Waiting</span>'}
+function drawOnb(){const h=document.getElementById("onbHost");if(!h)return;const done=!ONB.running&&ONB.sms!=="wait"&&ONB.notif!=="wait";
+  const row=(ic,c,t,d,s)=>'<div class="onbrow">'+ico(ic,c,true)+'<div style="min-width:0"><b>'+t+'</b><small>'+d+'</small></div>'+onbChip(s)+'</div>';
+  h.innerHTML='<div class="onb" role="dialog" aria-modal="true" aria-label="Welcome to Kharcha"><div class="onbtop"><div class="fig">'+advisorSVG()+'</div><div><div class="eyebrow" style="color:rgba(255,255,255,.65)">Welcome to Kharcha</div><h2 style="color:#fff;font-size:21px;margin-top:4px">Assalam o alaikum, I\'m Faygul</h2><div class="status" style="color:rgba(255,255,255,.75);margin-top:6px">Let\'s set up your phone so I can track money for you automatically.</div></div></div>'+
+  '<div class="onbbody"><div class="card" style="padding:4px 16px">'+
+  row("msg","#2B5DA8","Read bank SMS","Adds transactions from bank and wallet messages. OTPs and personal texts are ignored, and nothing leaves your phone.",ONB.sms)+
+  row("clock","#B5851B","Notifications","Reminds you when bills are due.",ONB.notif)+
+  row("lock","#0F7B5F","Fingerprint unlock",ONB.bio==="ok"?"Available. Turn it on by setting a PIN in More → App lock.":"Your phone's fingerprint or face unlock can protect the app.",ONB.bio)+
+  '</div>'+(ONB.sms==="no"||ONB.notif==="no"?'<div class="status">You can allow these later in Android Settings → Apps → Kharcha → Permissions.</div>':"")+
+  '<div class="status">Faygul\'s chat needs your Anthropic API key. Add it any time in More → Faygul AI.</div>'+
+  '<div class="btns"><button class="btn primary" data-onb="'+(done?"go":"ask")+'" style="flex:1"'+(ONB.running?" disabled":"")+'>'+(done?"Start using Kharcha":ONB.running?"Waiting for your answer…":"Allow permissions")+'</button>'+(done?"":'<button class="btn" data-onb="skip">Later</button>')+'</div></div></div>'}
+async function runOnb(){if(ONB.running)return;ONB.running=true;
+  try{const b=await KN.bio.available();ONB.bio=b&&b.available?"ok":"na"}catch(e){ONB.bio="na"}
+  ONB.sms="ask";drawOnb();try{const r=await KN.sms.request();ONB.sms=r&&r.granted?"ok":"no"}catch(e){ONB.sms="no"}
+  ONB.notif="ask";drawOnb();try{const r=await KN.notifRequest();ONB.notif=r&&r.display==="granted"?"ok":"no"}catch(e){ONB.notif="no"}
+  ONB.running=false;S.smsGranted=ONB.sms==="ok";if(S.smsGranted)setSmsCfg({enabled:true});drawOnb()}
+function finishOnb(){lsSet("kharcha.onboarded",true);document.getElementById("onbHost").innerHTML="";render();if(S.smsGranted)smsScan(30).then(n=>{if(n)toast("Found "+n+" transaction"+(n>1?"s":"")+" in your SMS")});drawAdv()}
+function maybeOnboard(){if(!NATIVE||lsGet("kharcha.onboarded",false))return false;drawOnb();document.getElementById("advHost").innerHTML="";setTimeout(runOnb,900);return true}
+document.getElementById("onbHost").addEventListener("click",e=>{const b=e.target.closest("[data-onb]");if(!b)return;const k=b.dataset.onb;if(k==="ask")runOnb();else finishOnb()});
+
 /* ================= adviser: floating figure ================= */
 let advPos=lsGet("kharcha.advpos",null);
-function drawAdv(){const h=document.getElementById("advHost");if(S.chatOpen){h.innerHTML="";return}
+function drawAdv(){const h=document.getElementById("advHost");if(S.chatOpen||(document.querySelector("#onbHost .onb"))){h.innerHTML="";return}
   if(!h.firstChild){h.innerHTML='<div id="adv" role="button" tabindex="0" aria-label="Chat with '+ADV_NAME+', your financial adviser">'+advisorSVG()+'<span class="tagline">Ask Faygul</span></div>';bindAdv()}
   placeAdv()}
 function clampPos(p){const el=document.getElementById("adv");const w=el?el.offsetWidth:70,hh=el?el.offsetHeight:160;const vw=document.documentElement.clientWidth,vh=window.innerHeight;
