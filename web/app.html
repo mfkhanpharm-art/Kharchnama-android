@@ -403,6 +403,63 @@ svg.chart rect.hit{cursor:pointer}
 .facts .btn{padding:7px 11px;font-size:13px}
 .bub ol{margin:4px 0 8px;padding-left:20px}
 @media (prefers-reduced-motion:reduce){.view.enter>*,.view.slide-l>*,.view.slide-r>*,svg.chart rect.b,.ring .arc,.donut,.minibars i,.bcbar i{animation:none}}
+/* ---- v8: assistants, voice, bills, account ---- */
+header.top .wrap{gap:8px}.brand{flex:1;min-width:0}.brand > div{min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.hprof{width:36px;height:36px;border-radius:50%;border:1px solid var(--line);background:var(--surface);display:grid;place-items:center;overflow:hidden;flex:none;color:var(--ink-2);padding:0}
+.hprof img{width:100%;height:100%;object-fit:cover}.hprof span{font-weight:800;font-size:13px}.hprof .i{width:18px;height:18px}
+.logo{background:#fff}
+#adv svg,.chathead .fig svg,.onbtop .fig svg{overflow:visible}
+#adv.popin svg{animation:popin .65s cubic-bezier(.2,.9,.3,1.3) both,breathe 4.5s ease-in-out .65s infinite}
+@keyframes popin{from{transform:translateY(34px) scale(.55);opacity:0}to{transform:none;opacity:1}}
+.avbubble{position:fixed;z-index:36;max-width:min(300px,calc(100vw - 24px));background:#fff;border:1px solid var(--line);border-radius:16px;padding:12px 14px;box-shadow:0 16px 34px -12px rgba(14,23,38,.38);font-size:13.5px;font-weight:600;line-height:1.45;color:var(--ink);animation:bubin .35s cubic-bezier(.2,.9,.3,1.2) both}
+.avbubble.bl{border-bottom-left-radius:4px}.avbubble.br{border-bottom-right-radius:4px}.avbubble.tl{border-top-left-radius:4px}.avbubble.tr{border-top-right-radius:4px}
+.avbubble .bb{display:flex;gap:8px;margin-top:10px}
+.avbubble .bb button{border:0;border-radius:10px;padding:7px 12px;font-weight:800;font-size:12.5px;background:var(--surface-2);color:var(--ink)}
+.avbubble .bb button:first-child{background:var(--accent);color:#fff}
+@keyframes bubin{from{opacity:0;transform:translateY(8px) scale(.96)}to{opacity:1;transform:none}}
+.avgrid{display:grid;grid-template-columns:repeat(5,1fr);gap:6px}
+.avpick{border:1px solid var(--line);background:var(--surface);border-radius:14px;padding:6px 2px 8px;display:flex;flex-direction:column;align-items:center;gap:1px;min-width:0;color:var(--ink)}
+.avpick .avfig{width:100%;height:92px;display:flex;justify-content:center;overflow:hidden}
+.avpick .avfig svg{height:100%;width:auto}
+.avpick b{font-size:11px;font-weight:800}
+.avpick small{font-size:9.5px;color:var(--muted);font-weight:700;text-align:center;line-height:1.15;padding:0 2px}
+.avpick[aria-pressed=true]{border-color:var(--accent);box-shadow:inset 0 0 0 1.5px var(--accent);background:var(--accent-soft)}
+.avfig.hop svg{animation:hop .5s cubic-bezier(.2,.9,.3,1.3)}
+@keyframes hop{40%{transform:translateY(-8px)}100%{transform:none}}
+.qact{display:grid;grid-template-columns:repeat(auto-fit,minmax(88px,1fr));gap:8px}
+.qact button{border:1px solid var(--line);background:var(--surface);border-radius:14px;padding:10px 6px;display:flex;flex-direction:column;align-items:center;gap:4px;font-weight:800;font-size:12.5px;color:var(--ink-2)}
+.qact button .i{width:22px;height:22px;color:var(--accent)}
+.heard,.approval{display:flex;gap:8px;align-items:center;border-radius:12px;padding:10px 12px;font-weight:700;font-size:13px}
+.heard{background:var(--accent-soft);color:#0B4F3D}.approval{background:#EAF0FA;color:#1E3A6B}
+.heard .i,.approval .i{width:18px;height:18px;flex:none}
+.billtop{display:grid;grid-template-columns:74px 1fr;gap:14px;align-items:center}
+.billimg{width:74px;height:96px;object-fit:cover;border-radius:10px;border:1px solid var(--line);background:var(--surface-2)}
+.card > .billimg:first-child{width:120px;height:150px}
+.catgrid .sugg{display:block;font-size:9px;font-weight:800;color:var(--accent);letter-spacing:.05em;text-transform:uppercase}
+.bitem{display:grid;grid-template-columns:1fr 84px 112px;gap:6px;align-items:center;padding:8px 10px;border-top:1px solid var(--line)}
+.bitem:first-child{border-top:0}
+.bitem input,.bitem select{padding:7px 8px;font-size:13.5px;min-width:0}
+details.billtext summary{cursor:pointer;font-weight:700;color:var(--muted);font-size:13px;padding:6px 0}
+.acct{display:grid;grid-template-columns:56px 1fr;gap:14px;align-items:center}
+.acct b{display:block;font-size:16px}.acct small{display:block;color:var(--muted);font-weight:600;font-size:12.5px;line-height:1.35}
+.pbig{width:56px;height:56px;border-radius:50%;overflow:hidden;background:var(--surface-2);display:grid;place-items:center;color:var(--ink-2)}
+.pbig img{width:100%;height:100%;object-fit:cover}.pbig span{font-weight:800;font-size:18px}.pbig .i{width:26px;height:26px}
+.gbtn{background:#fff;border:1px solid #DADCE0;color:#3C4043;font-weight:800;padding:12px}
+.gbtn .i{color:#4285F4}
+.avrow{display:grid;grid-template-columns:56px 1fr auto;gap:12px;align-items:center;margin:10px 0 6px}
+.avrow .facebig{width:56px;height:56px}
+.card .toggle+.toggle,.card .avrow+.toggle{margin-top:8px}
+.card > .grid2,.card > .btn{margin-top:10px}
+.setrow{display:grid;grid-template-columns:34px 1fr 18px;gap:10px;align-items:center;width:100%;border:0;background:transparent;padding:10px 0;border-bottom:1px solid var(--line);text-align:left;font-weight:700;color:var(--ink)}
+.setrow:last-child{border-bottom:0}.setrow > .i{color:var(--muted);width:16px;height:16px}
+ol.steps{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:8px;font-size:13.5px}
+ol.steps code{font-size:11.5px;background:var(--surface-2);padding:1px 4px;border-radius:4px;word-break:break-all}
+.chatbtns{display:flex;gap:6px;align-self:start;margin-top:4px}.chatbtns .closeb{margin-top:0}
+.micb{background:var(--surface);border:1px solid var(--line);color:var(--accent);width:46px;border-radius:12px;display:grid;place-items:center;flex:none}
+.micb.on{background:var(--accent);color:#fff;animation:pulse 1s infinite}
+@keyframes pulse{50%{box-shadow:0 0 0 6px rgba(15,123,95,.18)}}
+.onb .avpick{background:#fff}
+@media (prefers-reduced-motion:reduce){#adv.popin svg,.avbubble,.avfig.hop svg,.micb.on{animation:none}}
 @media (prefers-reduced-motion:reduce){.sheet,.chat{animation:none}#adv svg,.chathead .fig svg{animation:none}.pins.shake{animation:none}.sw2,.sw2::after{transition:none}}
 </style>
 
@@ -413,6 +470,7 @@ svg.chart rect.hit{cursor:pointer}
     <span id="pLbl"></span>
     <button id="pNext" aria-label="Next period"></button>
   </div>
+  <button class="hprof" id="hProf" data-panel="account" aria-label="Account and settings"></button>
 </div></header>
 
 <main><div class="wrap">
@@ -506,35 +564,8 @@ function I(n){return '<svg class="i" viewBox="0 0 24 24" aria-hidden="true">'+(I
 function ico(n,c,lg){return '<span class="ico'+(lg?" lg":"")+'" style="--c:'+c+'">'+I(n)+'</span>'}
 
 /* ================= adviser artwork (original illustration) ================= */
-function advisorSVG(){return `<svg viewBox="0 0 120 262" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Faygul, financial adviser">
-<ellipse cx="60" cy="254" rx="34" ry="5.5" fill="#0E1726" opacity=".18"/>
-<path d="M41 240h17v9H36c-2 0-3-1.5-2-3.2 1.4-3.6 3.6-5.8 7-5.8z" fill="#1B1F2A"/><path d="M62 240h17c3.4 0 5.6 2.2 7 5.8.9 1.7 0 3.2-2 3.2H62z" fill="#1B1F2A"/>
-<path d="M39 150h21l-1.5 92H41.5z" fill="#1F2D4A"/><path d="M60 150h21l-1.5 92H61.5z" fill="#22324F"/><path d="M50 160v80M70 160v80" stroke="#2D3F61" stroke-width="1"/>
-<path d="M40 92c1-9 8-13 14-13h12c6 0 13 4 14 13l2 58H38z" fill="#A9C8EE"/>
-<path d="M46 100v46M74 100v46" stroke="#93B6E2" stroke-width="1.2"/>
-<rect x="67" y="104" width="9" height="7" rx="1.5" fill="none" stroke="#86ACDB" stroke-width="1.2"/>
-<path d="M41 93 22 121" stroke="#A9C8EE" stroke-width="13" stroke-linecap="round"/><path d="M79 93l19 28" stroke="#9DBFEA" stroke-width="13" stroke-linecap="round"/>
-<ellipse cx="23.5" cy="120" rx="7.5" ry="5.5" fill="#8FB3E3" transform="rotate(-50 23.5 120)"/><ellipse cx="96.5" cy="120" rx="7.5" ry="5.5" fill="#8FB3E3" transform="rotate(50 96.5 120)"/>
-<path d="M23 122l15 17" stroke="#EDBB97" stroke-width="9" stroke-linecap="round"/><path d="M97 122l-15 17" stroke="#E7B28C" stroke-width="9" stroke-linecap="round"/>
-<rect x="37" y="145" width="46" height="7" rx="1.5" fill="#141A26"/><rect x="56.5" y="146" width="7" height="5" rx="1" fill="#C9A227"/>
-<ellipse cx="39" cy="141" rx="6" ry="5" fill="#EDBB97"/><ellipse cx="81" cy="141" rx="6" ry="5" fill="#E7B28C"/>
-<path d="M53 70h14v12l-7 6-7-6z" fill="#E2A982"/>
-<path d="M52 79l8 12-10-2-3-8zM68 79l-8 12 10-2 3-8z" fill="#E4EEFA"/>
-<path d="M57.5 90h5l-1 5 3.5 31-5 7-5-7 3.5-31z" fill="#1F2D4A"/><path d="M57.5 90h5l-1 5h-3z" fill="#2B3D63"/>
-<path d="M58 104l6-3M57 114l7-3M56.5 124l6.5-3" stroke="#C9A227" stroke-width="1.1" opacity=".8"/>
-<ellipse cx="40.5" cy="52" rx="4" ry="6" fill="#E9B590"/><ellipse cx="79.5" cy="52" rx="4" ry="6" fill="#E9B590"/>
-<ellipse cx="60" cy="50" rx="19.5" ry="23" fill="#F2C6A2"/>
-<path d="M40.5 49c-2.5-14 5-26 19-27 13-1 22 7 21 21l-1.5 5c-1-7-4-11-9-13-7 4-17 5-24 2-3 3-4.5 7-5 12z" fill="#5B3A22"/>
-<path d="M45 27c6-7 20-9 28-2-7-1-14 1-19 5z" fill="#734B2D"/>
-<path d="M45.5 43.5c2.5-1.5 6-2 9-.8M64.5 42.7c3-1.2 6.5-.7 9 .8" stroke="#3E2715" stroke-width="2" stroke-linecap="round" fill="none"/>
-<rect x="43" y="46" width="15" height="11" rx="3.5" fill="#fff" fill-opacity=".25" stroke="#141A26" stroke-width="2.2"/><rect x="62" y="46" width="15" height="11" rx="3.5" fill="#fff" fill-opacity=".25" stroke="#141A26" stroke-width="2.2"/>
-<path d="M58 50.5c1.3-1 2.7-1 4 0M43 50l-3 1M77 50l3 1" stroke="#141A26" stroke-width="2" stroke-linecap="round"/>
-<circle cx="50.5" cy="51.5" r="2.1" fill="#2B1B10"/><circle cx="69.5" cy="51.5" r="2.1" fill="#2B1B10"/>
-<path d="M59.5 54c-.6 3-1 5 .8 5.6" stroke="#D69A74" stroke-width="1.6" stroke-linecap="round" fill="none"/>
-<path d="M52.5 63.5c4.5 4.5 10.5 4.5 15 0" stroke="#8A3B2A" stroke-width="2.2" stroke-linecap="round" fill="none"/>
-<ellipse cx="47" cy="60" rx="3" ry="1.8" fill="#EBA58A" opacity=".45"/><ellipse cx="73" cy="60" rx="3" ry="1.8" fill="#EBA58A" opacity=".45"/>
-</svg>`}
-function advisorHead(){return advisorSVG().replace('viewBox="0 0 120 262"','viewBox="36 20 48 48"')}
+function advisorSVG(){return avatarSVG(curAv())}
+function advisorHead(){return avatarHead(curAv())}
 
 /* ================= constants ================= */
 const EXP_CATS=[
@@ -553,7 +584,7 @@ const PAL=["#2F6FB0","#4E8A4F","#7A55B5","#C9612F","#14858A","#B8466A","#B5851B"
 const PICK_ICONS=["tag","coffee","heart","gift","car","home","phone","users","plane","briefcase","star","film","health","edu","laptop","piggy"];
 const GOAL_ICONS=["target","plane","home","car","phone","heart","edu","umbrella","laptop","star","gift","briefcase"];
 const NOTES_PKR=[[5000,"#7A5C3E"],[1000,"#2F5C99"],[500,"#2E7D4F"],[100,"#A83A32"],[50,"#6E4A99"],[20,"#B86B28"],[10,"#167D6A"],[5,"#8A929C"],[2,"#8A929C"],[1,"#8A929C"]];
-const ADV_NAME="Faygul";
+let ADV_NAME="HisaabJi";
 
 /* ================= state ================= */
 const DEF_SET=()=>({currency:"Rs",budget:0,catBudgets:{},customCats:[],weekStart:1,accounts:DEF_ACCTS.map(a=>Object.assign({},a)),goals:[],recurring:[],slips:[],pinHash:""});
@@ -851,7 +882,6 @@ function renderHome(){
   let h=updCard()+bannerHTML()+smsCard()+kindsHTML();
   h+='<div class="card hero"><div style="min-width:0"><div class="eyebrow">Spent · '+esc(r.label)+'</div><div class="big num" data-count="'+st.e+'" data-ck="hero">'+fmt(st.e)+'</div><div class="sub">'+(B?'<span>'+(left>=0?fmt(left)+" left of "+short(B):fmt(-left)+" over budget")+'</span>'+(bu.outside>0&&B?'<span>'+short(bu.outside)+' outside budgets</span>':''):'<button class="subbtn" data-panel="budgets">Set a budget</button>')+(ct.ch!==null?'<span>'+(ct.ch>=0?"▲ ":"▼ ")+Math.abs(ct.ch).toFixed(0)+'% vs '+esc(ct.label)+'</span>':"")+'</div></div>'+ring(bu.spent,B)+'</div>';
   h+='<div class="trio"><div class="tile"><span class="chip-ic" style="color:var(--inc)">'+I("down")+'</span><div class="eyebrow">Income</div><div class="v inc num" data-count="'+st.i+'" data-ck="inc">'+fmt(st.i)+'</div></div><div class="tile"><span class="chip-ic" style="color:var(--good)">'+I("box")+'</span><div class="eyebrow">Saved</div><div class="v '+(st.i-st.e>=0?"net":"neg")+' num" data-count="'+(st.i-st.e)+'" data-ck="net">'+fmt(st.i-st.e)+'</div></div><div class="tile"><span class="chip-ic">'+I("calendar")+'</span><div class="eyebrow">Per day</div><div class="v num">'+fmt(st.e/Math.max(1,r.elapsed||r.days))+'</div></div></div>';
-  if(tip)h+='<button class="card tipcard" data-ask="'+esc(tip[3])+'"><span class="face">'+advisorHead()+'</span><div style="min-width:0"><div class="eyebrow">Faygul suggests</div><b>'+esc(tip[1])+'</b><small>'+esc(tip[2])+'</small></div></button>';
   h+='<div class="card"><div class="row" style="margin-bottom:12px">'+h2("wallet","Wallets")+'<span class="pill2 num">'+esc(wm.label)+' · '+fmt(tot)+'</span></div><div class="scroller">'+
     accts().map(a=>{const ai=acctInfo(a.id);return '<button class="acc" data-panel="accounts">'+ico(ai.icon,ai.color)+'<span class="n">'+esc(a.name)+'</span><span class="b num">'+fmt(bal[a.id]||0)+'</span></button>'}).join("")+
     '<button class="acc add" data-panel="imports">'+I("upload")+'Import</button><button class="acc add" data-act="transfer">'+I("swap")+'Transfer</button></div></div>';
@@ -911,14 +941,14 @@ function renderIns(){
     const el=r.current?Math.min(1,r.elapsed/r.days):null;
     h+=bc.map(x=>{const c=catInfo(x.id);return '<div class="bcrow" data-catd="'+esc(x.id)+'" role="button" tabindex="0">'+ico(c.icon,c.color)+'<div><div class="row"><b>'+esc(c.name)+'<span class="pill '+x.st+'">'+(x.st==="over"?"Over":x.st==="near"?"Close":"Within")+'</span></b><span class="num" style="font-weight:700;white-space:nowrap">'+Math.round(x.pct*100)+'%</span></div><div class="bcbar"><i class="'+x.st+'" style="width:'+Math.min(100,x.pct*100).toFixed(1)+'%"></i>'+(el!==null?'<u style="left:'+(el*100).toFixed(1)+'%" title="Time passed"></u>':"")+'</div><small>'+fmt(x.s)+' of '+fmt(x.lim)+' · '+(x.s>x.lim?fmt(x.s-x.lim)+" over":fmt(x.lim-x.s)+" left")+'</small></div></div>'}).join("")+
       (r.current?'<div class="status" style="margin-top:6px">The thin line on each bar shows how much of the '+r.kind+' has passed.</div>':"")}
-  else h+='<div class="empty">'+I("target")+'No category budgets yet.<button class="btn primary" data-ask="Plan my budget">Let Faygul draft one</button></div>';
+  else h+='<div class="empty">'+I("target")+'No category budgets yet.<button class="btn primary" data-ask="Plan my budget">Let '+ADV_NAME+' draft one</button></div>';
   h+='</div>';
   // 3. saving opportunities
   const ops=savingOps(r);const pot=ops.reduce((a,o)=>a+o.amt,0);
   h+='<div class="card">'+h2("box","Saving opportunities")+(ops.length?'<div class="potential">You could save up to <b class="num">'+fmt(pot)+'</b> a month</div>'+ops.map(o=>'<div class="oprow"'+(o.cat?' data-catd="'+esc(o.cat)+'" role="button" tabindex="0"':"")+'>'+ico(o.ic,o.col)+'<div><b>'+esc(o.t)+'</b><small>'+esc(o.d)+'</small></div><div class="amt num">'+fmt(o.amt)+'</div></div>').join(""):emptyH("check","No obvious leaks right now. Nicely done."))+'</div>';
   // 4. Faygul suggests
   const tips=faygulTips(r);
-  h+='<div class="card advcard fsug"><div class="fig">'+advisorSVG()+'</div><div><h2 style="color:#fff">Faygul suggests</h2>'+tips.map(t=>'<button class="ftip" data-ask="'+esc(t[3])+'">'+I(t[0])+'<span><b>'+esc(t[1])+'</b><small>'+esc(t[2])+'</small></span></button>').join("")+'<button class="btn accent" data-chat style="margin-top:12px">'+I("msg")+'Ask Faygul anything</button></div></div>';
+  h+='<div class="card advcard fsug"><div class="fig">'+advisorSVG()+'</div><div><h2 style="color:#fff">'+ADV_NAME+' suggests</h2>'+tips.map(t=>'<button class="ftip" data-ask="'+esc(t[3])+'">'+I(t[0])+'<span><b>'+esc(t[1])+'</b><small>'+esc(t[2])+'</small></span></button>').join("")+'<button class="btn accent" data-chat style="margin-top:12px">'+I("msg")+'Ask '+ADV_NAME+' anything</button></div></div>';
   // 5. trend + weekday
   h+='<div class="card"><div class="row" style="margin-bottom:8px;flex-wrap:wrap">'+h2("trend","Trend")+'<div class="legend"><span><i class="sw" style="background:#2B5DA8"></i>Income</span><span><i class="sw" style="background:#C2486B"></i>Spent</span></div></div>'+trendChart(r)+'</div>';
   if(r.kind!=="day")h+='<div class="card">'+h2("calendar","Spend by weekday")+'<div class="status" style="margin:4px 0 8px">Average per day, excluding rent, bills and fees</div>'+dowChart(r)+'</div>';
@@ -928,7 +958,7 @@ function renderIns(){
   h+='<div class="card">'+h2("file","Reports & sharing")+'<div class="status" style="margin:4px 0 12px">Download a report for '+esc(r.label)+' or copy a text summary.</div><div class="btns"><button class="btn primary" data-act="pdf">'+I("file")+'PDF report</button><button class="btn" data-act="xlsx">'+I("sheet")+'Excel</button><button class="btn" data-act="copysum">'+I("copy")+'Copy summary</button></div><div id="sumBox"></div></div>';
   document.getElementById("v-ins").innerHTML=h}
 function renderMore(){
-  const tiles=[["imports","upload","Import & salary","Slips, statements and SMS","#0F7B5F"],["budgets","target","Budgets",totBudget(S.settings)?fmt(totBudget(S.settings))+" a month":"Category budgets add up","#0F7B5F"],["goals","box","Savings goals","Boxes for what matters","#B5851B"],
+  const tiles=[["account","user","Account & settings",(S.settings.profile&&S.settings.profile.email)||"Sign in, assistant, voice","#0E1B2E"],["avatars","users","Choose assistant",avName()+" · "+curAv().style,"#B8466A"],["imports","upload","Import & salary","Slips, statements and SMS","#0F7B5F"],["budgets","target","Budgets",totBudget(S.settings)?fmt(totBudget(S.settings))+" a month":"Category budgets add up","#0F7B5F"],["goals","box","Savings goals","Boxes for what matters","#B5851B"],
     ["accounts","wallet","Wallets","Cash, bank, cards and balances","#2B5DA8"],["catlib","grid","Expense headings",Object.keys(LIB_INDEX).length+" headings with icons","#7A55B5"],["recurring","repeat","Recurring & bills","Automatic entries and reminders","#7A55B5"],
     ["counter","calc","Cash counter","Count notes and coins","#14858A"],["lock","lock","App lock",S.settings.pinHash?"PIN is on":"Protect with a 4-digit PIN","#C23B4E"],
     ["backup","download","Backup & export","Excel, PDF, CSV and restore","#475467"],["prefs","sliders","Preferences","Currency, week start, carry forward","#667085"]];
@@ -937,7 +967,7 @@ function renderMore(){
   h+='<div class="moregrid">'+tiles.map(t=>'<button class="mtile" data-panel="'+t[0]+'">'+ico(t[1],t[4],true)+'<b>'+t[2]+'</b><small>'+esc(t[3])+'</small></button>').join("")+'</div>';
   h+='<div class="card"><div class="status"><i class="dot '+(S.mode==="cloud"&&S.cloudReady?"on":"")+'"></i>'+(S.mode==="cloud"&&S.cloudReady?"Private to your account and synced across devices.":"Stored on this device only.")+' '+S.txs.length+' entries. No ads, no call access, delete anytime.</div></div>';
   document.getElementById("v-more").innerHTML=h}
-function render(){document.getElementById("pLbl").textContent=R().label;syncLabel();scheduleBills();({home:renderHome,list:renderList,ins:renderIns,more:renderMore})[S.tab]()}
+function render(){document.getElementById("pLbl").textContent=R().label;syncLabel();updHeaderProfile();scheduleBills();({home:renderHome,list:renderList,ins:renderIns,more:renderMore})[S.tab]()}
 function go(tab){S.tab=tab;["home","list","ins","more"].forEach(t=>document.getElementById("v-"+t).hidden=t!==tab);
   document.querySelectorAll("nav.tabs [data-tab]").forEach(b=>{if(b.dataset.tab===tab)b.setAttribute("aria-current","page");else b.removeAttribute("aria-current")});
   document.querySelector("header .monthnav").style.visibility=tab==="more"?"hidden":"visible";
@@ -953,7 +983,7 @@ function closePanel(){if(S.pstack&&S.pstack.length){const p=S.pstack.pop();S.pan
 function closeAllPanels(){S.pstack=[];closePanel()}
 function sheet(icn,title,body){return '<div class="scrim" data-close></div><div class="sheet" role="dialog" aria-modal="true" aria-label="'+esc(title)+'"><div class="grab"></div><div class="wrap"><div class="row">'+h2(icn,title)+'<button class="btn" data-close style="padding:7px 13px">Done</button></div>'+body+'</div></div>'}
 function renderPanel(){const p=S.panel;if(!p)return;const host=document.getElementById("sheetHost");const old=host.querySelector(".sheet");const keep=old?old.scrollTop:0;
-  host.innerHTML={entry:pEntry,imports:pImports,sms:pSMS,ai:pAI,updates:pUpdates,budgets:pBudgets,goals:pGoals,accounts:pAccounts,recurring:pRecurring,counter:pCounter,lock:pLock,backup:pBackup,prefs:pPrefs,cat:pCat,catlib:pCatLib}[p.kind](p.arg);
+  host.innerHTML={entry:pEntry,imports:pImports,sms:pSMS,ai:pAI,updates:pUpdates,budgets:pBudgets,goals:pGoals,accounts:pAccounts,recurring:pRecurring,counter:pCounter,lock:pLock,backup:pBackup,prefs:pPrefs,cat:pCat,catlib:pCatLib,avatars:pAvatars,bill:pBill,account:pAccount,gsetup:pGsetup}[p.kind](p.arg);
   const sh=host.querySelector(".sheet");if(sh){sh.scrollTop=keep;countUps(sh)}}
 function makeDraft(arg){
   if(arg&&arg.id){const t=arg;const rec=t.rec?(S.settings.recurring||[]).find(x=>x.id===t.rec):null;
@@ -966,7 +996,7 @@ function pEntry(){
   const d=S.draft;const editing=!!d.id;const isT=d.type==="trf";const cats=d.type==="inc"?INC_CATS:allCats();if(!isT&&!cats.find(c=>c[0]===d.cat))d.cat=cats[0][0];
   const v=calc(d.amt);const showPrev=/[+\-*/×÷−]/.test(d.amt)&&!isNaN(v);
   const opt=(sel)=>accts().map(a=>'<option value="'+a.id+'"'+(a.id===sel?" selected":"")+'>'+esc(a.name)+'</option>').join("");
-  let b='<div class="kinds" style="grid-template-columns:repeat(3,1fr)" role="group">'+[["exp","Expense"],["inc","Income"],["trf","Transfer"]].map(([k,l])=>'<button data-ty="'+k+'" aria-pressed="'+(d.type===k)+'">'+l+'</button>').join("")+'</div>';
+  let b=(!editing?'<div class="qact">'+(sttAvailable()?'<button data-vspeak>'+I("mic")+'<span>Speak</span></button>':"")+'<button data-bscan="camera">'+I("scan")+'<span>Scan bill</span></button><button data-bscan="photos">'+I("image")+'<span>Upload bill</span></button></div>':"")+(d.heard?'<div class="heard">'+I("mic")+'<span>Heard: \u201c'+esc(d.heard)+'\u201d. Check and tap Add.</span></div>':"")+'<div class="kinds" style="grid-template-columns:repeat(3,1fr)" role="group">'+[["exp","Expense"],["inc","Income"],["trf","Transfer"]].map(([k,l])=>'<button data-ty="'+k+'" aria-pressed="'+(d.type===k)+'">'+l+'</button>').join("")+'</div>';
   if(!editing&&d.type==="exp"){const f=favorites();if(f.length)b+='<div><div class="eyebrow" style="margin-bottom:6px">Quick add</div><div class="favs">'+f.map((x,i)=>{const c=catInfo(x.cat);return '<button class="fav" data-fav="'+i+'" style="--c:'+c.color+'">'+I(c.icon)+esc(x.note)+' <small>'+short(x.amt)+'</small></button>'}).join("")+'</div></div>'}
   b+='<div class="amtin"><span>'+esc(cur())+'</span><input id="fAmt" type="text" inputmode="decimal" autocomplete="off" placeholder="0" value="'+esc(d.amt)+'" aria-label="Amount"></div>';
   b+='<div class="ops">'+["+","−","×","÷","⌫","="].map(o=>'<button data-op="'+o+'" aria-label="'+o+'">'+o+'</button>').join("")+'</div><div class="calcprev" id="calcPrev">'+(showPrev?"= "+fmt(v):I("calc")+"Type sums like 450+120×2")+'</div>';
@@ -995,7 +1025,7 @@ function pBudgets(){const set=S.settings;const r=range("month",today());const sp
   let b='<div class="card"><div class="eyebrow">Total monthly budget</div><div class="budtot num" id="budTotal">'+fmt(tb)+'</div><div class="status" id="budNote">'+(cs?"Adds up automatically from your category budgets below.":"Add budgets for categories below and the total adds up automatically.")+'</div>'+
     '<div class="status" style="margin-top:6px">Spent this month: <b class="num" style="margin-left:4px">'+fmt(stats(r).e)+'</b></div>'+
     (cs?"":'<div class="field" style="margin-top:12px"><label for="bud">Or set one overall budget</label><input type="number" inputmode="decimal" id="bud" min="0" placeholder="e.g. 120000" value="'+(set.budget||"")+'"></div>')+
-    '<button class="btn" data-ask="Plan my budget" style="margin-top:12px">'+I("sparkles")+'Let Faygul draft budgets</button></div>';
+    '<button class="btn" data-ask="Plan my budget" style="margin-top:12px">'+I("sparkles")+'Let '+ADV_NAME+' draft budgets</button></div>';
   b+='<div class="card">'+h2("grid","Category budgets")+'<div class="status" style="margin:4px 0 6px">Monthly limits. Tap a name to see its details.</div>';
   allCats().forEach(([id,name,col,icn])=>{b+='<div class="budrow"><div class="catname" data-catd="'+esc(id)+'" role="button" tabindex="0">'+ico(icn,col)+'<div style="min-width:0"><div>'+esc(name)+'</div><div class="status num">'+fmt(spent[id]||0)+' spent</div></div></div><input type="number" inputmode="decimal" min="0" data-cb="'+id+'" aria-label="'+esc(name)+' budget" placeholder="No limit" value="'+((set.catBudgets||{})[id]||"")+'"></div>'});
   b+='<button class="btn" data-panel="catlib" style="margin-top:10px;width:100%">'+I("plus")+'Add more headings</button></div>';
@@ -1038,7 +1068,7 @@ function pPrefs(){const s=S.settings;let b='<div class="card"><div class="grid2"
 /* ================= lock ================= */
 async function sha(s){try{const b=await crypto.subtle.digest("SHA-256",new TextEncoder().encode("kharcha:"+s));return Array.from(new Uint8Array(b)).map(x=>x.toString(16).padStart(2,"0")).join("")}catch(e){return "p"+s.split("").reverse().join("")}}
 let pinBuf="",forgot=0;
-function checkLock(){if(S.settings.pinHash&&!S.unlocked){const fresh=!document.querySelector("#lockHost .lock");drawLock();if(fresh)setTimeout(tryBio,300)}else document.getElementById("lockHost").innerHTML=""}
+function checkLock(){if(S.settings.pinHash&&!S.unlocked){const fresh=!document.querySelector("#lockHost .lock");drawLock();if(fresh)setTimeout(tryBio,300);return}if(document.querySelector("#lockHost .lock")){document.getElementById("lockHost").innerHTML="";setTimeout(greetOnOpen,300);return}else document.getElementById("lockHost").innerHTML=""}
 function drawLock(){document.getElementById("lockHost").innerHTML='<div class="lock" role="dialog" aria-label="Enter PIN"><span class="logo">'+I("lock")+'</span><h2>Enter your PIN</h2><div class="pins" id="pins">'+[0,1,2,3].map(i=>'<i class="'+(i<pinBuf.length?"on":"")+'"></i>').join("")+'</div><div class="keypad">'+
   [1,2,3,4,5,6,7,8,9].map(n=>'<button data-k="'+n+'">'+n+'</button>').join("")+'<button class="ghost" data-k="forgot">'+(forgot?"Tap again":"Forgot?")+'</button><button data-k="0">0</button><button class="ghost" data-k="del" aria-label="Delete">⌫</button></div>'+(S.bioAvail?'<button class="btn" data-k="bio" style="background:rgba(255,255,255,.1);color:#fff;border-color:rgba(255,255,255,.2)">Use fingerprint</button>':"")+(forgot?'<div class="status" style="max-width:280px;text-align:center">Tapping again removes the PIN. Your entries stay safe in your account.</div>':"")+'</div>'}
 document.getElementById("lockHost").addEventListener("click",async e=>{const b=e.target.closest("[data-k]");if(!b)return;const k=b.dataset.k;if(k==="bio"){tryBio();return}
@@ -1091,7 +1121,7 @@ async function restoreJSON(text){let o;try{o=JSON.parse(text)}catch(e){return to
   if(o.settings){S.settings=normSettings(Object.assign({},o.settings,{pinHash:S.settings.pinHash}));saveSettings()}
   let n=0;for(const t of o.txs){if(t&&t.id&&t.date&&t.amt){await putTx(t,true);n++}}saveLocal();render();renderPanel();toast("Restored "+n+" entries")}
 let fileMode="";
-document.getElementById("fileIn").addEventListener("change",e=>{const f=e.target.files[0];if(!f)return;if(fileMode==="slip"||fileMode==="stmt"){e.target.value="";if(!S.panel||S.panel.kind!=="imports")openPanel("imports");runImport(fileMode,f);return}const r=new FileReader();r.onload=()=>{const t=String(r.result);if(fileMode==="restore")restoreJSON(t);else importCSV(t);e.target.value=""};r.readAsText(f)});
+document.getElementById("fileIn").addEventListener("change",e=>{const f=e.target.files[0];if(!f)return;if(fileMode==="bill"){e.target.value="";billFile(f);return}if(fileMode==="slip"||fileMode==="stmt"){e.target.value="";if(!S.panel||S.panel.kind!=="imports")openPanel("imports");runImport(fileMode,f);return}const r=new FileReader();r.onload=()=>{const t=String(r.result);if(fileMode==="restore")restoreJSON(t);else importCSV(t);e.target.value=""};r.readAsText(f)});
 
 /* ================= imports: salary slips, statements, SMS ================= */
 S.imp={stage:"pick",items:[],wallet:"bank",msg:"",slip:null,err:"",pendingFile:null,pendingKind:null};
@@ -1156,10 +1186,10 @@ function toItems(list){return list.map(t=>{const inc=t.dir==="credit";const kind
   return{sel:kind!=="transfer",date:t.date,amt:Math.round(t.amt*100)/100,type:inc?"inc":"exp",cat:kind==="salary"?"salary":(t.cat&&((inc&&INC_CATS.some(c=>c[0]===t.cat))||(!inc&&allCats().some(c=>c[0]===t.cat)))?t.cat:guessCat(t.desc,t.dir)),desc:t.desc,transfer:kind==="transfer",dup:false}})}
 function markDups(items){items.forEach(it=>{const d=S.txs.find(t=>t.type===it.type&&Math.abs(t.amt-it.amt)<1&&Math.abs(dayDiff(t.date,it.date))<=2);if(d){it.dup=true;it.sel=false}});return items}
 async function runImport(kind,file,text,password){
-  S.imp.stage="busy";S.imp.err="";S.imp.msg=kind==="slip"?"Faygul is reading your salary slip…":kind==="sms"?"Faygul is reading your messages…":"Faygul is reading your statement…";renderPanel();
+  S.imp.stage="busy";S.imp.err="";S.imp.msg=kind==="slip"?""+ADV_NAME+" is reading your salary slip…":kind==="sms"?""+ADV_NAME+" is reading your messages…":""+ADV_NAME+" is reading your statement…";renderPanel();
   try{
     let payload=text!=null?{text,images:[]}:await readFile(file,password);
-    if(payload.images.length&&(!sampleCap||!(await canSeeImages())))throw{user:NATIVE?"Reading photos and scanned PDFs needs Faygul's AI. Add a key in More → Photo reading, or upload a text PDF, Excel or CSV instead.":"Reading photos and scanned PDFs needs Faygul's AI. Open Kharchnama from claude.ai while signed in, or upload a text PDF, Excel or CSV instead."};
+    if(payload.images.length&&(!sampleCap||!(await canSeeImages())))throw{user:NATIVE?"Reading photos and scanned PDFs needs "+ADV_NAME+"'s AI. Add a key in More → Photo reading, or upload a text PDF, Excel or CSV instead.":"Reading photos and scanned PDFs needs "+ADV_NAME+"'s AI. Open Kharchnama from claude.ai while signed in, or upload a text PDF, Excel or CSV instead."};
     if(kind==="slip"){let slip=null;if(sampleCap){try{slip=await aiSlip(payload)}catch(e){}}if(!slip&&payload.text)slip=slipOffline(payload.text);
       if(!slip||!slip.net)throw{user:"Couldn't find a net pay amount on that slip. Try a clearer photo or the original PDF."};S.imp.slip=slip;S.imp.stage="slip";renderPanel();return}
     let list=[];if(sampleCap){try{list=await aiTx(payload,kind==="sms"?"sms":"statement")}catch(e){}}
@@ -1192,7 +1222,7 @@ function pImports(){const im=S.imp;let b="";
   if(im.stage==="busy")return sheet("upload","Import & salary",'<div class="card" style="display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center;padding:28px 16px"><span class="facebig">'+advisorHead()+'</span><b>'+esc(im.msg)+'</b><span class="typing"><i></i><i></i><i></i></span><div class="status">This can take up to a minute for long statements.</div></div>');
   if(im.stage==="pwd")return sheet("lock","Protected PDF",'<div class="card"><div class="status" style="margin-bottom:10px">This statement is password-protected. Banks often use your date of birth or CNIC digits. The password is used only to open the file here and isn\'t saved.</div><div class="search"><input type="password" id="pdfPwd" autocomplete="off" placeholder="PDF password" aria-label="PDF password"><button class="btn primary" data-imp="pwdgo">Open</button></div>'+(im.err?'<div class="status" style="color:var(--bad);margin-top:8px">'+esc(im.err)+'</div>':"")+'</div><button class="btn" data-imp="back">Cancel</button>');
   if(im.stage==="sms")return sheet("msg","Transaction messages",'<div class="status">Copy bank or wallet SMS from your messages app and paste them below, one or many. Browsers can\'t read your SMS directly.</div><textarea id="smsText" rows="9" placeholder="e.g. PKR 2,450.00 debited from your a/c at FOODPANDA on 28-Oct-26…" style="min-height:200px;font-size:14px;font-weight:500">'+esc(im.smsDraft||"")+'</textarea><div class="btns"><button class="btn primary" data-imp="smsgo" style="flex:1">'+I("sparkles")+'Find transactions</button><button class="btn" data-imp="back">Cancel</button></div>');
-  if(im.stage==="slip"){const s=im.slip;return sheet("file","Check salary slip",'<div class="status">Faygul read these details. Correct anything that looks off, then save.</div><div class="card"><div class="grid2"><div class="field"><label for="slpMonth">Pay month</label><input type="month" id="slpMonth" value="'+esc(s.month)+'"></div><div class="field"><label for="slpEmp">Employer</label><input type="text" id="slpEmp" value="'+esc(s.employer)+'"></div><div class="field"><label for="slpGross">Gross pay</label><input type="number" inputmode="decimal" id="slpGross" value="'+(s.gross||"")+'"></div><div class="field"><label for="slpNet">Net pay</label><input type="number" inputmode="decimal" id="slpNet" value="'+(s.net||"")+'"></div></div>'+
+  if(im.stage==="slip"){const s=im.slip;return sheet("file","Check salary slip",'<div class="status">'+ADV_NAME+' read these details. Correct anything that looks off, then save.</div><div class="card"><div class="grid2"><div class="field"><label for="slpMonth">Pay month</label><input type="month" id="slpMonth" value="'+esc(s.month)+'"></div><div class="field"><label for="slpEmp">Employer</label><input type="text" id="slpEmp" value="'+esc(s.employer)+'"></div><div class="field"><label for="slpGross">Gross pay</label><input type="number" inputmode="decimal" id="slpGross" value="'+(s.gross||"")+'"></div><div class="field"><label for="slpNet">Net pay</label><input type="number" inputmode="decimal" id="slpNet" value="'+(s.net||"")+'"></div></div>'+
     ((s.deductions||[]).length?'<div class="eyebrow" style="margin-top:14px">Deductions</div>'+s.deductions.map(d=>'<div class="row" style="padding:6px 0;border-bottom:1px solid var(--line)"><span>'+esc(d.name)+'</span><b class="num">'+fmt(d.amount)+'</b></div>').join(""):"")+
     ((s.allowances||[]).length?'<div class="eyebrow" style="margin-top:14px">Earnings</div>'+s.allowances.map(d=>'<div class="row" style="padding:6px 0;border-bottom:1px solid var(--line)"><span>'+esc(d.name)+'</span><b class="num">'+fmt(d.amount)+'</b></div>').join(""):"")+
     '</div><div class="btns"><button class="btn primary" data-imp="saveslip" style="flex:1">'+I("check")+'Save and match</button><button class="btn" data-imp="back">Cancel</button></div>')}
@@ -1202,10 +1232,10 @@ function pImports(){const im=S.imp;let b="";
     b+='<div class="daygrp">'+im.items.map((it,i)=>{const cats=it.type==="inc"?INC_CATS:allCats();const c=catInfo(it.cat,it.type);return '<div class="impr'+(it.sel?"":" off")+'"><input type="checkbox" class="impsel" data-ii="'+i+'" '+(it.sel?"checked":"")+' aria-label="Include '+esc(it.desc)+'"><div style="min-width:0"><div class="t1">'+esc(it.desc||c.name)+(it.dup?'<span class="tag">Duplicate?</span>':"")+(it.transfer?'<span class="tag" style="background:#EAF0FA;color:var(--inc)">Transfer?</span>':"")+'</div><div class="row" style="gap:6px;margin-top:4px"><span class="status">'+niceDate(it.date)+'</span><select data-ic="'+i+'" aria-label="Category">'+cats.map(x=>'<option value="'+x[0]+'"'+(x[0]===it.cat?" selected":"")+'>'+esc(x[1])+'</option>').join("")+'</select></div></div><div class="amt num '+it.type+'">'+(it.type==="inc"?"+":"−")+fmt(it.amt)+'</div></div>'}).join("")+'</div>';
     b+='<div class="btns" style="position:sticky;bottom:0;background:var(--bg);padding-top:8px"><button class="btn primary" data-imp="import" style="flex:1">'+I("download")+'Import '+n+' entr'+(n===1?"y":"ies")+'</button><button class="btn" data-imp="back">Cancel</button></div>';
     return sheet("upload","Review import",b)}
-  b+='<div class="status">Faygul reads your documents, categorises every line and links salary slips to the matching bank credit. Account and card numbers are never saved.</div>';
+  b+='<div class="status">'+ADV_NAME+' reads your documents, categorises every line and links salary slips to the matching bank credit. Account and card numbers are never saved.</div>';
   if(im.err)b+='<div class="banner" style="background:#FDECEE;color:var(--bad)"><div>'+esc(im.err)+'</div></div>';
   b+='<div class="impopts"><button class="iopt" data-imp="slip">'+ico("file","#0F7B5F",true)+'<div><b>Salary slip</b><small>PDF or photo. Tracks gross, tax and net pay.</small></div></button>'+
-     '<button class="iopt" data-imp="stmt">'+ico("bank","#2B5DA8",true)+'<div><b>Bank statement</b><small>PDF (incl. password-protected), Excel, CSV or photo.</small></div></button>'+
+     '<button class="iopt" data-bscan="prompt">'+ico("scan","#C9612F",true)+'<div><b>Bill or receipt</b><small>Scan or upload. You approve the head before anything is added.</small></div></button><button class="iopt" data-imp="stmt">'+ico("bank","#2B5DA8",true)+'<div><b>Bank statement</b><small>PDF (incl. password-protected), Excel, CSV or photo.</small></div></button>'+
      '<button class="iopt" data-imp="sms">'+ico("msg","#7A55B5",true)+'<div><b>Transaction messages</b><small>Paste SMS from your bank or JazzCash / Easypaisa.</small></div></button></div>';
   const slips=(S.settings.slips||[]).slice().sort((a,b)=>b.month.localeCompare(a.month));
   b+='<div class="card">'+h2("briefcase","Salary slips")+(slips.length?'<div style="display:flex;flex-direction:column;gap:12px;margin-top:12px">'+slips.map(slipCard).join("")+'</div>':emptyH("file","No slips yet. Upload one to track your pay and tax."))+'</div>';
@@ -1262,7 +1292,7 @@ function pSMS(){const c=smsCfg();
   b+='<div class="status">Only messages that look like bank or wallet transactions are read, and they stay on your phone. OTPs and promotions are ignored. Duplicates of entries you already have are skipped.</div>';
   return sheet("msg","SMS auto-import",b)}
 function pAI(){const has=!!lsGet("kharcha.aikeyset",false)||!!(function(){try{return localStorage.getItem("kharcha.aikey")}catch(e){return ""}})();let model="claude-sonnet-5-5";try{model=localStorage.getItem("kharcha.aimodel")||model}catch(e){}
-  let b='<div class="card advcard" style="padding-top:16px"><div class="fig">'+advisorSVG()+'</div><div><h2 style="color:#fff">Photo reading</h2><div class="status" style="margin-top:4px">Faygul works fully on your phone. Optionally, add an Anthropic API key to read photos of salary slips and scanned statements.</div></div></div>';
+  let b='<div class="card advcard" style="padding-top:16px"><div class="fig">'+advisorSVG()+'</div><div><h2 style="color:#fff">Photo reading</h2><div class="status" style="margin-top:4px">'+ADV_NAME+' works fully on your phone. Optionally, add an Anthropic API key to read photos of salary slips and scanned statements.</div></div></div>';
   b+='<div class="card" style="display:flex;flex-direction:column;gap:12px"><div class="field"><label for="aiKey">Anthropic API key</label><input type="password" id="aiKey" autocomplete="off" placeholder="'+(has?"Saved · enter a new key to replace":"sk-ant-…")+'"></div>'+
     '<div class="field"><label for="aiModel">Model</label><select id="aiModel">'+[["claude-sonnet-5-5","Sonnet 5.5 · balanced (recommended)"],["claude-haiku-5-5","Haiku 5.5 · fastest, lowest cost"],["claude-opus-5-5","Opus 5.5 · most capable"]].map(([v,l])=>'<option value="'+v+'"'+(v===model?" selected":"")+'>'+l+'</option>').join("")+'</select></div>'+
     '<div id="aiMsg" class="status"></div><div class="btns"><button class="btn primary" data-aisave style="flex:1">'+I("check")+'Save</button><button class="btn" data-aitest>Test</button>'+(has?'<button class="btn danger" data-aidel>Remove</button>':"")+'</div></div>';
@@ -1271,7 +1301,7 @@ function pAI(){const has=!!lsGet("kharcha.aikeyset",false)||!!(function(){try{re
 let billT=null;
 function scheduleBills(){if(!NATIVE)return;clearTimeout(billT);billT=setTimeout(()=>{try{const up=isSample()?[]:upcoming(45,40).filter(u=>!u.rec.auto&&!u.rec.sample);
   KN.notify(up.map(u=>({key:u.id,title:"Bill due: "+(u.rec.note||catInfo(u.rec.cat,u.rec.type).name),body:fmt(u.rec.amt)+(u.date===today()?" is due today":" is due "+niceDate(u.date)),date:u.date})))}catch(e){}},1500)}
-function nativeBack(){if(S.chatOpen){closeChat();return true}if(S.panel){closePanel();render();return true}if(S.tab!=="home"){go("home");return true}return false}
+function nativeBack(){if(document.querySelector(".avbubble")){document.querySelectorAll(".avbubble").forEach(x=>x.remove());avStop();return true}if(S.chatOpen){closeChat();return true}if(S.panel){closePanel();render();return true}if(S.tab!=="home"){go("home");return true}return false}
 function relock(){if(S.settings.pinHash){S.unlocked=false;pinBuf="";checkLock()}}
 function tryBio(){if(!NATIVE||!S.bioAvail||S.unlocked||!S.settings.pinHash)return;KN.bio.auth().then(r=>{if(r&&r.ok){S.unlocked=true;pinBuf="";checkLock()}}).catch(()=>{})}
 document.getElementById("sheetHost").addEventListener("click",async e=>{const b=e.target.closest("button");if(!b||!S.panel)return;const k=S.panel.kind;
@@ -1283,31 +1313,35 @@ document.getElementById("sheetHost").addEventListener("click",async e=>{const b=
     if(b.hasAttribute("data-aisave")){const v=document.getElementById("aiKey").value.trim();try{if(v)localStorage.setItem("kharcha.aikey",v);localStorage.setItem("kharcha.aimodel",document.getElementById("aiModel").value)}catch(e){}renderPanel();toast(v?"API key saved":"Model saved");return}
     if(b.hasAttribute("data-aidel")){try{localStorage.removeItem("kharcha.aikey")}catch(e){}renderPanel();toast("API key removed");return}
     if(b.hasAttribute("data-aitest")){const v=document.getElementById("aiKey").value.trim();if(v){try{localStorage.setItem("kharcha.aikey",v)}catch(e){}}msg("Testing…");
-      try{const r=await sampleCap("Reply with exactly: Faygul is ready.",{maxTokens:20});msg("Connected: "+(r.text||"").trim())}catch(err){msg(err&&err.code==="no_key"?"Enter your API key first.":err&&err.code==="bad_key"?"That key was rejected. Check it and try again.":"Couldn't connect: "+(err&&err.message||"network error"))}return}}
+      try{const r=await sampleCap("Reply with exactly: "+ADV_NAME+" is ready.",{maxTokens:20});msg("Connected: "+(r.text||"").trim())}catch(err){msg(err&&err.code==="no_key"?"Enter your API key first.":err&&err.code==="bad_key"?"That key was rejected. Check it and try again.":"Couldn't connect: "+(err&&err.message||"network error"))}return}}
 });
 document.addEventListener("change",e=>{if(!S.panel||S.panel.kind!=="sms")return;if(e.target.id==="smsMode")setSmsCfg({mode:e.target.value});if(e.target.id==="smsWallet")setSmsCfg({wallet:e.target.value})});
 
-/* ================= first-launch permissions (Android) ================= */
-const ONB={sms:"wait",notif:"wait",bio:"wait",running:false};
+/* ================= first-launch setup (Android) ================= */
+const ONB={step:"avatar",sms:"wait",notif:"wait",mic:"wait",cam:"wait",bio:"wait",running:false};
 function onbChip(s){return s==="ok"?'<span class="when auto">Allowed</span>':s==="no"?'<span class="when over">Not allowed</span>':s==="na"?'<span class="when soon">Not available</span>':s==="ask"?'<span class="when today">Asking…</span>':'<span class="when soon">Waiting</span>'}
-function drawOnb(){const h=document.getElementById("onbHost");if(!h)return;const done=!ONB.running&&ONB.sms!=="wait"&&ONB.notif!=="wait";
-  const row=(ic,c,t,d,s)=>'<div class="onbrow">'+ico(ic,c,true)+'<div style="min-width:0"><b>'+t+'</b><small>'+d+'</small></div>'+onbChip(s)+'</div>';
-  h.innerHTML='<div class="onb" role="dialog" aria-modal="true" aria-label="Welcome to Kharchnama"><div class="onbtop"><div class="fig">'+advisorSVG()+'</div><div><div class="eyebrow" style="color:rgba(255,255,255,.65)">Welcome to Kharchnama</div><h2 style="color:#fff;font-size:21px;margin-top:4px">Assalam o alaikum, I\'m Faygul</h2><div class="status" style="color:rgba(255,255,255,.75);margin-top:6px">Let\'s set up your phone so I can track money for you automatically.</div></div></div>'+
-  '<div class="onbbody"><div class="card" style="padding:4px 16px">'+
-  row("msg","#2B5DA8","Read bank SMS","Adds transactions from bank and wallet messages. OTPs and personal texts are ignored, and nothing leaves your phone.",ONB.sms)+
-  row("clock","#B5851B","Notifications","Reminds you when bills are due.",ONB.notif)+
-  row("lock","#0F7B5F","Fingerprint unlock",ONB.bio==="ok"?"Available. Turn it on by setting a PIN in More → App lock.":"Your phone's fingerprint or face unlock can protect the app.",ONB.bio)+
-  '</div>'+(ONB.sms==="no"||ONB.notif==="no"?'<div class="status">You can allow these later in Android Settings → Apps → Kharchnama → Permissions.</div>':"")+
-  '<div class="status">Faygul works on your phone right away. No account or key needed.</div>'+
-  '<div class="btns"><button class="btn primary" data-onb="'+(done?"go":"ask")+'" style="flex:1"'+(ONB.running?" disabled":"")+'>'+(done?"Start using Kharchnama":ONB.running?"Waiting for your answer…":"Allow permissions")+'</button>'+(done?"":'<button class="btn" data-onb="skip">Later</button>')+'</div></div></div>'}
+function drawOnb(){const h=document.getElementById("onbHost");if(!h)return;let title,sub,body;const nm=avName();
+  if(ONB.step==="avatar"){title="Choose your assistant";sub="Tap one to meet them and hear their voice. You can change this later in Settings.";
+    body='<div class="eyebrow">HisaabJi</div><div class="avgrid">'+AVATARS.filter(a=>a.g==="m").map(a=>avCard(a,a.id===curAv().id)).join("")+'</div><div class="eyebrow">Finza</div><div class="avgrid">'+AVATARS.filter(a=>a.g==="f").map(a=>avCard(a,a.id===curAv().id)).join("")+'</div><div class="btns"><button class="btn primary" data-onb="next" style="flex:1">Continue with '+nm+'</button></div>'}
+  else if(ONB.step==="perms"){const done=!ONB.running&&ONB.cam!=="wait";title="A few permissions";sub=nm+" needs these to track money for you automatically.";
+    const row=(ic,c,t,d,s)=>'<div class="onbrow">'+ico(ic,c,true)+'<div style="min-width:0"><b>'+t+'</b><small>'+d+'</small></div>'+onbChip(s)+'</div>';
+    body='<div class="card" style="padding:4px 16px">'+row("msg","#2B5DA8","Read bank SMS","Adds transactions from bank and wallet messages. OTPs and personal texts are ignored.",ONB.sms)+row("clock","#B5851B","Notifications","Reminds you when bills are due.",ONB.notif)+row("mic","#7A55B5","Microphone","Speak expenses and talk to "+nm+".",ONB.mic)+row("camera","#0F7B5F","Camera and photos","Scan bills and salary slips.",ONB.cam)+row("lock","#C23B4E","Fingerprint unlock",ONB.bio==="ok"?"Available. Turn it on by setting a PIN in Settings → App lock.":"Uses your phone's fingerprint or face unlock.",ONB.bio)+'</div>'+
+      (["sms","notif","mic","cam"].some(k=>ONB[k]==="no")?'<div class="status">You can allow these later in Android Settings → Apps → Kharchnama → Permissions.</div>':"")+
+      '<div class="btns"><button class="btn primary" data-onb="'+(done?"toGoogle":"ask")+'" style="flex:1"'+(ONB.running?" disabled":"")+'>'+(done?"Next":ONB.running?"Waiting for your answer…":"Allow permissions")+'</button>'+(done?"":'<button class="btn" data-onb="toGoogle">Later</button>')+'</div>'}
+  else{title="Sign in with Google";sub="Optional. "+nm+" will greet you by name and show your photo.";
+    body='<div class="card acct"><span class="pbig">'+I("google")+'</span><div><b>Your Google account</b><small>Kharchnama only reads your name, email and photo.</small></div></div><div class="btns"><button class="btn gbtn" data-onb="gsign" style="flex:1">'+I("google")+'Sign in with Google</button></div><button class="btn" data-onb="finish">Skip for now</button>'}
+  h.innerHTML='<div class="onb" role="dialog" aria-modal="true" aria-label="Welcome to Kharchnama"><div class="onbtop"><div class="fig">'+avatarSVG(curAv(),{live:true})+'</div><div><div class="row" style="justify-content:flex-start;gap:8px"><span class="logo" style="width:28px;height:28px;border-radius:8px">'+logoSVG()+'</span><span class="eyebrow" style="color:rgba(255,255,255,.7)">Welcome to Kharchnama</span></div><h2 style="color:#fff;font-size:21px;margin-top:6px">'+title+'</h2><div class="status" style="color:rgba(255,255,255,.75);margin-top:6px">'+sub+'</div></div></div><div class="onbbody">'+body+'</div></div>';avLoop()}
 async function runOnb(){if(ONB.running)return;ONB.running=true;
   try{const b=await KN.bio.available();ONB.bio=b&&b.available?"ok":"na"}catch(e){ONB.bio="na"}
   ONB.sms="ask";drawOnb();try{const r=await KN.sms.request();ONB.sms=r&&r.granted?"ok":"no"}catch(e){ONB.sms="no"}
   ONB.notif="ask";drawOnb();try{const r=await KN.notifRequest();ONB.notif=r&&r.display==="granted"?"ok":"no"}catch(e){ONB.notif="no"}
+  ONB.mic="ask";drawOnb();try{const r=await KN.micRequest();ONB.mic=r&&r.granted?"ok":"no"}catch(e){ONB.mic="no"}
+  ONB.cam="ask";drawOnb();try{const r=await KN.camRequest();ONB.cam=r&&r.granted?"ok":"no"}catch(e){ONB.cam="no"}
   ONB.running=false;S.smsGranted=ONB.sms==="ok";if(S.smsGranted)setSmsCfg({enabled:true});drawOnb()}
-function finishOnb(){lsSet("kharcha.onboarded",true);document.getElementById("onbHost").innerHTML="";render();if(S.smsGranted)smsScan(30).then(n=>{if(n)toast("Found "+n+" transaction"+(n>1?"s":"")+" in your SMS")});drawAdv()}
-function maybeOnboard(){if(!NATIVE||lsGet("kharcha.onboarded",false))return false;drawOnb();document.getElementById("advHost").innerHTML="";setTimeout(runOnb,900);return true}
-document.getElementById("onbHost").addEventListener("click",e=>{const b=e.target.closest("[data-onb]");if(!b)return;const k=b.dataset.onb;if(k==="ask")runOnb();else finishOnb()});
+function finishOnb(){lsSet("kharcha.onboarded",true);ONB.step="done";document.getElementById("onbHost").innerHTML="";render();if(S.smsGranted)smsScan(30).then(n=>{if(n)toast("Found "+n+" transaction"+(n>1?"s":"")+" in your SMS")});drawAdv();greetOnOpen()}
+function maybeOnboard(){if(!NATIVE||lsGet("kharcha.onboarded",false))return false;document.getElementById("advHost").innerHTML="";drawOnb();return true}
+document.getElementById("onbHost").addEventListener("click",e=>{const b=e.target.closest("[data-onb]");if(!b)return;const k=b.dataset.onb;
+  if(k==="next"){avStop();ONB.step="perms";drawOnb();setTimeout(runOnb,700)}else if(k==="ask")runOnb();else if(k==="toGoogle"){if(!gClientId())return finishOnb();ONB.step="google";drawOnb()}else if(k==="gsign")googleSignIn();else if(k==="finish")finishOnb()});
 
 /* ================= app updates (Android) ================= */
 S.upd={state:"idle",info:null,progress:0,err:""};
@@ -1424,7 +1458,7 @@ function pCatLib(arg){const have=new Set((S.settings.customCats||[]).map(c=>c.id
     '<div class="eyebrow" style="margin:14px 0 8px">Colour</div><div class="swrow">'+PAL2.map(c=>'<button data-nccol="'+c+'" style="background:'+c+'" aria-pressed="'+(S.ncColor===c)+'" aria-label="Colour '+c+'"></button>').join("")+'</div>'+
     '<button class="btn primary" data-ncadd style="margin-top:14px;width:100%">'+I("plus")+'Add heading</button></div>';
   return sheet("grid","All expense headings",b)}
-function pickInto(id){const top=S.pstack&&S.pstack[S.pstack.length-1];if(top&&top.draft){top.draft.cat=id;if(top.draft.type!=="exp")top.draft.type="exp"}closePanel()}
+function pickInto(id){const top=S.pstack&&S.pstack[S.pstack.length-1];if(top&&top.panel&&top.panel.kind==="bill"&&S.bill){S.bill.cat=id;closePanel();return}if(top&&top.draft){top.draft.cat=id;if(top.draft.type!=="exp")top.draft.type="exp"}closePanel()}
 document.getElementById("sheetHost").addEventListener("click",e=>{const b=e.target.closest("button");if(!b||!S.panel||S.panel.kind!=="catlib")return;const pick=S.panel.arg&&S.panel.arg.pick;
   if(b.dataset.lib){const key=b.dataset.lib,id="lib_"+key;const has=(S.settings.customCats||[]).some(c=>c.id===id);
     if(pick){libAdd(key);toast(LIB_INDEX[id].name+" added");pickInto(id);return}
@@ -1454,14 +1488,14 @@ function pCat(id){const r=R();const c=catInfo(id);const isInc=INC_CATS.some(x=>x
   const big=list.slice().sort((a,b)=>b.amt-a.amt)[0];
   b+='<div class="statgrid"><div><small>Entries</small><b class="num">'+list.length+'</b></div><div><small>Average entry</small><b class="num">'+fmt(list.length?tot/list.length:0)+'</b></div><div><small>Largest</small><b class="num">'+fmt(big?big.amt:0)+'</b></div><div><small>Share of '+(isInc?"income":"spending")+'</small><b class="num">'+Math.round(share*100)+'%</b></div></div>';
   const tn=topNotes(list,4);if(tn.length)b+='<div class="card">'+h2("tag","Most spent on")+tn.map(n=>'<div class="row" style="padding:8px 0;border-bottom:1px solid var(--line)"><span style="min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:700">'+esc(n.n)+' <span class="status" style="display:inline">'+n.c+'×</span></span><b class="num">'+fmt(n.v)+'</b></div>').join("")+'</div>';
-  b+='<div class="btns"><button class="btn primary" data-catadd="'+esc(id)+'" style="flex:1">'+I("plus")+'Add '+(isInc?"income":"expense")+' here</button><button class="btn" data-ask="'+esc((isInc?"Tell me about my ":"How can I save on ")+c.name.toLowerCase()+"?")+'">'+I("msg")+'Ask Faygul</button></div>';
+  b+='<div class="btns"><button class="btn primary" data-catadd="'+esc(id)+'" style="flex:1">'+I("plus")+'Add '+(isInc?"income":"expense")+' here</button><button class="btn" data-ask="'+esc((isInc?"Tell me about my ":"How can I save on ")+c.name.toLowerCase()+"?")+'">'+I("msg")+'Ask '+ADV_NAME+'</button></div>';
   b+='<div>'+h2("list","Entries day by day")+(list.length?groupDays(list):emptyH("list","No entries in "+r.label+"."))+'</div>';
   return sheet(c.icon,c.name,b)}
 
 /* ================= interactions ================= */
 function haptic(){try{if(window.KN&&KN.tap)KN.tap();else if(navigator.vibrate)navigator.vibrate(4)}catch(e){}}
 document.addEventListener("click",e=>{if(e.target.closest("button,[data-catd],[data-gday]"))haptic()},true);
-document.addEventListener("click",e=>{if(e.target.closest("#lockHost,#adv,#onbHost"))return;const inSheet=!!e.target.closest("#sheetHost"),inChat=!!e.target.closest("#chatHost");
+document.addEventListener("click",e=>{if(fromHost(e,/^(lockHost|adv|onbHost)$/))return;const inSheet=fromHost(e,/^sheetHost$/),inChat=fromHost(e,/^chatHost$/);
   if(inChat){const fa=e.target.closest("[data-fa]");if(fa){const[mi,ai]=fa.dataset.fa.split(":").map(Number);const m=S.chat[mi];if(m&&m.actions)fgAct(m.actions[ai])}return}
   const cd=e.target.closest("[data-catd]");if(cd&&!e.target.closest("input")){openPanel("cat",cd.dataset.catd,inSheet);return}
   if(inSheet){const b=e.target.closest("button");if(!b||!S.panel)return;
@@ -1609,6 +1643,7 @@ function fgAnswer(raw){
   const q=" "+raw.toLowerCase().replace(/[’`]/g,"'").replace(/\s+/g," ").trim()+" ";const has=re=>re.test(q);
   const r=fgPeriod(q);const cat=fgFindCat(q);const amt=fgAmount(q);
   if(!raw.trim())return fgHelp();
+  if(/^\s*(add|log|record|note|spent|paid|i spent|i paid|bought|i bought|received|got)\b/.test(q)||(/\b(spent|paid|bought)\b/.test(q)&&amt))return fgAddExpense(raw);
   if(has(/^\s*(hi|hello|hey|salam|salaam|assalam|asalam|aoa|good (morning|evening|afternoon))\b/)&&q.length<40)return fgGreet();
   if(has(/\b(thanks|thank you|shukria|shukriya|jazak)/))return{text:"You're welcome. I'm here whenever you want to check your money.",chips:["Summarize my month","Where can I save?"]};
   if(has(/\b(who are you|what are you|your name|what can you do|how do you work|how can you help)\b/)||/^\s*help\s*$/.test(q))return fgHelp();
@@ -1633,6 +1668,9 @@ function fgAnswer(raw){
   if(has(/\b(summar|overview|report|review|how am i doing|status|this month|this week|this year|analy[sz])/))return fgSummary(r);
   const e=fgKB(q);if(e)return fgKBAns(e);
   return fgFallback()}
+function fgAddExpense(raw){const items=parseVoice(raw);if(!items.length)return{text:"Tell me the amount too, for example \"add 500 for petrol\".",chips:["Add 1200 for groceries","Spent 800 on lunch yesterday"]};
+  items.forEach(i=>ensureHead(i.cat));const L=[bl(items.length>1?"I've prepared "+items.length+" entries":"I've prepared this entry")];items.forEach(i=>L.push("- "+(i.type==="inc"?"Income ":"")+bl(fmt(i.amt))+" · "+catInfo(i.cat,i.type).name+" · "+(i.date===today()?"today":niceDate(i.date))+" · "+acctInfo(i.acct).name+(i.note?" · "+i.note:"")));
+  L.push("","Nothing is saved until you check it and confirm.");return{text:L.join("\n"),actions:[items.length>1?{label:"Review & add all",act:"drafts",arg:items}:{label:"Review & add",act:"draft",arg:items[0]}]}}
 function fgHelp(){return{text:"I'm "+bl(ADV_NAME)+", your financial adviser inside Kharchnama. I run entirely on your phone: I read your entries, budgets, goals and salary slips, and I carry a built-in finance knowledge base for Pakistan.\n\nHere's what I can do:\n- Summarise any day, week, month or year\n- Compare spending with last month and spot what rose\n- Check budgets and draft new ones you can apply in one tap\n- Find saving opportunities, category by category\n- Tell you how much you can spend today\n- Plan an emergency fund and savings goals\n- Say whether you can afford a purchase\n- Explain investing options: National Savings, mutual funds, gold, shares, VPS\n- Work out zakat and explain tax basics",chips:["Summarize my month","Where can I save?","Plan my budget","Can I afford 50k?"]}}
 function fgGreet(){const r=R(),st=stats(r);const hr=new Date().getHours();return{text:(hr<12?"Good morning":hr<17?"Good afternoon":"Good evening")+". "+(st.tx.length?"You've spent "+bl(fmt(st.e))+" so far in "+r.label+".":"No entries yet for "+r.label+".")+" What would you like to look at?",chips:["Summarize my month","How much can I spend today?","Where can I save?"]}}
 function fgFallback(){return{text:"I'm not sure I understood that. Try asking about your spending, budgets, savings, goals, investing, zakat or tax. For example:",chips:["Summarize my month","How much did I spend on food?","Where should I invest?","What can you do?"]}}
@@ -1746,11 +1784,376 @@ function fgWeekend(r){const c=stats(r);let we=0,wd=0,nwe=0,nwd=0;for(let i=0;i<(
   c.exp.filter(t=>!isEss(t.cat)).forEach(t=>{const w=parseD(t.date).getDay();(w===0||w===6)?we+=t.amt:wd+=t.amt});if(!nwe||!nwd)return{text:"I need a full week of data to compare weekends with weekdays."};
   const a=we/nwe,b=wd/nwd;return{text:"On non-essential spending you average "+bl(fmt(a))+" per weekend day and "+bl(fmt(b))+" per weekday."+(a>b*1.2?" Weekends cost "+Math.round((a/b-1)*100)+"% more. Plan weekend outings with a set budget.":" Your weekends are well under control."),chips:["Where can I save?"]}}
 
-function logoSVG(){return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Kharchnama"> <defs> <linearGradient id="km_bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0E1B2E"/><stop offset="1" stop-color="#173554"/></linearGradient> <radialGradient id="km_glow" cx="50%" cy="34%" r="45%"><stop offset="0" stop-color="#22A57E" stop-opacity=".55"/><stop offset="1" stop-color="#22A57E" stop-opacity="0"/></radialGradient> <linearGradient id="km_coin" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F2CF5B"/><stop offset="1" stop-color="#C9A227"/></linearGradient> <linearGradient id="km_pageL" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#FFFFFF"/><stop offset="1" stop-color="#DCEFE6"/></linearGradient> <linearGradient id="km_pageR" x1="1" y1="0" x2="0" y2="0"><stop offset="0" stop-color="#FFFFFF"/><stop offset="1" stop-color="#DCEFE6"/></linearGradient> </defs> <g id="bgLayer"><rect width="512" height="512" rx="112" fill="url(#km_bg)"/><rect width="512" height="512" rx="112" fill="url(#km_glow)"/></g> <g id="art"> <path d="M256 404c-50-26-104-30-160-14v14c56-14 110-10 160 16 50-26 104-30 160-16v-14c-56-16-110-12-160 14z" fill="#071120" opacity=".45"/> <path d="M256 392c-48-26-100-30-152-16V210c52-14 104-10 152 16z" fill="url(#km_pageL)"/> <path d="M128 252c36-7 70-4 104 9M128 284c36-7 70-4 104 9M128 316c36-7 70-4 104 9M128 348c36-7 70-4 104 9" stroke="#0E1B2E" stroke-opacity=".22" stroke-width="9" stroke-linecap="round" fill="none"/> <path d="M256 392c48-26 100-30 152-16V210c-52-14-104-10-152 16z" fill="url(#km_pageR)"/> <rect x="284" y="306" width="24" height="56" rx="7" fill="#22A57E"/> <rect x="322" y="276" width="24" height="80" rx="7" fill="#12805C"/> <rect x="360" y="240" width="24" height="108" rx="7" fill="#0F7B5F"/> <path d="M256 226v166" stroke="#0E1B2E" stroke-opacity=".35" stroke-width="5" stroke-linecap="round"/> <circle cx="256" cy="150" r="70" fill="#C9A227" opacity=".25"/> <circle cx="256" cy="146" r="58" fill="url(#km_coin)"/> <circle cx="256" cy="146" r="45" fill="none" stroke="#FFF3C4" stroke-opacity=".7" stroke-width="5"/> <path d="M256 112c14 14 24 28 24 42 0 10-6 18-14 22l-10 14-10-14c-8-4-14-12-14-22 0-14 10-28 24-42z" fill="#0E1B2E"/> <path d="M256 150v24" stroke="#F2CF5B" stroke-width="5" stroke-linecap="round"/> <circle cx="256" cy="146" r="6" fill="#F2CF5B"/> </g> </svg>'}
+function logoSVG(){return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Kharchnama"><g id="bgLayer"><rect width="512" height="512" rx="112" fill="#FFFFFF"/></g><defs> <linearGradient id="kmlb" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3A97F5"/><stop offset="1" stop-color="#1A6FEA"/></linearGradient> <linearGradient id="kmlg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4CC46A"/><stop offset="1" stop-color="#2FA651"/></linearGradient> <linearGradient id="kmly" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFD02A"/><stop offset="1" stop-color="#F9B712"/></linearGradient> <linearGradient id="kmlo" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#FF8A2B"/><stop offset="1" stop-color="#F26B16"/></linearGradient> <linearGradient id="kmlw" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#22417F"/><stop offset="1" stop-color="#132A5C"/></linearGradient> <linearGradient id="kmlc" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1B3670"/><stop offset="1" stop-color="#0F2147"/></linearGradient> </defs><g id="art" transform="translate(256 256) scale(1.02) translate(-257 -236)"><g stroke="#fff" stroke-width="10" stroke-linejoin="round" paint-order="stroke"><path d="M226.0 214.0L220.5 371.9A158 158 0 0 1 220.5 56.1Z" fill="url(#kmlb)"/><path d="M229.8 205.8L240.8 48.2A158 158 0 0 1 343.5 96.1Z" fill="url(#kmlg)"/><path d="M236.3 210.2L360.8 113.0A158 158 0 0 1 394.2 204.7Z" fill="url(#kmly)"/><path d="M237.8 216.3L395.4 227.3A158 158 0 0 1 388.0 265.1Z" fill="url(#kmlo)"/></g><g> <rect x="206" y="240" width="232" height="176" rx="30" fill="#fff"/> <rect x="214" y="248" width="216" height="160" rx="24" fill="url(#kmlw)"/> <path d="M214 272a24 24 0 0 1 24-24h168a24 24 0 0 1 24 24v6H214z" fill="#0F2147"/> <path d="M226 270h192" stroke="#2C4C8F" stroke-width="3"/> <rect x="228" y="286" width="188" height="108" rx="14" fill="none" stroke="#8FA6D6" stroke-width="3.5" stroke-dasharray="11 8" stroke-linecap="round"/> <rect x="350" y="300" width="96" height="62" rx="22" fill="#fff"/> <rect x="358" y="308" width="80" height="46" rx="16" fill="url(#kmlc)"/> <circle cx="384" cy="331" r="11" fill="#fff"/> </g></g></svg>'}
+/* ================= assistants: 10 avatars, rig, 40 gestures, voices ================= */
+const AVATARS=[
+ {id:"m1",g:"m",style:"Classic",skin:"#F2C6A2",skinD:"#DDA781",hair:"#5B3A22",hs:"side",glasses:1,shirt:"#A9C8EE",shirtD:"#8FB3E3",tie:"#1F2D4A",pants:"#1F2D4A",shoes:"#1B1F2A",voice:{pitch:.92,rate:1,n:0}},
+ {id:"m2",g:"m",style:"Young professional",skin:"#E3B08A",skinD:"#C98F68",hair:"#1E1A17",hs:"short",beard:"trim",beardC:"#1E1A17",shirt:"#FFFFFF",shirtD:"#E2E6EE",jacket:"#2B3A55",jacketD:"#22304A",pants:"#2B3A55",shoes:"#20160F",voice:{pitch:1,rate:1.06,n:1}},
+ {id:"m3",g:"m",style:"Senior adviser",skin:"#E8B994",skinD:"#CF9C77",hair:"#C9CCD1",hs:"receding",glasses:1,beard:"moustache",beardC:"#B9BCC2",shirt:"#F4F1EA",shirtD:"#E2DDD2",vest:"#8A6E4B",vestD:"#735A3B",pants:"#5A4632",shoes:"#2A1D12",voice:{pitch:.8,rate:.92,n:2}},
+ {id:"m4",g:"m",style:"Traditional",skin:"#D9A27C",skinD:"#BE8661",hair:"#121212",hs:"short",beard:"full",beardC:"#1A1512",kameez:"#EFE6D2",kameezD:"#DCCFB2",vest:"#2F4A3A",vestD:"#253C2E",pants:"#EFE6D2",shoes:"#3A2A1C",voice:{pitch:.86,rate:.96,n:3}},
+ {id:"m5",g:"m",style:"Modern casual",skin:"#C68B63",skinD:"#A8714C",hair:"#2A1D16",hs:"curly",beard:"stubble",beardC:"#2A1D16",shirt:"#1C8C7A",shirtD:"#15705F",pants:"#C8B48A",shoes:"#F2F2F2",voice:{pitch:.97,rate:1.08,n:4}},
+ {id:"f1",g:"f",style:"Professional",skin:"#F0C4A2",skinD:"#DDA683",hair:"#2B1B14",hs:"pony",shirt:"#FFFFFF",shirtD:"#E8EBF1",jacket:"#1E3466",jacketD:"#172A55",pants:"#3A4458",shoes:"#1B1F2A",voice:{pitch:1.15,rate:1.02,n:0}},
+ {id:"f2",g:"f",style:"Hijab",skin:"#E6B591",skinD:"#CC9873",hijab:"#1F7A5C",hijabD:"#176148",coat:"#D8CBB5",coatD:"#C4B497",pants:"#3D3A36",shoes:"#2A221B",voice:{pitch:1.1,rate:.98,n:1}},
+ {id:"f3",g:"f",style:"Shalwar kameez",skin:"#D9A27C",skinD:"#BE8661",hair:"#14100E",hs:"bun",kameez:"#8E2A3E",kameezD:"#72202F",trim:"#D9B45A",dupatta:"#E8C7A0",pants:"#E8C7A0",shoes:"#5A3A22",voice:{pitch:1.24,rate:1,n:2}},
+ {id:"f4",g:"f",style:"Senior adviser",skin:"#EDC0A0",skinD:"#D4A380",hair:"#D3D4D8",hs:"bob",glasses:1,shirt:"#9C8AC7",shirtD:"#8573B3",pearls:1,pants:"#4A4560",shoes:"#2A2533",voice:{pitch:1.04,rate:.93,n:3}},
+ {id:"f5",g:"f",style:"Young modern",skin:"#C78E66",skinD:"#AC744F",hair:"#5A3824",hs:"wavy",shirt:"#E9A23B",shirtD:"#D18A26",jacket:"#5D7FA8",jacketD:"#4C6C93",pants:"#2E3F5C",shoes:"#F2F2F2",voice:{pitch:1.3,rate:1.07,n:4}}
+];
+function curAv(){const id=(S.settings&&S.settings.avatar)||"m1";return AVATARS.find(a=>a.id===id)||AVATARS[0]}
+function avName(av){return (av||curAv()).g==="f"?"Finza":"HisaabJi"}
+/* ---- poses: angles in degrees. rs/ls raise upper arm outward, re/le bend elbow inward (negative = outward), rh/lh hand direction (0 = fingers down) ---- */
+const BASEP={rs:28,re:60,rh:0,rk:"fist",ls:28,le:60,lh:0,lk:"fist",ru:1,rf:1,lu:1,lf:1,hd:0,hn:0,bd:0,sh:0,br:0,eye:"open"};
+function P(o){return Object.assign({},BASEP,o)}
+const M=o=>{const r=Object.assign({},o);if("rs"in o)r.ls=o.rs;if("re"in o)r.le=o.re;if("rh"in o)r.lh=o.rh;if("rk"in o)r.lk=o.rk;if("ru"in o)r.lu=o.ru;if("rf"in o)r.lf=o.rf;return r};/* mirror right arm onto left */
+const DOWN={rs:6,re:4,rk:"open",rh:0,ls:6,le:4,lk:"open",lh:0};
+const GEST={
+ hips:[[P({}),500]],
+ wave:[[P({rs:115,re:-70,rk:"open",rh:180,eye:"happy"}),380],[P({rs:115,re:-50,rk:"open",rh:160,eye:"happy"}),220],[P({rs:115,re:-92,rk:"open",rh:205,eye:"happy"}),220],[P({rs:115,re:-50,rk:"open",rh:160,eye:"happy"}),220],[P({rs:115,re:-92,rk:"open",rh:205,eye:"happy"}),220],[P({rs:115,re:-70,rk:"open",rh:180,eye:"happy"}),200]],
+ nod:[[P({hn:2.5,hd:0}),220],[P({hn:-.5}),220],[P({hn:2.5}),220],[P({hn:0}),220]],
+ shake:[[P({hd:-7}),200],[P({hd:7}),220],[P({hd:-6}),220],[P({hd:0}),200]],
+ think:[[P({rs:8,ru:.5,re:157,rf:1.2,rk:"fist",hd:-5,br:-1.5}),520],[P({rs:8,ru:.5,re:157,rf:1.2,rk:"fist",hd:-7,br:-1.5}),900]],
+ chinStroke:[[P({rs:8,ru:.5,re:157,rf:1.2,rk:"open",rh:200,hd:-4}),450],[P({rs:8,ru:.5,re:150,rf:1.2,rk:"open",rh:190,hd:-4}),300],[P({rs:8,ru:.5,re:160,rf:1.2,rk:"open",rh:205,hd:-4}),300],[P({rs:8,ru:.5,re:152,rf:1.2,rk:"open",rh:195,hd:-4}),300]],
+ pointSide:[[P({rs:85,re:0,rk:"point",rh:85,hd:-4}),420],[P({rs:85,re:-4,rk:"point",rh:82,hd:-4}),700]],
+ pointUp:[[P({rs:150,re:-10,rk:"point",rh:165,br:-2,eye:"happy"}),420],[P({rs:152,re:-14,rk:"point",rh:170,br:-2,eye:"happy"}),700]],
+ thumbsUp:[[P({rs:40,re:160,rk:"thumb",rh:0,eye:"happy"}),380],[P({rs:42,re:164,rk:"thumb",rh:0,eye:"happy",hn:1}),600]],
+ explain:[[P(M({rs:18,re:-40,rk:"open",rh:85})),380],[P(M({rs:20,re:-55,rk:"open",rh:95})),420],[P(M({rs:18,re:-35,rk:"open",rh:80})),420]],
+ beat:[[P({rs:24,re:-30,rk:"open",rh:80,ls:28,le:60}),320],[P({rs:22,re:-50,rk:"open",rh:95}),320]],
+ shrug:[[P(Object.assign(M({rs:30,re:-70,rk:"open",rh:120}),{sh:5,hd:8,br:-2})),420],[P(Object.assign(M({rs:30,re:-70,rk:"open",rh:120}),{sh:5,hd:8,br:-2})),600]],
+ count:[[P({rs:125,re:-35,rk:"one",rh:165,br:-1}),380],[P({rs:125,re:-35,rk:"two",rh:165,br:-1}),480],[P({rs:125,re:-35,rk:"three",rh:165,br:-1}),480]],
+ crossArms:[[P(M({rs:12,ru:.85,re:125,rf:1.1,rk:"fist"})),500],[P(Object.assign(M({rs:12,ru:.85,re:125,rf:1.1,rk:"fist"}),{hd:3})),900]],
+ present:[[P({rs:70,re:30,rk:"open",rh:100}),420],[P({rs:72,re:24,rk:"open",rh:96,hd:-3}),700]],
+ clap:[[P(M({rs:30,ru:.8,re:105,rk:"open",rh:-90})),260],[P(M({rs:18,ru:.8,re:105,rk:"open",rh:-90})),140],[P(M({rs:30,ru:.8,re:105,rk:"open",rh:-90})),160],[P(Object.assign(M({rs:18,ru:.8,re:105,rk:"open",rh:-90}),{eye:"happy"})),140],[P(M({rs:30,ru:.8,re:105,rk:"open",rh:-90})),160]],
+ celebrate:[[P(Object.assign(M({rs:150,re:-10,rk:"open",rh:170}),{eye:"happy",hn:-2})),360],[P(Object.assign(M({rs:158,re:-20,rk:"open",rh:180}),{eye:"happy",hn:-3})),240],[P(Object.assign(M({rs:150,re:-10,rk:"open",rh:170}),{eye:"happy",hn:-2})),240]],
+ facepalm:[[P({rs:5,ru:.45,re:170,rf:1.35,rk:"open",rh:200,hd:-8,eye:"closed"}),450],[P({rs:5,ru:.45,re:170,rf:1.35,rk:"open",rh:200,hd:-8,eye:"closed"}),700]],
+ heart:[[P({rs:5,ru:.8,re:120,rk:"open",rh:-100,eye:"happy"}),420],[P({rs:5,ru:.8,re:120,rk:"open",rh:-100,eye:"happy",hn:1.5}),700]],
+ welcome:[[P(Object.assign(M({rs:55,re:-30,rk:"open",rh:115}),{eye:"happy"})),450],[P(Object.assign(M({rs:58,re:-36,rk:"open",rh:118}),{eye:"happy",hn:-1})),600]],
+ leanIn:[[P({hd:6,hn:2,bd:2}),420],[P({hd:6,hn:3,bd:2}),700],[P({hd:4,hn:1,bd:1}),400]],
+ tilt:[[P({hd:-10,br:-2}),420],[P({hd:-10,br:-2}),600]],
+ scratchHead:[[P({rs:150,ru:.8,re:-50,rk:"fist",hd:6,br:-1}),420],[P({rs:150,ru:.8,re:-44,rk:"fist",hd:6,br:-1}),200],[P({rs:150,ru:.8,re:-56,rk:"fist",hd:6,br:-1}),200],[P({rs:150,ru:.8,re:-46,rk:"fist",hd:6,br:-1}),200]],
+ checkWatch:[[P({ls:15,lu:.85,le:105,lk:"fist",hd:5,hn:3}),450],[P({ls:15,lu:.85,le:105,lk:"fist",hd:5,hn:3}),650]],
+ write:[[P({rs:10,ru:.8,re:100,rk:"point",rh:-100,ls:10,lu:.8,le:95,lk:"open",lh:90,hn:2}),380],[P({rs:12,ru:.8,re:96,rk:"point",rh:-96,ls:10,lu:.8,le:95,lk:"open",lh:90,hn:2}),220],[P({rs:10,ru:.8,re:104,rk:"point",rh:-104,ls:10,lu:.8,le:95,lk:"open",lh:90,hn:2}),220],[P({rs:12,ru:.8,re:98,rk:"point",rh:-98,ls:10,lu:.8,le:95,lk:"open",lh:90,hn:2}),220]],
+ calculate:[[P({rs:12,ru:.8,re:102,rk:"point",rh:-60,ls:14,lu:.8,le:100,lk:"open",lh:-90,hn:2}),380],[P({rs:12,ru:.8,re:108,rk:"point",rh:-60,ls:14,lu:.8,le:100,lk:"open",lh:-90,hn:2}),160],[P({rs:12,ru:.8,re:102,rk:"point",rh:-60,ls:14,lu:.8,le:100,lk:"open",lh:-90,hn:2}),160],[P({rs:12,ru:.8,re:108,rk:"point",rh:-60,ls:14,lu:.8,le:100,lk:"open",lh:-90,hn:2}),160]],
+ rubFingers:[[P({rs:30,re:110,rk:"thumb",rh:60,eye:"happy"}),380],[P({rs:30,re:110,rk:"thumb",rh:80,eye:"happy"}),180],[P({rs:30,re:110,rk:"thumb",rh:60,eye:"happy"}),180],[P({rs:30,re:110,rk:"thumb",rh:80,eye:"happy"}),180]],
+ stop:[[P({rs:55,re:150,rk:"open",rh:180,br:1.5}),380],[P({rs:55,re:150,rk:"open",rh:180,br:1.5}),700]],
+ fingerWag:[[P({rs:125,re:-35,rk:"one",rh:150,br:1.5}),360],[P({rs:125,re:-45,rk:"one",rh:190,br:1.5}),200],[P({rs:125,re:-30,rk:"one",rh:150,br:1.5}),200],[P({rs:125,re:-45,rk:"one",rh:190,br:1.5}),200]],
+ bow:[[P({rs:5,ru:.8,re:120,rk:"open",rh:-100,bd:5,hn:3,eye:"closed"}),500],[P({rs:5,ru:.8,re:120,rk:"open",rh:-100,bd:0,hn:0,eye:"happy"}),500]],
+ adaab:[[P({rs:15,ru:.55,re:165,rf:1.3,rk:"open",rh:200,hn:2,bd:3,eye:"happy"}),500],[P({rs:15,ru:.55,re:165,rf:1.3,rk:"open",rh:200,hn:0,bd:0,eye:"happy"}),500]],
+ doublePoint:[[P(M({rs:60,re:20,rk:"point",rh:40})),420],[P(M({rs:62,re:16,rk:"point",rh:44})),600]],
+ handsTogether:[[P(M({rs:8,ru:.75,re:135,rf:1.1,rk:"open",rh:180})),450],[P(Object.assign(M({rs:8,ru:.75,re:135,rf:1.1,rk:"open",rh:180}),{hn:1.5,eye:"happy"})),700]],
+ raiseHand:[[P({rs:165,re:0,rk:"open",rh:180,br:-1}),420],[P({rs:162,re:-6,rk:"open",rh:178,br:-1}),600]],
+ wipeBrow:[[P({rs:5,ru:.45,re:165,rf:1.35,rk:"open",rh:240,eye:"closed"}),380],[P({rs:5,ru:.45,re:175,rf:1.35,rk:"open",rh:200,eye:"closed"}),300],[P({rs:5,ru:.45,re:160,rf:1.35,rk:"open",rh:250,eye:"happy"}),300]],
+ fistPump:[[P({rs:35,re:150,rk:"fist",eye:"happy"}),260],[P({rs:35,re:130,rk:"fist",eye:"happy",hn:-1}),160],[P({rs:35,re:160,rk:"fist",eye:"happy"}),180],[P({rs:35,re:130,rk:"fist",eye:"happy",hn:-1}),160]],
+ lookAround:[[P({hd:-8}),500],[P({hd:8}),700],[P({hd:0}),400]],
+ measure:[[P(M({rs:55,re:80,rk:"open",rh:-90})),420],[P(Object.assign(M({rs:60,re:76,rk:"open",rh:-90}),{br:-2})),700]],
+ weigh:[[P(M({rs:20,re:95,rk:"open",rh:90})),380],[P({rs:24,re:85,rk:"open",rh:90,ls:20,le:105,lk:"open",lh:90}),360],[P({rs:20,re:105,rk:"open",rh:90,ls:24,le:85,lk:"open",lh:90}),360],[P(M({rs:20,re:95,rk:"open",rh:90})),300]],
+ calmDown:[[P(M({rs:25,re:80,rk:"open",rh:0})),360],[P(M({rs:25,re:70,rk:"open",rh:0})),260],[P(M({rs:25,re:88,rk:"open",rh:0})),260]],
+ relax:[[P(DOWN),600]],
+ shiftWeight:[[P({bd:1.5}),700],[P({bd:-1.5}),900],[P({bd:0}),600]]
+};
+const IDLE_GEST=["lookAround","shiftWeight","tilt","nod","crossArms","hips","checkWatch","chinStroke","relax"];
+/* ---- drawing ---- */
+function handHTML(k,av){const sk=av.skin,sd=av.skinD,f=(x1,y1,x2,y2,w)=>'<line x1="'+x1+'" y1="'+y1+'" x2="'+x2+'" y2="'+y2+'" stroke="'+sd+'" stroke-width="'+(w+1)+'" stroke-linecap="round"/><line x1="'+x1+'" y1="'+y1+'" x2="'+x2+'" y2="'+y2+'" stroke="'+sk+'" stroke-width="'+w+'" stroke-linecap="round"/>';
+  const fist='<circle cx="0" cy="4" r="5.6" fill="'+sk+'" stroke="'+sd+'" stroke-width=".8"/>';
+  if(k==="open")return '<ellipse cx="0" cy="3.5" rx="5" ry="5.4" fill="'+sk+'" stroke="'+sd+'" stroke-width=".8"/>'+f(-3.3,6,-3.8,11.5,2.2)+f(-1.1,7,-1.2,13,2.2)+f(1.1,7,1.3,13,2.2)+f(3.2,6,3.8,11,2.1)+f(-4.5,2,-7.8,6.2,2.3);
+  if(k==="point")return fist+f(1,7,1.2,16.5,2.4);if(k==="thumb")return fist+f(-3.4,1,-3.6,-7.5,2.7);
+  if(k==="one")return fist+f(0,7,0,16.5,2.4);if(k==="two")return fist+f(-1.6,7,-2.4,16,2.3)+f(1.6,7,2.4,16,2.3);if(k==="three")return fist+f(-2.8,6.5,-4,15,2.2)+f(0,7,0,16.5,2.2)+f(2.8,6.5,4,15,2.2);
+  return fist}
+function hairBack(av){const h=av.hair;switch(av.hs){
+  case "pony":return '<path d="M98 40C113 46 114 76 104 96C99 82 99 64 95 52Z" fill="'+h+'"/>';
+  case "bun":return '<circle cx="80" cy="24" r="9.5" fill="'+h+'"/>';
+  case "bob":return '<path d="M56 56C54 27 106 27 104 56L105 78C101 83 94 82 92 77L92 52H68L68 77C66 82 59 83 55 78Z" fill="'+h+'"/>';
+  case "wavy":return '<path d="M56 54C52 24 108 24 104 54L109 96C101 104 92 99 92 92L94 52H66L68 92C68 99 59 104 51 96Z" fill="'+h+'"/>';}return ""}
+function hairFront(av){const h=av.hair;switch(av.hs){
+  case "side":return '<path d="M59 50C56 34 64 22 79 21C93 20 102 29 101 44L99 49C98 42 95 38 90 36C83 40 72 41 65 38C62 41 60 45 59 50Z" fill="'+h+'"/><path d="M66 27C72 22 86 21 93 26C87 25 80 26 74 30Z" fill="#fff" opacity=".12"/>';
+  case "short":return '<path d="M59.5 47C58 30 68 23 80 23C92 23 102 30 100.5 47C98.5 39 94 34 80 34C66 34 61.5 39 59.5 47Z" fill="'+h+'"/>';
+  case "receding":return '<path d="M59 52C58 42 60 36 64 33L67 44C64 46 62 49 61 53Z M101 52C102 42 100 36 96 33L93 44C96 46 98 49 99 53Z" fill="'+h+'"/><path d="M70 30C76 28 84 28 90 30" stroke="'+h+'" stroke-width="2" fill="none" opacity=".7"/>';
+  case "curly":return [[64,37,7],[71,30,8],[80,28,8.5],[89,30,8],[96,37,7],[60,45,5],[100,45,5]].map(c=>'<circle cx="'+c[0]+'" cy="'+c[1]+'" r="'+c[2]+'" fill="'+h+'"/>').join("");
+  case "pony":return '<path d="M57 57C53 23 107 23 103 56C101 45 95 37 82 36.5C72 37 66 41 62 47C60 50 58 53 57 57Z" fill="'+h+'"/><path d="M66 31C72 27 86 26 94 31" stroke="#fff" stroke-width="1.5" opacity=".12" fill="none"/>';
+  case "bun":return '<path d="M59 50C57 29 103 29 101 50C98 40 91 33 80 33C69 33 62 40 59 50Z" fill="'+h+'"/>';
+  case "bob":case "wavy":return '<path d="M58 52C56 28 104 28 102 52C99 40 90 33 80 34C72 34 64 38 62 46C61 48 59 50 58 52Z" fill="'+h+'"/>';}return ""}
+function beardHTML(av){const c=av.beardC||av.hair;switch(av.beard){
+  case "trim":return '<path d="M61 58C63 72 71 78.5 80 78.5C89 78.5 97 72 99 58C96 66 90 70.5 80 70.5C70 70.5 64 66 61 58Z" fill="'+c+'" opacity=".92"/><path d="M73 65.5C76 64 84 64 87 65.5" stroke="'+c+'" stroke-width="2.4" stroke-linecap="round"/>';
+  case "full":return '<path d="M60 54C61 74 70 86 80 86C90 86 99 74 100 54C97 64 91 69 80 69C69 69 63 64 60 54Z" fill="'+c+'"/><path d="M72 65.5C76 63.5 84 63.5 88 65.5" stroke="'+c+'" stroke-width="3" stroke-linecap="round"/>';
+  case "moustache":return '<path d="M71.5 65.5C75 62.5 79 63.5 80 64.5C81 63.5 85 62.5 88.5 65.5C85 67 82 66.5 80 66C78 66.5 75 67 71.5 65.5Z" fill="'+c+'"/>';
+  case "stubble":return '<path d="M61 58C63 72 71 78.5 80 78.5C89 78.5 97 72 99 58C96 66 90 70.5 80 70.5C70 70.5 64 66 61 58Z" fill="'+c+'" opacity=".28"/>';}return ""}
+function avatarSVG(av,o){o=o||{};const live=!!o.live;const sl=av.jacket||av.coat||av.kameez||av.shirt,slD=av.jacketD||av.coatD||av.kameezD||av.shirtD;const tunic=!!(av.kameez||av.coat);const top=av.kameez||av.coat||av.shirt,topD=av.kameezD||av.coatD||av.shirtD;
+  let s='<svg class="avsvg'+(live?" live":"")+'" viewBox="0 0 160 300" overflow="visible" style="overflow:visible" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="'+avName(av)+', '+esc(av.style)+'"'+(live?' data-live="1"':"")+' data-av="'+av.id+'">';
+  s+='<ellipse cx="80" cy="292" rx="40" ry="6" fill="#0E1726" opacity=".16"/>';
+  // legs and shoes
+  s+='<path d="M60 176H79L77.5 281H62Z" fill="'+av.pants+'"/><path d="M81 176H100L98 281H82.5Z" fill="'+av.pants+'"/>';
+  s+='<path d="M61 279H78V288H56C55 288 54.5 286.5 55.5 285C57 281.5 59 279 61 279Z" fill="'+av.shoes+'"/><path d="M82 279H99C101 279 103 281.5 104.5 285C105.5 286.5 105 288 104 288H82Z" fill="'+av.shoes+'"/>';
+  s+='<g class="av-body">';
+  // torso / tunic
+  if(tunic)s+='<path d="M54 104C54 94 62 88 72 87H88C98 88 106 94 106 104L110 238H50Z" fill="'+top+'"/><path d="M80 100V236" stroke="'+topD+'" stroke-width="1.2" opacity=".7"/>';
+  else s+='<path d="M54 104C54 94 62 88 72 87H88C98 88 106 94 106 104L108 184H52Z" fill="'+top+'"/><rect x="52" y="178" width="56" height="6" rx="2" fill="#141A26" opacity=".85"/>';
+  if(av.trim)s+='<path d="M72 89L80 104L88 89" fill="none" stroke="'+av.trim+'" stroke-width="2.4"/><path d="M50 232H110" stroke="'+av.trim+'" stroke-width="2.5"/>';
+  if(av.jacket)s+='<path d="M54 104C54 94 62 88 72 87L77 100L75 184H52Z" fill="'+av.jacket+'"/><path d="M106 104C106 94 98 88 88 87L83 100L85 184H108Z" fill="'+av.jacket+'"/><path d="M72 87L77 100L71 108Z M88 87L83 100L89 108Z" fill="'+av.jacketD+'"/>';
+  if(av.vest)s+='<path d="M56 100C56 94 64 90 72 89L78 112L76 '+(tunic?196:180)+'H55Z" fill="'+av.vest+'"/><path d="M104 100C104 94 96 90 88 89L82 112L84 '+(tunic?196:180)+'H105Z" fill="'+av.vest+'"/>'+[120,136,152].map(y=>'<circle cx="80.5" cy="'+y+'" r="1.6" fill="'+av.vestD+'"/>').join("");
+  if(av.tie)s+='<path d="M77.5 91H82.5L83.5 97L84.5 128L80 135L75.5 128L76.5 97Z" fill="'+av.tie+'"/><path d="M78 107L83 103M77.5 117L83.8 113" stroke="#C9A227" stroke-width="1" opacity=".8"/>';
+  if(!av.kameez&&!av.coat&&!av.hijab)s+='<path d="M71 87L80 98L76 101L68 91Z M89 87L80 98L84 101L92 91Z" fill="'+(av.shirt==="#FFFFFF"?"#F4F6FA":av.shirtD)+'"/>';
+  if(av.dupatta)s+='<path d="M64 90C70 120 92 150 108 176" stroke="'+av.dupatta+'" stroke-width="11" fill="none" stroke-linecap="round" opacity=".95"/><path d="M60 92C58 120 56 150 54 180" stroke="'+av.dupatta+'" stroke-width="7" fill="none" stroke-linecap="round" opacity=".9"/>';
+  if(av.pearls)s+=[68,72,76,80,84,88,92].map((x,i)=>'<circle cx="'+x+'" cy="'+(91+Math.sin(i/6*Math.PI)*5)+'" r="1.6" fill="#F7F2E6" stroke="#D8CFBC" stroke-width=".4"/>').join("");
+  // neck + head
+  s+='<g class="av-head">';
+  if(av.hijab)s+='<path d="M55 54C55 25 105 25 105 54C105 74 102 86 108 98C96 104 64 104 52 98C58 86 55 74 55 54Z" fill="'+av.hijab+'"/>';
+  else s+=hairBack(av)+'<rect x="73" y="70" width="14" height="20" rx="3" fill="'+av.skinD+'"/>';
+  if(!av.hijab)s+='<ellipse cx="59" cy="54" rx="4" ry="6" fill="'+av.skinD+'"/><ellipse cx="101" cy="54" rx="4" ry="6" fill="'+av.skinD+'"/>'+(av.g==="f"?'<circle cx="59.5" cy="60.5" r="1.8" fill="#D9B45A"/><circle cx="100.5" cy="60.5" r="1.8" fill="#D9B45A"/>':"");
+  s+=av.hijab?'<ellipse cx="80" cy="54" rx="17.5" ry="21" fill="'+av.skin+'"/><path d="M61 46C64 31 96 31 99 46" stroke="'+av.hijabD+'" stroke-width="3" fill="none"/>':'<ellipse cx="80" cy="52" rx="20.5" ry="24" fill="'+av.skin+'"/>';
+  s+=beardHTML(av)+hairFront(av);
+  s+='<g class="av-brows"><path d="M66 44.5C69 43 72.5 42.7 75 43.5M85 43.5C87.5 42.7 91 43 94 44.5" stroke="'+(av.hijab?"#3B2416":av.hs==="receding"||av.hs==="bob"?"#8B8D93":av.hair)+'" stroke-width="2" stroke-linecap="round" fill="none"/></g>';
+  s+='<g class="av-eyes"><ellipse class="eo" cx="72" cy="52" rx="2.2" ry="2.5" fill="#2B1B10"/><ellipse class="eo" cx="88" cy="52" rx="2.2" ry="2.5" fill="#2B1B10"/><path class="eh" d="M69 53C71 50.5 73 50.5 75 53M85 53C87 50.5 89 50.5 91 53" stroke="#2B1B10" stroke-width="1.8" fill="none" stroke-linecap="round" style="display:none"/><path class="ec" d="M69 52.5H75M85 52.5H91" stroke="#2B1B10" stroke-width="1.8" stroke-linecap="round" style="display:none"/></g>';
+  if(av.g==="f")s+='<path d="M69 49.5L67.5 48M91 49.5L92.5 48" stroke="#2B1B10" stroke-width="1"/>';
+  if(av.glasses)s+='<rect x="64" y="46.5" width="14.5" height="11" rx="3.5" fill="#fff" fill-opacity=".22" stroke="#141A26" stroke-width="2"/><rect x="81.5" y="46.5" width="14.5" height="11" rx="3.5" fill="#fff" fill-opacity=".22" stroke="#141A26" stroke-width="2"/><path d="M78.5 50.5C79.5 49.5 80.5 49.5 81.5 50.5M64 50L60 51M96 50L100 51" stroke="#141A26" stroke-width="1.8" stroke-linecap="round"/>';
+  s+='<path d="M79.5 54.5C79 57.5 78.5 59 80.6 59.6" stroke="'+av.skinD+'" stroke-width="1.5" stroke-linecap="round" fill="none"/>';
+  s+='<ellipse cx="67" cy="60" rx="3" ry="1.8" fill="#E8907A" opacity=".35"/><ellipse cx="93" cy="60" rx="3" ry="1.8" fill="#E8907A" opacity=".35"/>';
+  const lip=av.g==="f"?"#B4475A":"#8A3B2A";
+  s+='<path class="mc" d="M73.5 64.5C77 68 83 68 86.5 64.5" stroke="'+lip+'" stroke-width="2.1" stroke-linecap="round" fill="none"/><ellipse class="mo" cx="80" cy="66" rx="4.6" ry="0.1" fill="#5A1E18" stroke="'+lip+'" stroke-width="1.2" style="display:none"/>';
+  s+='</g>';
+  // arms (positions set by the rig)
+  ["r","l"].forEach(side=>{s+='<g class="arm-'+side+'"><line class="ua0" stroke="'+slD+'" stroke-width="14.6" stroke-linecap="round"/><line class="fa0" stroke="'+slD+'" stroke-width="13" stroke-linecap="round"/><line class="ua" stroke="'+sl+'" stroke-width="12.5" stroke-linecap="round"/><line class="fa" stroke="'+sl+'" stroke-width="11" stroke-linecap="round"/><line class="fa2" stroke="'+slD+'" stroke-width="1.2" stroke-linecap="round" opacity=".6"/><g class="hand"></g></g>'});
+  s+='</g></svg>';return s}
+function avatarHead(av){return avatarSVG(av).replace('viewBox="0 0 160 300"','viewBox="52 22 56 56"').replace(' overflow="visible" style="overflow:visible"','')}
+/* ---- rig ---- */
+const AVR={cur:Object.assign({},BASEP),from:null,to:null,t0:0,dur:1,queue:[],speaking:false,talkUntil:0,jaw:0,blinkAt:0,blinkUntil:0,nextIdle:0,raf:0,hk:{}};
+const SIN=d=>Math.sin(d*Math.PI/180),COS=d=>Math.cos(d*Math.PI/180);
+function rigPose(svg,p,jaw,blink){if(!svg)return;const av=AVATARS.find(a=>a.id===svg.dataset.av)||curAv();const body=svg.querySelector(".av-body");if(!body)return;
+  body.setAttribute("transform","rotate("+(p.bd||0).toFixed(2)+" 80 184)");
+  const head=svg.querySelector(".av-head");head.setAttribute("transform","rotate("+(p.hd||0).toFixed(2)+" 80 76) translate(0 "+(p.hn||0).toFixed(2)+")");
+  const br=svg.querySelector(".av-brows");if(br)br.setAttribute("transform","translate(0 "+(p.br||0).toFixed(2)+")");
+  const eo=svg.querySelectorAll(".eo"),eh=svg.querySelector(".eh"),ec=svg.querySelector(".ec");const em=blink?"closed":p.eye;
+  eo.forEach(e=>e.style.display=em==="open"?"":"none");if(eh)eh.style.display=em==="happy"?"":"none";if(ec)ec.style.display=em==="closed"?"":"none";
+  const mc=svg.querySelector(".mc"),mo=svg.querySelector(".mo");if(mo){if(jaw>.05){mo.style.display="";mo.setAttribute("ry",(1+jaw*3.6).toFixed(2));mc.style.display="none"}else{mo.style.display="none";mc.style.display=""}}
+  [["r",59,1],["l",101,-1]].forEach(([sd,sx,sg])=>{const g=svg.querySelector(".arm-"+sd);if(!g)return;const sy=97-(p.sh||0);
+    const A=sg*(sd==="r"?p.rs:p.ls),B=A-sg*(sd==="r"?p.re:p.le);const Lu=36*(sd==="r"?p.ru:p.lu),Lf=30*(sd==="r"?p.rf:p.lf);
+    const ex=sx-Lu*SIN(A),ey=sy+Lu*COS(A),wx=ex-Lf*SIN(B),wy=ey+Lf*COS(B);
+    const ua=g.querySelector(".ua"),fa=g.querySelector(".fa"),f2=g.querySelector(".fa2"),u0=g.querySelector(".ua0"),f0=g.querySelector(".fa0");if(u0){u0.setAttribute("x1",sx);u0.setAttribute("y1",sy);u0.setAttribute("x2",ex.toFixed(1));u0.setAttribute("y2",ey.toFixed(1));f0.setAttribute("x1",ex.toFixed(1));f0.setAttribute("y1",ey.toFixed(1));f0.setAttribute("x2",wx.toFixed(1));f0.setAttribute("y2",wy.toFixed(1))}
+    ua.setAttribute("x1",sx);ua.setAttribute("y1",sy);ua.setAttribute("x2",ex.toFixed(1));ua.setAttribute("y2",ey.toFixed(1));
+    fa.setAttribute("x1",ex.toFixed(1));fa.setAttribute("y1",ey.toFixed(1));fa.setAttribute("x2",wx.toFixed(1));fa.setAttribute("y2",wy.toFixed(1));
+    f2.setAttribute("x1",(wx+(ex-wx)*.18).toFixed(1));f2.setAttribute("y1",(wy+(ey-wy)*.18).toFixed(1));f2.setAttribute("x2",(wx+(ex-wx)*.12).toFixed(1));f2.setAttribute("y2",(wy+(ey-wy)*.12).toFixed(1));
+    const kind=sd==="r"?p.rk:p.lk,dir=sg*(sd==="r"?p.rh:p.lh);const h=g.querySelector(".hand");const key=kind+av.id;if(h.dataset.k!==key){h.innerHTML=handHTML(kind,av);h.dataset.k=key}
+    h.setAttribute("transform","translate("+wx.toFixed(1)+" "+wy.toFixed(1)+") rotate("+dir.toFixed(1)+")")})}
+function rigStatic(root){(root||document).querySelectorAll("svg.avsvg:not([data-rigged])").forEach(s=>{s.setAttribute("data-rigged","1");rigPose(s,s.classList.contains("live")?AVR.cur:BASEP,0,false)})}
+function avQueue(name,keep){const g=GEST[name];if(!g)return;AVR.queue=(keep?AVR.queue:[]).concat(g.map(x=>[x[0],x[1]]));if(!AVR.to)avNext();avLoop()}
+function avPlay(name){avQueue(name,false)}
+function avNext(){const st=AVR.queue.shift();if(!st){if(!AVR.speaking&&!(AVR.cur.rs===BASEP.rs&&AVR.cur.ls===BASEP.ls&&AVR.cur.hd===0&&AVR.cur.eye==="open"&&AVR.cur.rk==="fist"&&AVR.cur.re===BASEP.re)){AVR.queue=[[P({}),520]];return avNext()}AVR.to=null;return}
+  AVR.from=Object.assign({},AVR.cur);AVR.to=st[0];AVR.t0=performance.now();AVR.dur=st[1]}
+function gestOn(){return S.settings.gestures!==false&&!(window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches)}
+function avLoop(){if(AVR.raf)return;const tick=now=>{AVR.raf=0;const lives=document.querySelectorAll("svg.avsvg.live");if(!lives.length)return;
+    if(AVR.to){const k=Math.min(1,(now-AVR.t0)/AVR.dur),e=k<.5?2*k*k:1-Math.pow(-2*k+2,2)/2;for(const key in AVR.to){const a=AVR.from[key],b=AVR.to[key];AVR.cur[key]=typeof b==="number"?a+(b-a)*e:(k>=.5?b:a)}if(k>=1)avNext()}
+    else if(gestOn()&&!AVR.speaking&&now>AVR.nextIdle){if(AVR.nextIdle)avQueue(IDLE_GEST[Math.floor(Math.random()*IDLE_GEST.length)]);AVR.nextIdle=now+9000+Math.random()*8000}
+    const talking=AVR.speaking||now<AVR.talkUntil;const target=talking?(.25+.75*Math.abs(Math.sin(now/85)*Math.sin(now/53))):0;AVR.jaw+=(target-AVR.jaw)*.45;
+    if(now>AVR.blinkAt){AVR.blinkUntil=now+130;AVR.blinkAt=now+2600+Math.random()*3200}const blink=now<AVR.blinkUntil;
+    lives.forEach(s=>rigPose(s,AVR.cur,AVR.jaw,blink));AVR.raf=requestAnimationFrame(tick)};AVR.raf=requestAnimationFrame(tick)}
+document.addEventListener("visibilitychange",()=>{if(!document.hidden)avLoop()});
+/* ---- choosing gestures for what is said ---- */
+function gestScript(text){const t=text.toLowerCase();const out=[];const add=g=>{if(!out.includes(g))out.push(g)};
+  if(/assalam|good (morning|afternoon|evening)|^hi\b|welcome|hello/.test(t))add(Math.random()<.5?"wave":"adaab");
+  if(/you're welcome|thank/.test(t))add("handsTogether");
+  if(/over budget|crossed|above your|more than you earn|careful|avoid|never|don't|warning|overdue/.test(t))add(Math.random()<.5?"fingerWag":"stop");
+  if(/strong|healthy|nicely|well done|within|reached|good news|keep it up|done\b/.test(t))add(["thumbsUp","fistPump","clap"][Math.floor(Math.random()*3)]);
+  if(/compare|vs |versus|than the|same days/.test(t))add("weigh");
+  if(/save|saving|cut|trim|leak/.test(t))add("rubFingers");
+  if(/invest|fund|shares|gold|national savings|vps/.test(t))add("pointUp");
+  if(/zakat|charity|family|sadqa/.test(t))add("heart");
+  if(/emergency|safety|protect|insurance|takaful/.test(t))add("handsTogether");
+  if(/plan|budget|draft|limit/.test(t))add("write");
+  if(/month|years|day\b|days|time/.test(t))add("checkWatch");
+  if(/total|rs |\d/.test(t))add("calculate");
+  if(/\n- |\n1\.|first|second|order of/.test(t))add("count");
+  if(/not sure|i need|don't see|try asking/.test(t))add("shrug");
+  if(/large|big purchase|this much/.test(t))add("measure");
+  if(/tap |open |below|here/.test(t))add("present");
+  ["explain","beat","present","explain","nod","beat"].forEach(add);return out}
+/* ---- voice output ---- */
+let VOICES=null;
+async function loadVoices(){if(VOICES)return VOICES;try{if(NATIVE&&KN.tts){const r=await KN.tts.voices();VOICES=(r&&r.voices||[]).map((v,i)=>({i,name:v.name||v.voiceURI||"",lang:v.lang||""}))}else if(window.speechSynthesis){let v=speechSynthesis.getVoices();if(!v.length)await new Promise(r=>{speechSynthesis.onvoiceschanged=r;setTimeout(r,800)});VOICES=speechSynthesis.getVoices().map((x,i)=>({i,name:x.name,lang:x.lang,obj:x}))}}catch(e){}VOICES=VOICES||[];return VOICES}
+function pickVoice(av){const vs=(VOICES||[]).filter(v=>/^en/i.test(v.lang));if(!vs.length)return null;const pref=vs.filter(v=>/en[-_](IN|PK|GB)/i.test(v.lang));const pool=pref.length>=3?pref:vs;
+  const fem=/female|zira|aria|jenny|hazel|heera|susan|samantha|karen|moira|tessa|veena|neerja|libby|sonia|serena|kate|fiona/i,mal=/(^|\W)male|david|mark|guy|ravi|george|daniel|alex|fred|ryan|thomas|prabhat/i;
+  const g=pool.filter(v=>av.g==="f"?fem.test(v.name)&&!/\bmale\b/i.test(v.name.replace(/female/i,"")):mal.test(v.name)&&!fem.test(v.name));const list=g.length?g:pool;return list[av.voice.n%list.length]}
+function speechText(t){return t.replace(/\*\*/g,"").replace(/^\s*[-•]\s*/gm,"").replace(/^\s*(\d+)\.\s*/gm,"$1, ").replace(/Rs\.? ?([\d,]+(\.\d+)?)/g,"$1 rupees").replace(/−/g,"minus ").replace(/(\d)k\b/g,"$1 thousand").replace(/\n+/g,". ").replace(/\.\s*\./g,".").slice(0,900)}
+function voiceOn(){return S.settings.voiceOn!==false}
+let speakSeq=0;
+async function avSpeak(text,opts){opts=opts||{};const my=++speakSeq;const words=text.split(/\s+/).length;const est=Math.min(60000,900+words*330/(S.settings.voiceRate||1));
+  const script=gestOn()?gestScript(text):[];let gi=0;const nextG=()=>{if(my!==speakSeq||!AVR.speaking)return;if(script[gi]){avQueue(script[gi],true);gi++}setTimeout(nextG,2400+Math.random()*900)};
+  AVR.speaking=true;avLoop();nextG();const done=()=>{if(my!==speakSeq)return;AVR.speaking=false;AVR.talkUntil=0;avQueue("hips",true)};
+  if(!voiceOn()||opts.silent){AVR.talkUntil=performance.now()+Math.min(est,7000);setTimeout(done,Math.min(est,7000));return}
+  const av=curAv();const t=speechText(text);await loadVoices();const v=pickVoice(av);const rate=(av.voice.rate||1)*(S.settings.voiceRate||1);
+  try{if(NATIVE&&KN.tts){await KN.tts.speak({text:t,rate,pitch:av.voice.pitch,voice:v?v.i:undefined,lang:v?v.lang:"en-IN"});done();return}
+    if(window.speechSynthesis&&window.SpeechSynthesisUtterance){speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t);u.rate=rate;u.pitch=av.voice.pitch;if(v&&v.obj){u.voice=v.obj;u.lang=v.lang}u.onend=done;u.onerror=done;speechSynthesis.speak(u);setTimeout(done,est+4000);return}}catch(e){}
+  setTimeout(done,Math.min(est,7000))}
+function avStop(){speakSeq++;AVR.speaking=false;try{if(NATIVE&&KN.tts)KN.tts.stop();else if(window.speechSynthesis)speechSynthesis.cancel()}catch(e){}}
+function setAvatar(id){S.settings.avatar=id;ADV_NAME=avName();saveSettings();VOICES=VOICES||null;const fl=document.getElementById("advHost");if(fl)fl.innerHTML="";drawAdv();if(S.chatOpen){document.getElementById("chatHost").innerHTML="";renderChat()}render()}
+/* ---- avatar picker ---- */
+function avCard(av,sel){return '<button class="avpick" data-avpick="'+av.id+'" aria-pressed="'+sel+'"><span class="avfig">'+avatarSVG(av)+'</span><b>'+avName(av)+'</b><small>'+esc(av.style)+'</small></button>'}
+function pAvatars(){const cur=curAv().id;let b='<div class="status">Tap to meet each assistant and hear their voice. The men are HisaabJi and the women are Finza.</div>';
+  b+='<div class="eyebrow">HisaabJi</div><div class="avgrid">'+AVATARS.filter(a=>a.g==="m").map(a=>avCard(a,a.id===cur)).join("")+'</div>';
+  b+='<div class="eyebrow">Finza</div><div class="avgrid">'+AVATARS.filter(a=>a.g==="f").map(a=>avCard(a,a.id===cur)).join("")+'</div>';
+  return sheet("users","Choose your assistant",b)}
+function avIntro(av){return "Assalam o alaikum! I'm "+avName(av)+". I'll keep an eye on your money and answer anything you ask."}
+document.addEventListener("click",e=>{const b=e.target.closest("[data-avpick]");if(!b)return;const id=b.dataset.avpick;const av=AVATARS.find(a=>a.id===id);
+  document.querySelectorAll("[data-avpick]").forEach(x=>x.setAttribute("aria-pressed",x===b));setAvatar(id);toast(avName(av)+" is now your assistant");avPlay("wave");avSpeak(avIntro(av));
+  const fig=b.querySelector(".avfig");if(fig){fig.classList.remove("hop");void fig.offsetWidth;fig.classList.add("hop")}if(document.querySelector("#onbHost .onb")){drawOnb();const f2=document.querySelector('#onbHost [data-avpick="'+id+'"] .avfig');if(f2)f2.classList.add("hop")}});
+/* ---- greeting when the app opens ---- */
+let greeted=false;
+function greetMsg(){const r=range("month",today()),st=stats(r);const hr=new Date().getHours();const nm=(S.settings.profile&&S.settings.profile.givenName)?", "+S.settings.profile.givenName:"";
+  const tip=faygulTips(r)[0];return (hr<12?"Good morning":hr<17?"Good afternoon":"Good evening")+nm+"! "+(st.tx.length?"You've spent "+fmt(st.e)+" so far in "+r.label+". ":"")+(tip?tip[1]+". "+tip[2]:"Ask me anything about your money.")}
+function greetOnOpen(){if(greeted||S.settings.greetOnOpen===false)return;if(document.querySelector("#lockHost .lock,#onbHost .onb"))return;greeted=true;
+  setTimeout(()=>{const el=document.getElementById("adv");if(!el)return;el.classList.add("popin");const m=greetMsg();showBubble(m,true);avPlay("wave");avSpeak(m)},700)}
+function showBubble(text,actions){document.querySelectorAll(".avbubble").forEach(x=>x.remove());const el=document.getElementById("adv");if(!el)return;const r=el.getBoundingClientRect();const b=document.createElement("div");b.className="avbubble";b.setAttribute("role","status");
+  b.innerHTML='<div class="bt">'+esc(text)+'</div>'+(actions?'<div class="bb"><button data-bubtalk>Talk to '+esc(ADV_NAME)+'</button><button data-bubx>Later</button></div>':"");document.body.appendChild(b);
+  const left=r.left+r.width/2<window.innerWidth/2;if(left)b.style.left=Math.max(12,r.left)+"px";else b.style.right=Math.max(12,window.innerWidth-r.right)+"px";
+  if(r.top>230){b.style.bottom=(window.innerHeight-r.top+4)+"px";b.classList.add(left?"bl":"br")}else{b.style.top=(r.bottom+4)+"px";b.classList.add(left?"tl":"tr")}
+  clearTimeout(showBubble._t);showBubble._t=setTimeout(()=>{if(b.isConnected)b.remove()},15000)}
+document.addEventListener("click",e=>{const t=e.target.closest("[data-bubtalk],[data-bubx]");if(!t)return;document.querySelectorAll(".avbubble").forEach(x=>x.remove());avStop();if(t.hasAttribute("data-bubtalk"))openChat()});
+
+/* ================= voice entry ================= */
+Object.assign(ICONS,{mic:'<rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 10a7 7 0 0 0 14 0M12 17v4M8 21h8"/>',volume:'<path d="M11 5 6 9H2v6h4l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M19 5a10 10 0 0 1 0 14"/>',mute:'<path d="M11 5 6 9H2v6h4l5 4z"/><path d="M22 9l-6 6M16 9l6 6"/>',scan:'<path d="M3 7V5a2 2 0 0 1 2-2h2M17 3h2a2 2 0 0 1 2 2v2M21 17v2a2 2 0 0 1-2 2h-2M7 21H5a2 2 0 0 1-2-2v-2"/><path d="M7 12h10M8 8h8M8 16h5"/>',image:'<rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/>',user:'<circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/>',settings:'<circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-2.8 1.2V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-2.8-1.2l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1A1.7 1.7 0 0 0 3.2 14H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.2-2.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1A1.7 1.7 0 0 0 10 3.2V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 2.8 1.2l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0 1.2 2.8h.2a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/>',google:'<path d="M21 12.2c0-.7-.1-1.3-.2-1.9H12v3.6h5.1a4.4 4.4 0 0 1-1.9 2.9v2.4h3.1c1.8-1.7 2.7-4.1 2.7-7z"/><path d="M12 21c2.6 0 4.7-.9 6.3-2.3l-3.1-2.4c-.9.6-2 .9-3.2.9-2.5 0-4.6-1.7-5.3-3.9H3.5v2.5A9.5 9.5 0 0 0 12 21z"/><path d="M6.7 13.3a5.7 5.7 0 0 1 0-3.6V7.2H3.5a9.5 9.5 0 0 0 0 8.6z"/><path d="M12 6.4c1.4 0 2.6.5 3.6 1.4l2.7-2.7A9.2 9.2 0 0 0 12 2.5a9.5 9.5 0 0 0-8.5 4.7l3.2 2.5C7.4 8.1 9.5 6.4 12 6.4z"/>'});
+const LIB_SYN={lib_electricity:["electricity","bijli","light bill","k-electric","lesco","iesco","wapda","units"],lib_gas:["gas bill","sui gas","sngpl","ssgc"],lib_water:["water bill"],lib_internet:["internet","wifi","ptcl","stormfiber","nayatel"],lib_mobile:["mobile load","load","easyload","recharge","jazz","zong","telenor","ufone","mobile bill","package"],lib_fuel:["petrol","diesel","fuel","cng"],lib_ride:["careem","uber","indrive","bykea","rickshaw","taxi"],lib_dining:["restaurant","dinner","lunch","dine"],lib_delivery:["foodpanda","food delivery"],lib_fastfood:["burger","pizza","shawarma","fries","kfc","mcdonalds"],lib_tea:["tea","chai","coffee"],lib_fruitveg:["fruit","fruits","vegetables","sabzi"],lib_meat:["meat","chicken","mutton","beef","gosht","fish"],lib_dairy:["milk","doodh","yogurt","dahi"],lib_bakery:["bread","bakery","cake","rusk"],lib_medicines:["medicine","medicines","pharmacy","dawai","tablets"],lib_doctor:["doctor","clinic","consultation"],lib_lab:["lab test","blood test","lab"],lib_schoolfee:["school fee","school fees"],lib_tuition:["tuition","academy"],lib_maid:["maid","cook salary","driver salary","domestic help"],lib_salon:["salon","barber","haircut","parlour"],lib_clothing:["clothes","shirt","kurta","dress","suit"],lib_footwear:["shoes","sandals","chappal","joote"],lib_gifts:["gift","gifts","present"],lib_eidi:["eidi"],lib_qurbani:["qurbani","bakra","sacrifice"],lib_zakat:["zakat"],lib_sadqa:["sadqa","donation","khairat"],lib_streaming:["netflix","spotify","youtube premium","subscription"],lib_parking:["parking","toll"],lib_lpg:["lpg","cylinder"],lib_committee:["committee","kameti"],lib_loan:["loan","installment","emi","qist"],lib_creditcard:["credit card"],lib_gym:["gym"],lib_pets:["pet food","cat food","dog food"],lib_repairs:["repair","plumber","electrician","mistri"],lib_laundry:["laundry","dry clean","dhobi"],lib_parents:["parents","ammi","abbu"]};
+const STOPW=new Set(["and","bill","fees","your","other","home","care","with","more"]);
+function headFromText(t,type){t=" "+t.toLowerCase()+" ";const pool=type==="inc"?INC_CATS:allCats();let best=null,bl=0;
+  pool.forEach(([id,name])=>{(FG_SYN[id]||[]).concat(LIB_SYN[id]||[]).concat([name.toLowerCase()]).concat(name.toLowerCase().split(/[\s&,'()]+/).filter(w=>w.length>3&&!STOPW.has(w))).forEach(w=>{if(w&&w.length>=bl&&fgHas(t,w)){best=id;bl=w.length}})});
+  if(best)return best;if(type==="inc")return /salary|tankhwa/.test(t)?"salary":/bonus/.test(t)?"bonus":"oinc";
+  for(const id in LIB_SYN){for(const w of LIB_SYN[id])if(fgHas(t,w))return id}
+  for(const [id,re] of CAT_HINTS)if(re.test(t))return id;return "other"}
+const NUMW={zero:0,one:1,two:2,three:3,four:4,five:5,six:6,seven:7,eight:8,nine:9,ten:10,eleven:11,twelve:12,thirteen:13,fourteen:14,fifteen:15,sixteen:16,seventeen:17,eighteen:18,nineteen:19,twenty:20,thirty:30,forty:40,fifty:50,sixty:60,seventy:70,eighty:80,ninety:90};
+function wordsToNum(t){return t.replace(/\b(?:(?:zero|one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve|thirteen|fourteen|fifteen|sixteen|seventeen|eighteen|nineteen|twenty|thirty|forty|fifty|sixty|seventy|eighty|ninety|hundred|thousand|lakh|lac|crore|and|a)(?:[\s-]+|$))+/gi,m=>{const ws=m.toLowerCase().split(/[\s-]+/).filter(Boolean);if(!ws.some(w=>w in NUMW))return m;let total=0,cur=0;
+  ws.forEach((w,i)=>{if(w in NUMW)cur+=NUMW[w];else if(w==="a"&&i<ws.length-1)cur+=1;else if(w==="hundred")cur=(cur||1)*100;else if(w==="thousand"){total+=(cur||1)*1e3;cur=0}else if(w==="lakh"||w==="lac"){total+=(cur||1)*1e5;cur=0}else if(w==="crore"){total+=(cur||1)*1e7;cur=0}});return " "+(total+cur)+" "})}
+function voiceDate(t){const d=new Date();if(/day before yesterday/.test(t))return ymd(addDays(d,-2));if(/yesterday/.test(t))return ymd(addDays(d,-1));
+  const wd=["sunday","monday","tuesday","wednesday","thursday","friday","saturday"].findIndex(w=>new RegExp("\\b"+w).test(t));if(wd>=0){let diff=(d.getDay()-wd+7)%7;if(!diff&&/last/.test(t))diff=7;return ymd(addDays(d,-diff))}
+  const m=t.match(/(\d{1,2})(?:st|nd|rd|th)?\s+(?:of\s+)?(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)[a-z]*/)||t.match(/(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)[a-z]*\s+(\d{1,2})(?:st|nd|rd|th)?/);
+  if(m){const day=+(isNaN(+m[1])?m[2]:m[1]),mon=MONS[(isNaN(+m[1])?m[1]:m[2]).slice(0,3)];let x=new Date(d.getFullYear(),mon,day);if(x>d)x=new Date(d.getFullYear()-1,mon,day);return ymd(x)}
+  const o=t.match(/\bon the (\d{1,2})(?:st|nd|rd|th)\b/);if(o){let x=new Date(d.getFullYear(),d.getMonth(),+o[1]);if(x>d)x=new Date(d.getFullYear(),d.getMonth()-1,+o[1]);return ymd(x)}return null}
+function voiceAcct(t){for(const a of accts()){if(a.name.length>2&&fgHas(t,a.name.toLowerCase()))return a.id}
+  if(/\b(jazzcash|jazz cash|easypaisa|easy paisa|sadapay|nayapay|mobile wallet)\b/.test(t))return accts().some(a=>a.id==="wallet")?"wallet":null;
+  if(/\b(by|with|from|on|via) (debit )?card\b|\bswiped\b/.test(t))return accts().some(a=>a.id==="card")?"card":null;
+  if(/\b(bank|online|transfer|account)\b/.test(t))return accts().some(a=>a.id==="bank")?"bank":null;if(/\b(cash|naqd)\b/.test(t))return accts().some(a=>a.id==="cash")?"cash":null;return null}
+function voiceItem(p,base){const type=/\b(received|got paid|earned|income|salary|credited|bonus|profit received)\b/.test(p)?"inc":"exp";const amt=fgAmount(p);const cat=headFromText(p,type);
+  let note=p.replace(/(?:rs\.?|pkr|rupees?|rupay|rupaye)/g," ").replace(/\d+(?:\.\d+)?\s*(?:k|thousand|lakh|lac|crore)?\b/g," ").replace(/\b(i|we|have|has|had|just|spent|spend|paid|pay|bought|buy|add|added|log|record|for|on|of|at|to|from|in|the|a|an|my|me|today|yesterday|day before|last|this|morning|evening|night|by|with|via|using|cash|card|bank|online|wallet|jazzcash|easypaisa|received|got|earned|expense|expenses|entry|please|kindly|amount|also|plus|then|monday|tuesday|wednesday|thursday|friday|saturday|sunday|jan\w*|feb\w*|mar\w*|apr\w*|may|jun\w*|jul\w*|aug\w*|sep\w*|oct\w*|nov\w*|dec\w*|st|nd|rd|th)\b/g," ").replace(/[^a-z&' -]/g," ").replace(/\s+/g," ").trim();
+  if(note.length<2)note=catInfo(cat,type).name;note=note.split(" ").slice(0,6).map(w=>w[0].toUpperCase()+w.slice(1)).join(" ");
+  return{type,amt,cat,date:voiceDate(p)||base.date||today(),acct:voiceAcct(p)||base.acct||(type==="inc"?"bank":"cash"),note}}
+function parseVoice(text){const t=" "+wordsToNum(text.toLowerCase().replace(/(\d),(?=\d{3}\b)/g,"$1"))+" ";const base={date:voiceDate(t),acct:voiceAcct(t)};
+  const parts=t.split(/\s(?:and|also|plus|then)\s|,|;/).filter(x=>/\d/.test(x));return (parts.length?parts:[t]).map(x=>voiceItem(" "+x+" ",base)).filter(x=>x.amt>0)}
+function ensureHead(id){if(id&&id.startsWith("lib_")&&!(S.settings.customCats||[]).some(c=>c.id===id))libAdd(id.slice(4))}
+function sttAvailable(){return !!(NATIVE&&KN.voice)}
+async function listen(prompt){if(!sttAvailable()){toast("Voice input works in the Kharchnama Android app.");return null}
+  try{const r=await KN.voice.listen({language:S.settings.sttLang||"en-IN",prompt:prompt||"Speak now"});return (r&&r.matches&&r.matches[0])||null}
+  catch(e){const m=String(e&&e.message||"");toast(/permission|denied/i.test(m)?"Allow microphone access to use voice.":"I didn't catch that. Please try again.");return null}}
+function voiceToEntry(text){const items=parseVoice(text);if(!items.length){toast("I heard “"+text+"” but couldn't find an amount.");avSpeak("Sorry, I couldn't find an amount in that. Try saying something like: 500 rupees for petrol.");return false}
+  items.forEach(i=>ensureHead(i.cat));
+  if(items.length===1){const it=items[0];Object.assign(S.draft,{type:it.type,cat:it.cat,amt:String(it.amt),date:it.date,acct:it.acct,note:it.note,heard:text});renderPanel();
+    avSpeak("Got it. "+fmt(it.amt)+" for "+catInfo(it.cat,it.type).name+", "+(it.date===today()?"today":niceDate(it.date))+", from "+acctInfo(it.acct).name+". Check it and tap Add to confirm.");return true}
+  openPanel("imports");Object.assign(S.imp,{items:markDups(items.map(i=>({sel:true,date:i.date,amt:i.amt,type:i.type,cat:i.cat,desc:i.note,transfer:false,dup:false}))),stage:"review",wallet:items[0].acct,err:""});renderPanel();
+  avSpeak("I found "+items.length+" entries. Please check them and tap Import to confirm.");return true}
+/* ================= bill scanning ================= */
+const BILL_HINTS=[[/k-?electric|lesco|iesco|fesco|mepco|gepco|pesco|hesco|sepco|qesco|wapda|units consumed|kwh/i,"lib_electricity","bills"],[/sngpl|ssgc|sui (northern|southern)|gas bill|hm3|mmbtu/i,"lib_gas","bills"],[/ptcl|stormfiber|nayatel|wateen|fiberlink|broadband/i,"lib_internet","bills"],[/\b(jazz|zong|telenor|ufone|mobilink)\b/i,"lib_mobile","bills"],
+ [/pharma|pharmacy|medical store|clinix|dvago|chemist|tablets?|capsules?|syrup|\d+\s?mg\b/i,"lib_medicines","health"],[/hospital|clinic|consultation|laborator|chughtai|essa lab|excel lab|diagnostic/i,"lib_doctor","health"],[/petrol|diesel|hi-?octane|\bpso\b|\bshell\b|total parco|attock|hascol|byco|litres?|ltrs?/i,"lib_fuel","trans"],
+ [/foodpanda|cheetay|careem food/i,"lib_delivery","food"],[/kfc|mcdonald|burger|pizza|subway|hardee|domino|fries|zinger|broast/i,"lib_fastfood","food"],[/restaurant|cafe|café|kitchen|grill|bbq|biryani|karahi|dine[- ]?in|table no|covers|waiter/i,"food","food"],
+ [/imtiaz|carrefour|naheed|metro|al-?fatah|chase ?up|springs|hyperstar|green valley|super ?mart|super ?store|grocery|kiryana|general store|cash ?& ?carry/i,"groc","groc"],[/bakery|bakers|\bbread\b|rusk/i,"lib_bakery","groc"],
+ [/khaadi|sapphire|gul ahmed|outfitters|breakout|junaid jamshed|alkaram|nishat|limelight|bonanza|edenrobe|cougar|\bj\.\s/i,"lib_clothing","shop"],[/\bbata\b|servis|stylo|borjan|ndure/i,"lib_footwear","shop"],[/daraz|amazon|aliexpress/i,"shop","shop"],
+ [/school|academy|college|university|tuition|fee voucher|challan form/i,"lib_schoolfee","edu"],[/salon|parlou?r|barber|\bspa\b/i,"lib_salon","shop"],[/cinema|cinepax|nueplex|ticket/i,"fun","fun"],[/hotel|resort|guest house/i,"lib_hotels","travel"],[/airline|\bpia\b|airblue|serene air|airsial|boarding pass/i,"lib_flights","travel"],[/hardware|paint|plumb|sanitary|electric store/i,"lib_repairs","rent"]];
+const ITEM_HINTS=[[/milk|doodh|yogh?urt|dahi|cheese|butter|cream|lassi/i,"lib_dairy"],[/chicken|mutton|beef|keema|fish|meat|qeema/i,"lib_meat"],[/apple|banana|mango|orange|grape|tomato|onion|potato|aloo|pyaz|vegetable|fruit|sabzi|lemon|garlic|ginger/i,"lib_fruitveg"],[/bread|\bbun\b|rusk|cake|biscuit|cookies/i,"lib_bakery"],[/tab\b|tablet|cap\b|capsule|syrup|\d+\s?mg\b|injection|panadol|brufen/i,"lib_medicines"],[/shampoo|soap|lotion|toothpaste|razor|cosmetic|lipstick/i,"lib_cosmetics"]];
+function hasHead(id){return allCats().some(c=>c[0]===id)}
+function billHead(text){for(const [re,lib,base] of BILL_HINTS)if(re.test(text))return{id:hasHead(lib)?lib:base,alt:lib};const h=headFromText(text,"exp");return{id:h,alt:null}}
+function itemHead(name,fallback){for(const [re,lib] of ITEM_HINTS)if(re.test(name))return hasHead(lib)?lib:({lib_dairy:"groc",lib_meat:"groc",lib_fruitveg:"groc",lib_bakery:"groc",lib_medicines:"health",lib_cosmetics:"shop"})[lib]||fallback;return fallback}
+function ocrRows(lines){const L=(lines||[]).filter(l=>l&&l.t).map(l=>({t:l.t,x:+l.x||0,y:+l.y||0,h:+l.h||12})).sort((a,b)=>a.y-b.y);const rows=[];
+  L.forEach(l=>{const row=rows.find(r=>Math.abs(r.y-l.y)<Math.max(r.h,l.h)*.55);if(row){row.items.push(l);row.y=(row.y+l.y)/2}else rows.push({y:l.y,h:l.h,items:[l]})});
+  return rows.map(r=>r.items.sort((a,b)=>a.x-b.x).map(i=>i.t).join("  "))}
+function parseBill(rows){const R=rows.map(s=>String(s).replace(/\s+/g," ").trim()).filter(Boolean);
+  const money=s=>{const m=s.replace(/,/g,"").match(/(?:rs\.?|pkr)?\s*(\d+(?:\.\d{1,2})?)\s*(?:\/-)?\s*$/i);return m?parseFloat(m[1]):NaN};
+  let total=NaN,tIdx=-1,score=0;
+  R.forEach((s,i)=>{const l=s.toLowerCase();let sc=0;if(/grand\s*total|net\s*(total|amount|payable|bill)|amount\s*(payable|due)|total\s*(payable|due|amount)|payable\s*(amount|within)|bill\s*amount|to\s*pay|balance\s*due/.test(l))sc=3;else if(/\btotal\b/.test(l)&&!/sub\s*-?total|total\s*(items|qty|quantity|discount|tax|gst|units)/.test(l))sc=2;
+    if(sc){let v=money(s);if(isNaN(v)&&R[i+1])v=money(R[i+1]);if(!isNaN(v)&&v>0&&v<1e8&&(sc>score||(sc===score&&v>total))){total=v;tIdx=i;score=sc}}});
+  if(isNaN(total)){const nums=R.map(money).filter(v=>!isNaN(v)&&v>0&&v<1e7);total=nums.length?Math.max(...nums):0}
+  const date=R.map(s=>/\d{1,2}[-\/.]\d{1,2}[-\/.]\d{2,4}|\d{1,2}[- ](jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)/i.test(s)?parseAnyDate(s):null).find(d=>d&&d<=today())||today();
+  const merchant=((R.find(s=>/[a-z]{3}/i.test(s)&&!/receipt|invoice|tax|welcome|ntn|strn|tel|phone|www|http|date|time|cashier|bill no|order|customer|thank/i.test(s)&&s.length<42)||"Bill").replace(/[^\w&'.\- ]/g,"").trim()).slice(0,40);
+  const items=[];R.slice(0,tIdx>0?tIdx:R.length).forEach(s=>{const l=s.toLowerCase();if(/total|tax|gst|discount|change|cash|card|tender|balance|vat|service|round|qty|items|pra|fbr|ntn|invoice|date|time|tel|phone/.test(l))return;
+    const m=s.replace(/,/g,"").match(/^(.*?[a-z].*?)\s+(?:\d+(?:\.\d+)?\s*[x@*]\s*)?(?:rs\.?\s*)?(\d+(?:\.\d{1,2})?)\s*$/i);if(m){const nm=m[1].replace(/\s+\d+(\.\d+)?\s*$/,"").trim();const v=parseFloat(m[2]);if(nm.length>=2&&v>0&&(!total||v<=total))items.push({name:nm.slice(0,40),amt:v})}});
+  const h=billHead((merchant+" "+R.join(" ")).toLowerCase());items.forEach(it=>it.cat=itemHead(it.name,h.id));
+  return{merchant,date,total:Math.round(total*100)/100,items:items.slice(0,40),cat:h.id,alt:h.alt,rows:R}}
+async function aiBill(images){const prompt="Read this bill or receipt from Pakistan. Return ONLY JSON: {\"merchant\":string,\"date\":\"YYYY-MM-DD\"|null,\"total\":number,\"items\":[{\"name\":string,\"amount\":number}]}. total is the final amount payable. Do not include card numbers, account numbers or CNIC. Today is "+today()+".";
+  const res=await sampleCap(prompt,{modelTier:"default",cache:false,images});const o=jsonFrom(res.text||"");const rows=[o.merchant||"Bill"].concat((o.items||[]).map(i=>i.name+" "+i.amount)).concat(["Total "+(o.total||0)]);
+  const b=parseBill(rows);b.merchant=String(o.merchant||b.merchant).slice(0,40);b.total=Math.abs(+o.total)||b.total;b.date=parseAnyDate(o.date)||b.date;b.items=(o.items||[]).map(i=>({name:String(i.name||"").slice(0,40),amt:Math.abs(+i.amount)||0})).filter(i=>i.amt>0);const h=billHead((b.merchant+" "+b.items.map(i=>i.name).join(" ")).toLowerCase());b.cat=h.id;b.alt=h.alt;b.items.forEach(i=>i.cat=itemHead(i.name,b.cat));return b}
+async function scanBill(src){if(NATIVE&&KN.camera){let ph;try{ph=await KN.camera.get(src)}catch(e){if(!/cancel/i.test(String(e&&e.message)))toast("Couldn't open the camera.");return}
+    billBusy(ph.dataUrl);try{const r=await KN.ocr(ph.base64);const b=parseBill(ocrRows(r.lines));b.img=ph.dataUrl;billReview(b)}catch(e){billFail(e)}return}
+  fileMode="bill";const f=document.getElementById("fileIn");f.accept="image/*,.pdf";f.click()}
+async function billFile(f){const isImg=(f.type||"").startsWith("image/")||/\.(jpe?g|png|webp|heic)$/i.test(f.name||"");let url="";
+  try{if(isImg){const blob=await shrink(f);url=URL.createObjectURL(blob);billBusy(url);
+      if(NATIVE&&KN.ocr){const b64=await new Promise((res,rej)=>{const fr=new FileReader();fr.onload=()=>res(String(fr.result).split(",")[1]);fr.onerror=rej;fr.readAsDataURL(blob)});const r=await KN.ocr(b64);const b=parseBill(ocrRows(r.lines));b.img=url;return billReview(b)}
+      if(sampleCap&&await canSeeImages()){const b=await aiBill([blob]);b.img=url;return billReview(b)}throw{user:"Reading bill photos works in the Kharchnama Android app. Here you can upload a PDF bill instead."}}
+    billBusy("");const p=await readFile(f);if(p.text&&p.text.replace(/\s/g,"").length>40){const b=parseBill(p.text.split(/\n/));return billReview(b)}
+    if(p.images&&p.images.length&&sampleCap&&await canSeeImages()){const b=await aiBill(p.images);return billReview(b)}throw{user:"I couldn't read text in that file. Try a clearer photo."}}
+  catch(e){if(e&&e.name==="PasswordException")return billFail({user:"That PDF is password-protected. Import it from Import & salary instead."});billFail(e)}}
+function billBusy(img){S.bill={busy:true,img};if(!S.panel||S.panel.kind!=="bill")openPanel("bill",null,!!S.panel);else renderPanel();avSpeak("Let me read that bill.",{silent:!voiceOn()})}
+function billFail(e){S.bill={err:(e&&e.user)||"I couldn't read that bill. Try a sharper photo in good light, with the whole bill in view."};renderPanel();avPlay("shrug")}
+function billReview(b){Object.assign(b,{acct:"cash",split:false,busy:false});S.bill=b;if(!S.panel||S.panel.kind!=="bill")openPanel("bill",null,!!S.panel);else renderPanel();
+  const h=catInfo(b.cat);avSpeak(b.total?"This bill from "+b.merchant+" comes to "+fmt(b.total)+". I'd put it under "+h.name+". Change anything you like, then tap Approve.":"I read the bill but couldn't find the total. Please type the amount.")}
+function billAlts(b){const s=[b.cat];if(b.alt&&b.alt!==b.cat)s.push(b.alt);b.items.forEach(i=>{if(!s.includes(i.cat))s.push(i.cat)});["groc","food","bills","shop","health","trans","fun","other"].forEach(x=>{if(!s.includes(x))s.push(x)});return s.slice(0,8)}
+function pBill(){const b=S.bill||{};if(b.busy)return sheet("scan","Reading your bill",'<div class="card" style="display:flex;flex-direction:column;align-items:center;gap:12px;text-align:center;padding:24px 16px">'+(b.img?'<img class="billimg" src="'+b.img+'" alt="Your bill">':"")+'<span class="facebig">'+advisorHead()+'</span><b>'+ADV_NAME+' is reading your bill…</b><span class="typing"><i></i><i></i><i></i></span><div class="status">Text is read on your phone. Nothing is added yet.</div></div>');
+  if(b.err)return sheet("scan","Bill",'<div class="banner" style="background:#FDECEE;color:var(--bad)"><div>'+esc(b.err)+'</div></div><div class="btns"><button class="btn primary" data-bscan="camera">'+I("scan")+'Try again</button><button class="btn" data-close>Close</button></div>');
+  const heads=billAlts(b);let h='<div class="card billtop">'+(b.img?'<img class="billimg" src="'+b.img+'" alt="Your bill">':'<span class="ico lg" style="--c:#2B5DA8">'+I("receipt")+'</span>')+'<div style="min-width:0"><div class="eyebrow">Suggested by '+ADV_NAME+'</div><div class="budtot num" id="bTotShow">'+fmt(+b.total||0)+'</div><div class="status">'+esc(b.merchant)+' · '+niceDate(b.date)+'</div></div></div>';
+  h+='<div class="approval">'+I("shield")+'<span>Nothing is added until you approve. Change anything below.</span></div>';
+  h+='<div class="grid2"><div class="field"><label for="bMerch">Shop or biller</label><input type="text" id="bMerch" value="'+esc(b.merchant)+'"></div><div class="field"><label for="bTotal">Total</label><input type="number" inputmode="decimal" id="bTotal" value="'+(b.total||"")+'"></div><div class="field"><label for="bDate">Date</label><input type="date" id="bDate" value="'+b.date+'"></div><div class="field"><label for="bAcct">Paid from</label><select id="bAcct">'+accts().map(a=>'<option value="'+a.id+'"'+(a.id===b.acct?" selected":"")+'>'+esc(a.name)+'</option>').join("")+'</select></div></div>';
+  if(!b.split){h+='<div><div class="eyebrow" style="margin-bottom:8px">Expense head</div><div class="catgrid">'+heads.map(id=>{const c=LIB_INDEX[id]&&!hasHead(id)?{name:LIB_INDEX[id].name,color:LIB_INDEX[id].color,icon:LIB_INDEX[id].icon}:catInfo(id);return '<button data-bcat="'+id+'" style="--c:'+c.color+'" aria-pressed="'+(id===b.cat)+'">'+ico(c.icon,c.color)+esc(c.name)+(id===heads[0]?'<small class="sugg">Suggested</small>':"")+'</button>'}).join("")+'<button class="more" data-bcatlib>'+ico("plus","#0F7B5F")+'More headings</button></div></div>'}
+  if(b.items.length>=2){h+='<div class="toggle"><span><b style="display:block">Split across heads by item</b><small class="status" style="display:block">'+b.items.length+' items found on the bill</small></span><button class="sw2" role="switch" aria-checked="'+!!b.split+'" data-bsplit aria-label="Split across heads"></button></div>';
+    if(b.split){const opts=sel=>allCats().map(c=>'<option value="'+c[0]+'"'+(c[0]===sel?" selected":"")+'>'+esc(c[1])+'</option>').join("");const isum=b.items.reduce((a,i)=>a+(+i.amt||0),0);const rest=Math.round(((+b.total||0)-isum)*100)/100;
+      h+='<div class="daygrp">'+b.items.map((it,i)=>'<div class="bitem"><input type="text" data-bin="'+i+'" value="'+esc(it.name)+'" aria-label="Item name"><input type="number" inputmode="decimal" data-bia="'+i+'" value="'+it.amt+'" aria-label="Amount"><select data-bih="'+i+'" aria-label="Head">'+opts(hasHead(it.cat)?it.cat:b.cat)+'</select></div>').join("")+(rest?'<div class="bitem"><span class="status" style="grid-column:1/3">Tax and other charges · '+fmt(rest)+'</span><select data-bih="rest" aria-label="Head">'+opts(hasHead(b.restCat||b.cat)?(b.restCat||b.cat):"other")+'</select></div>':"")+'</div>'}}
+  if(b.rows&&b.rows.length)h+='<details class="billtext"><summary>Text read from the bill</summary><pre class="csv">'+esc(b.rows.join("\n"))+'</pre></details>';
+  h+='<div class="btns" style="position:sticky;bottom:0;background:var(--bg);padding-top:8px"><button class="btn primary" data-bok style="flex:1">'+I("check")+'Approve & add</button><button class="btn" data-close>Cancel</button></div>';
+  return sheet("scan","Check your bill",h)}
+function billCapture(){const b=S.bill;const g=id=>document.getElementById(id);if(!b||!g("bTotal"))return;b.merchant=g("bMerch").value.trim()||b.merchant;b.total=parseFloat(g("bTotal").value)||0;b.date=g("bDate").value||b.date;b.acct=g("bAcct").value}
+async function billApprove(){billCapture();const b=S.bill;if(!(b.total>0))return toast("Enter the bill total first.");const out=[];
+  if(b.split&&b.items.length>=2){const g={};b.items.forEach(i=>{const c=hasHead(i.cat)?i.cat:b.cat;(g[c]=g[c]||{amt:0,names:[]}).amt+=+i.amt||0;g[c].names.push(i.name)});const isum=b.items.reduce((a,i)=>a+(+i.amt||0),0);const rest=Math.round((b.total-isum)*100)/100;
+    if(rest>0){const c=b.restCat||b.cat;(g[c]=g[c]||{amt:0,names:[]}).amt+=rest}Object.entries(g).forEach(([c,v])=>{if(v.amt>0)out.push({cat:c,amt:Math.round(v.amt*100)/100,note:b.merchant+(v.names.length?" · "+v.names.slice(0,3).join(", "):"")})})}
+  else{ensureHead(b.cat);out.push({cat:b.cat,amt:b.total,note:b.merchant})}
+  let n=0;for(const o of out){n++;ensureHead(o.cat);await putTx({id:"bill_"+uidGen()+n,type:"exp",cat:o.cat,amt:o.amt,date:b.date,note:o.note,acct:b.acct,to:"",src:"bill",ts:Date.now()+n},true)}
+  saveLocal();render();closeAllPanels();toast("Added "+out.length+" entr"+(out.length>1?"ies":"y")+" from your bill");avPlay("thumbsUp");avSpeak("Done. I added "+fmt(b.total)+" from "+b.merchant+".")}
+document.getElementById("sheetHost").addEventListener("click",e=>{const t=e.target.closest("button");if(!t)return;
+  if(t.dataset.bscan){scanBill(t.dataset.bscan);return}
+  if(t.hasAttribute("data-vspeak")){captureEntry();listen("Say an expense, like 500 for petrol").then(x=>{if(x)voiceToEntry(x)});return}
+  if(!S.panel||S.panel.kind!=="bill")return;const b=S.bill;
+  if(t.dataset.bcat){billCapture();b.cat=t.dataset.bcat;document.querySelectorAll("#sheetHost [data-bcat]").forEach(x=>x.setAttribute("aria-pressed",x===t));return}
+  if(t.hasAttribute("data-bcatlib")){billCapture();openPanel("catlib",{pick:true},true);return}
+  if(t.hasAttribute("data-bsplit")){billCapture();b.split=!b.split;renderPanel();return}
+  if(t.hasAttribute("data-bok")){billApprove();return}});
+document.addEventListener("input",e=>{const el=e.target;if(!S.bill||!S.panel||S.panel.kind!=="bill")return;if(el.dataset.bia!=null)S.bill.items[+el.dataset.bia].amt=parseFloat(el.value)||0;if(el.dataset.bin!=null)S.bill.items[+el.dataset.bin].name=el.value;
+  if(el.id==="bTotal"){const s=document.getElementById("bTotShow");if(s)s.textContent=fmt(parseFloat(el.value)||0)}});
+document.addEventListener("change",e=>{const el=e.target;if(!S.bill||!S.panel||S.panel.kind!=="bill"||el.dataset.bih==null)return;if(el.dataset.bih==="rest")S.bill.restCat=el.value;else S.bill.items[+el.dataset.bih].cat=el.value});
+/* ================= account & settings ================= */
+function profileBadge(){const p=S.settings.profile;if(p&&p.photo)return '<img src="'+esc(p.photo)+'" alt="" referrerpolicy="no-referrer">';if(p&&p.name)return '<span>'+esc(p.name.split(" ").map(w=>w[0]).slice(0,2).join("").toUpperCase())+'</span>';return I("user")}
+function updHeaderProfile(){const b=document.getElementById("hProf");if(b)b.innerHTML=profileBadge()}
+function gClientId(){try{return localStorage.getItem("kharcha.gcid")||(window.KN&&KN.google&&KN.google.clientId)||""}catch(e){return ""}}
+async function googleSignIn(){if(!(NATIVE&&KN.google)){toast("Google sign-in works in the Kharchnama Android app.");return}const cid=gClientId();if(!cid){openPanel("gsetup",null,!!S.panel);return}
+  try{const p=await KN.google.signIn(cid);S.settings.profile={name:p.name||"",givenName:p.givenName||(p.name||"").split(" ")[0],email:p.email||"",photo:p.photo||""};saveSettings();updHeaderProfile();if(S.panel)renderPanel();toast("Signed in as "+(p.email||p.name));avPlay("wave");avSpeak("Welcome, "+S.settings.profile.givenName+"! Nice to meet you.");if(ONB.step==="google")finishOnb()}
+  catch(e){const c=e&&e.code||"";toast(/cancel/i.test(String(e&&e.message)+c)?"Sign-in cancelled.":/no_client/.test(c)?"Google sign-in isn't set up yet.":"Couldn't sign in: "+(e&&e.message||"try again"))}}
+function pAccount(){const p=S.settings.profile;const av=curAv();
+  let b='<div class="card acct">'+(p&&p.email?'<span class="pbig">'+profileBadge()+'</span><div style="min-width:0"><b>'+esc(p.name||p.email)+'</b><small>'+esc(p.email)+'</small><span class="pill ok" style="margin:6px 0 0">Signed in with Google</span></div>':'<span class="pbig">'+I("user")+'</span><div style="min-width:0"><b>Not signed in</b><small>Sign in to personalise Kharchnama with your name and photo.</small></div>')+'</div>';
+  b+=p&&p.email?'<button class="btn" data-gsignout>Sign out</button>':'<button class="btn gbtn" data-gsignin>'+I("google")+'Sign in with Google</button>';
+  b+='<div class="card">'+h2("users","Your assistant")+'<div class="avrow"><span class="facebig">'+advisorHead()+'</span><div style="min-width:0"><b>'+avName(av)+'</b><small class="status">'+esc(av.style)+'</small></div><button class="btn pill" data-panel="avatars">Change</button></div>'+
+    '<div class="toggle"><span>Spoken replies</span><button class="sw2" role="switch" aria-checked="'+voiceOn()+'" data-set="voiceOn" aria-label="Spoken replies"></button></div>'+
+    '<div class="toggle"><span>Greet me when I open the app</span><button class="sw2" role="switch" aria-checked="'+(S.settings.greetOnOpen!==false)+'" data-set="greetOnOpen" aria-label="Greeting"></button></div>'+
+    '<div class="toggle"><span>Body gestures</span><button class="sw2" role="switch" aria-checked="'+(S.settings.gestures!==false)+'" data-set="gestures" aria-label="Gestures"></button></div>'+
+    '<div class="grid2"><div class="field"><label for="vRate">Speaking speed</label><select id="vRate">'+[[.85,"Slower"],[1,"Normal"],[1.15,"Faster"]].map(([v,l])=>'<option value="'+v+'"'+((S.settings.voiceRate||1)==v?" selected":"")+'>'+l+'</option>').join("")+'</select></div><div class="field"><label for="vLang">Voice input</label><select id="vLang">'+[["en-IN","English (South Asia)"],["en-US","English (US)"],["en-GB","English (UK)"]].map(([v,l])=>'<option value="'+v+'"'+((S.settings.sttLang||"en-IN")===v?" selected":"")+'>'+l+'</option>').join("")+'</select></div></div>'+
+    '<button class="btn" data-vtest>'+I("volume")+'Hear '+avName(av)+'</button></div>';
+  const links=[["prefs","sliders","Preferences"],["budgets","target","Budgets"],["catlib","grid","Expense headings"],["accounts","wallet","Wallets"],["recurring","repeat","Recurring & bills"],["lock","lock","App lock"],["backup","download","Backup & export"]];
+  if(NATIVE)links.push(["sms","msg","SMS auto-import"],["updates","download","App updates"],["ai","camera","Photo reading"]);
+  b+='<div class="card">'+h2("settings","Settings")+links.map(l=>'<button class="setrow" data-panel="'+l[0]+'">'+ico(l[1],"#475467")+'<span>'+l[2]+'</span>'+I("right")+'</button>').join("")+'</div>';
+  b+='<div class="status" style="justify-content:center;text-align:center">Kharchnama '+(NATIVE&&KN.update?"build "+KN.update.webVer:"web")+' · Your money data stays on your phone or your account. No ads.</div>';
+  return sheet("user","Account & settings",b)}
+function pGsetup(){const cid=gClientId();let b='<div class="status">Google sign-in needs a free one-time setup in Google Cloud, because Google only lets registered apps request sign-in.</div>';
+  b+='<div class="card"><ol class="steps"><li>Open <b>console.cloud.google.com</b> and create a project called Kharchnama.</li><li>Under <b>APIs & Services → OAuth consent screen</b>, choose External and add your email as a test user.</li><li>Under <b>Credentials → Create credentials → OAuth client ID</b>, choose <b>Android</b>. Package name: <code>com.kharcha.app</code>. SHA-1: <code>6D:A4:DC:1B:B5:D8:0C:31:10:D4:BF:4B:3C:70:FF:5F:20:A9:7E:E7</code></li><li>Create one more OAuth client ID of type <b>Web application</b> and copy its client ID.</li><li>Paste that Web client ID below.</li></ol></div>';
+  b+='<div class="field"><label for="gcid">Web client ID</label><input type="text" id="gcid" placeholder="1234…apps.googleusercontent.com" value="'+esc(cid)+'"></div><div class="btns"><button class="btn primary" data-gcsave style="flex:1">Save and sign in</button></div>';
+  return sheet("google","Set up Google sign-in",b)}
+document.getElementById("sheetHost").addEventListener("click",async e=>{const t=e.target.closest("button");if(!t||!S.panel)return;
+  if(t.hasAttribute("data-gsignin")){googleSignIn();return}
+  if(t.hasAttribute("data-gsignout")){try{if(NATIVE&&KN.google)await KN.google.signOut()}catch(x){}S.settings.profile=null;saveSettings();updHeaderProfile();renderPanel();toast("Signed out");return}
+  if(t.dataset.set){const k=t.dataset.set;const on=!(S.settings[k]!==false);S.settings[k]=on;saveSettings();t.setAttribute("aria-checked",on);if(k==="voiceOn"&&!on)avStop();return}
+  if(t.hasAttribute("data-vtest")){avPlay("wave");avSpeak(avIntro(curAv()));return}
+  if(t.hasAttribute("data-gcsave")){const v=document.getElementById("gcid").value.trim();if(!/apps\.googleusercontent\.com$/.test(v))return toast("That doesn't look like a Google client ID.");try{localStorage.setItem("kharcha.gcid",v)}catch(x){}closePanel();googleSignIn();return}});
+document.addEventListener("change",e=>{if(e.target.id==="vRate"){S.settings.voiceRate=+e.target.value;saveSettings()}if(e.target.id==="vLang"){S.settings.sttLang=e.target.value;saveSettings()}});
+
 /* ================= adviser: floating figure ================= */
 let advPos=lsGet("kharcha.advpos",null);
 function drawAdv(){const h=document.getElementById("advHost");if(S.chatOpen||(document.querySelector("#onbHost .onb"))){h.innerHTML="";return}
-  if(!h.firstChild){h.innerHTML='<div id="adv" role="button" tabindex="0" aria-label="Chat with '+ADV_NAME+', your financial adviser">'+advisorSVG()+'<span class="tagline">Ask Faygul</span></div>';bindAdv()}
+  if(!h.firstChild){h.innerHTML='<div id="adv" role="button" tabindex="0" aria-label="Chat with '+ADV_NAME+', your financial adviser">'+avatarSVG(curAv(),{live:true})+'<span class="tagline">Ask '+ADV_NAME+'</span></div>';bindAdv();avLoop()}
   placeAdv()}
 function clampPos(p){const el=document.getElementById("adv");const w=el?el.offsetWidth:70,hh=el?el.offsetHeight:160;const vw=document.documentElement.clientWidth,vh=window.innerHeight;
   return{x:Math.min(Math.max(4,p.x),vw-w-4),y:Math.min(Math.max(60,p.y),vh-hh-80)}}
@@ -1759,16 +2162,16 @@ function placeAdv(){const el=document.getElementById("adv");if(!el)return;const 
 function bindAdv(){const el=document.getElementById("adv");let sx,sy,ox,oy,moved=false,down=false;
   el.addEventListener("pointerdown",e=>{down=true;moved=false;sx=e.clientX;sy=e.clientY;ox=el._p.x;oy=el._p.y;try{el.setPointerCapture(e.pointerId)}catch(_){};});
   el.addEventListener("pointermove",e=>{if(!down)return;const dx=e.clientX-sx,dy=e.clientY-sy;if(!moved&&Math.hypot(dx,dy)<6)return;moved=true;el.classList.add("drag");
-    const p=clampPos({x:ox+dx,y:oy+dy});el._p=p;el.style.transform="translate("+p.x+"px,"+p.y+"px)";const b=el.querySelector(".bubble");if(b)b.remove()});
-  el.addEventListener("pointerup",()=>{if(!down)return;down=false;el.classList.remove("drag");if(moved){advPos=el._p;lsSet("kharcha.advpos",advPos)}else openChat()});
+    const p=clampPos({x:ox+dx,y:oy+dy});el._p=p;el.style.transform="translate("+p.x+"px,"+p.y+"px)";document.querySelectorAll(".avbubble").forEach(x=>x.remove())});
+  el.addEventListener("pointerup",()=>{if(!down)return;down=false;el.classList.remove("drag");if(moved){advPos=el._p;lsSet("kharcha.advpos",advPos)}else{document.querySelectorAll(".avbubble").forEach(x=>x.remove());avStop();openChat()}});
   el.addEventListener("pointercancel",()=>{down=false;el.classList.remove("drag")});
   el.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();openChat()}});
-  if(!lsGet("kharcha.advhi",false)){const b=document.createElement("span");b.className="bubble";b.textContent="Need financial advice?";el.appendChild(b);setTimeout(()=>b.remove(),5000);lsSet("kharcha.advhi",true)}}
+}
 window.addEventListener("resize",placeAdv);
 
 /* ================= adviser: chat ================= */
-function openChat(q){S.chatOpen=true;drawAdv();renderChat();if(q)sendChat(q);else setTimeout(()=>{const t=document.getElementById("chatIn");if(t)t.focus()},120)}
-function closeChat(){S.chatOpen=false;document.getElementById("chatHost").innerHTML="";drawAdv()}
+function openChat(q){S.chatOpen=true;drawAdv();renderChat();avLoop();if(!q&&!S.chat.length){setTimeout(()=>{avPlay("wave");avSpeak(greeting(),{silent:true})},300)}if(q)sendChat(q);else setTimeout(()=>{const t=document.getElementById("chatIn");if(t)t.focus()},120)}
+function closeChat(){avStop();S.chatOpen=false;document.getElementById("chatHost").innerHTML="";drawAdv()}
 function mdLite(t){const lines=esc(t).split("\n");let html="",inList=false,para=[];
   const flush=()=>{if(para.length){html+="<p>"+para.join("<br>")+"</p>";para=[]}};
   lines.forEach(l=>{const m=l.match(/^\s*(?:[-*•]|\d+[.)])\s+(.*)$/);if(m){flush();if(!inList){html+="<ul>";inList=true}html+="<li>"+m[1]+"</li>"}else{if(inList){html+="</ul>";inList=false}if(!l.trim())flush();else para.push(l)}});
@@ -1779,35 +2182,40 @@ function msgHTML(m,i,last){const acts=m.role!=="user"&&m.actions&&m.actions.leng
   const qr=last&&m.role!=="user"&&m.chips&&m.chips.length&&!m.pending?'<div class="qrs">'+m.chips.map(c=>'<button class="chip" data-chatq="'+esc(c)+'">'+esc(c)+'</button>').join("")+'</div>':"";
   return '<div class="msg '+(m.role==="user"?"me":"")+'">'+(m.role==="user"?"":'<span class="av">'+advisorHead()+'</span>')+'<div class="bub">'+(m.pending&&!m.content?'<span class="typing"><i></i><i></i><i></i></span>':mdLite(m.content))+acts+'</div></div>'+qr}
 function renderChat(){if(!S.chatOpen)return;const host=document.getElementById("chatHost");
-  if(!host.firstChild){host.innerHTML='<div class="chat" role="dialog" aria-modal="true" aria-label="Chat with '+ADV_NAME+'"><div class="chathead"><div class="wrap"><div class="fig">'+advisorSVG()+'</div><div class="who"><b>'+ADV_NAME+'</b><small>Personal financial adviser · on-device</small><div class="creds"><span>Budgeting</span><span>Saving</span><span>Investing</span><span>Zakat & tax</span></div></div><button class="closeb" data-chatclose aria-label="Close chat">'+I("x")+'</button></div></div><div class="msgs" id="msgs"><div class="wrap" id="msgsIn" style="display:flex;flex-direction:column;gap:12px"></div></div><div class="chatfoot"><div class="wrap"><div class="chips" id="chatChips"></div><form id="chatForm"><textarea id="chatIn" rows="1" placeholder="Ask about your money…" aria-label="Message"></textarea><button class="send" type="submit" aria-label="Send">'+I("send")+'</button></form><div class="disclaim">Faygul runs on your phone with a built-in finance knowledge base. General guidance, not regulated financial advice. <button data-chatclear style="border:0;background:none;color:var(--accent);font-weight:700;font-size:11px;padding:0">Clear chat</button></div></div></div></div>'}
+  if(!host.firstChild){host.innerHTML='<div class="chat" role="dialog" aria-modal="true" aria-label="Chat with '+ADV_NAME+'"><div class="chathead"><div class="wrap"><div class="fig">'+avatarSVG(curAv(),{live:true})+'</div><div class="who"><b>'+ADV_NAME+'</b><small>Personal financial adviser · on-device</small><div class="creds"><span>Budgeting</span><span>Saving</span><span>Investing</span><span>Zakat & tax</span></div></div><div class="chatbtns"><button class="closeb" data-voicetoggle aria-label="Spoken replies">'+I(voiceOn()?"volume":"mute")+'</button><button class="closeb" data-chatclose aria-label="Close chat">'+I("x")+'</button></div></div></div><div class="msgs" id="msgs"><div class="wrap" id="msgsIn" style="display:flex;flex-direction:column;gap:12px"></div></div><div class="chatfoot"><div class="wrap"><div class="chips" id="chatChips"></div><form id="chatForm">'+(sttAvailable()?'<button class="micb" type="button" data-chatmic aria-label="Speak">'+I("mic")+'</button>':"")+'<textarea id="chatIn" rows="1" placeholder="Ask about your money…" aria-label="Message"></textarea><button class="send" type="submit" aria-label="Send">'+I("send")+'</button></form><div class="disclaim">'+ADV_NAME+' runs on your phone with a built-in finance knowledge base. General guidance, not regulated financial advice. <button data-chatclear style="border:0;background:none;color:var(--accent);font-weight:700;font-size:11px;padding:0">Clear chat</button></div></div></div></div>'}
   const r=R();const chips=["Summarize my "+r.kind,"Where can I save?","Plan my budget","How much can I spend today?","Where should I invest?","Help me build an emergency fund","Zakat on 5 lakh","Analyse my salary"];
   document.getElementById("chatChips").innerHTML=chips.map(c=>'<button class="chip" data-chatq="'+esc(c)+'">'+esc(c)+'</button>').join("");
   const n=S.chat.length;document.getElementById("msgsIn").innerHTML=msgHTML({role:"assistant",content:greeting()},-1,false)+S.chat.map((m,i)=>msgHTML(m,i,i===n-1)).join("");
   const sc=document.getElementById("msgs");sc.scrollTop=sc.scrollHeight;const sb=host.querySelector(".send");if(sb)sb.disabled=S.chatBusy}
 async function sendChat(q){
   q=(q||"").trim();if(!q||S.chatBusy)return;S.chat.push({role:"user",content:q});const ans={role:"assistant",content:"",pending:true};S.chat.push(ans);S.chatBusy=true;renderChat();
-  let res;try{res=fgAnswer(q)}catch(e){res={text:"I couldn't work that out just now. Try asking another way, for example \"Summarize my month\"."}}
+  avStop();if(S.chatOpen)avQueue("leanIn");let res;try{res=fgAnswer(q)}catch(e){res={text:"I couldn't work that out just now. Try asking another way, for example \"Summarize my month\"."}}
   const reduce=window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches;
   await new Promise(r=>setTimeout(r,reduce?50:420+Math.min(700,res.text.length)));
   if(!reduce){const words=res.text.split(/(\s+)/);let i=0;await new Promise(done=>{const step=()=>{i=Math.min(words.length,i+5);ans.content=words.slice(0,i).join("");const box=document.getElementById("msgsIn");
     if(box){const bubs=box.querySelectorAll(".msg:not(.me) .bub");const bb=bubs[bubs.length-1];if(bb)bb.innerHTML=mdLite(ans.content);const sc=document.getElementById("msgs");if(sc)sc.scrollTop=sc.scrollHeight}if(i>=words.length)done();else setTimeout(step,22)};step()})}
-  ans.content=res.text;ans.actions=res.actions||[];ans.chips=res.chips||[];delete ans.pending;S.chatBusy=false;S.chat=S.chat.slice(-40);lsSet("kharcha.chat",S.chat.filter(m=>!m.pending));renderChat()}
+  ans.content=res.text;ans.actions=res.actions||[];ans.chips=res.chips||[];delete ans.pending;S.chatBusy=false;if(S.chatOpen)avSpeak(res.text);S.chat=S.chat.slice(-40);lsSet("kharcha.chat",S.chat.filter(m=>!m.pending));renderChat()}
 function fgAct(a){if(!a)return;
   if(a.act==="tab"){closeChat();go(a.arg);return}
   if(a.act==="cat"){closeChat();openPanel("cat",a.arg);return}
   if(a.act==="panel"){closeChat();openPanel(a.arg);return}
   if(a.act==="ask"){sendChat(a.arg);return}
+  if(a.act==="draft"){closeChat();const i=a.arg;ensureHead(i.cat);openPanel("entry",{preset:{type:i.type,cat:i.cat,amt:String(i.amt),date:i.date,acct:i.acct,note:i.note}});return}
+  if(a.act==="drafts"){closeChat();openPanel("imports");Object.assign(S.imp,{items:markDups(a.arg.map(i=>({sel:true,date:i.date,amt:i.amt,type:i.type,cat:i.cat,desc:i.note,transfer:false,dup:false}))),stage:"review",wallet:a.arg[0].acct,err:""});renderPanel();return}
   if(a.act==="apply-budgets"){S.settings.catBudgets=Object.assign({},a.arg);saveSettings();render();toast("Budgets set · "+fmt(catBudgetSum(S.settings))+" a month");return}
   if(a.act==="goal-new"){const g=a.arg||{};S.settings.goals=(S.settings.goals||[]).concat([{id:uidGen(),name:g.name||"Savings",target:Math.round(g.target||0),saved:0,icon:g.icon||"box"}]);saveSettings();render();toast("Savings goal created: "+(g.name||"Savings"));return}}
 document.getElementById("chatHost").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;
+  if(b.hasAttribute("data-voicetoggle")){S.settings.voiceOn=!voiceOn();saveSettings();if(!voiceOn())avStop();b.innerHTML=I(voiceOn()?"volume":"mute");toast(voiceOn()?"Spoken replies on":"Spoken replies off");return}
+  if(b.hasAttribute("data-chatmic")){avStop();b.classList.add("on");listen("Ask "+ADV_NAME+" anything").then(t=>{b.classList.remove("on");if(t)sendChat(t)});return}
   if(b.hasAttribute("data-chatclose"))return closeChat();
   if(b.dataset.chatq)return sendChat(b.dataset.chatq);
   if(b.hasAttribute("data-chatclear")){S.chat=[];lsSet("kharcha.chat",[]);renderChat()}});
 document.getElementById("chatHost").addEventListener("keydown",e=>{if(e.key==="Escape")closeChat();if(e.target.id==="chatIn"&&e.key==="Enter"&&!e.shiftKey){e.preventDefault();const t=e.target;sendChat(t.value);t.value=""}});
 
 /* ================= events ================= */
+function fromHost(e,re){const p=e.composedPath?e.composedPath():[];return p.some(n=>n&&n.id&&re.test(n.id))}
 document.addEventListener("click",async e=>{
-  if(e.target.closest("#sheetHost,#lockHost,#chatHost,#adv"))return;
+  if(fromHost(e,/^(sheetHost|lockHost|chatHost|adv|onbHost)$/))return;
   const ch=e.target.closest("[data-chat]");if(ch){openChat();return}
   const b=e.target.closest("button");if(!b)return;
   if(b.hasAttribute("data-smsreview")){openPanel("imports");Object.assign(S.imp,{items:S.smsPending.slice(),stage:"review",fromSms:true,wallet:smsCfg().wallet||"bank",err:""});renderPanel();return}
@@ -1893,11 +2301,13 @@ document.getElementById("pNext").onclick=()=>{S.anchor=shift(S.kind,R().s,1);ren
 document.getElementById("logoSlot").innerHTML=logoSVG();
 document.getElementById("pPrev").innerHTML=I("left");document.getElementById("pNext").innerHTML=I("right");
 document.getElementById("navIn").innerHTML='<button data-tab="home" aria-current="page">'+I("home")+'Home</button><button data-tab="list">'+I("list")+'Entries</button><button class="fab" id="fab" aria-label="Add entry">'+I("plus")+'</button><button data-tab="ins">'+I("bars")+'Insights</button><button data-tab="more">'+I("grid")+'More</button>';
-loadLocal();
+loadLocal();ADV_NAME=avName();
+new MutationObserver(()=>{if(document.querySelector("svg.avsvg:not([data-rigged])")){rigStatic();if(document.querySelector("svg.avsvg.live"))avLoop()}}).observe(document.body,{childList:true,subtree:true});
 let t0="home";try{t0=localStorage.getItem("kharcha.tab")||"home"}catch(e){}
 go(["home","list","ins","more"].includes(t0)?t0:"home");
 drawAdv();
 checkLock();
 setTimeout(initCloud,0);
+setTimeout(greetOnOpen,1400);
 })();
 </script>

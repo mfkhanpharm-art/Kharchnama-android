@@ -4,7 +4,7 @@
   var Cap=window.Capacitor;
   if(!Cap||!Cap.isNativePlatform||!Cap.isNativePlatform())return;
   var reg=function(n){return Cap.registerPlugin(n)};
-  var Native=reg("KharchaNative"),Notif=reg("LocalNotifications"),Files=reg("Filesystem"),Share=reg("Share"),App=reg("App"),Bar=reg("StatusBar"),WV=reg("WebView"),Hap=reg("Haptics");
+  var Native=reg("KharchaNative"),Notif=reg("LocalNotifications"),Files=reg("Filesystem"),Share=reg("Share"),App=reg("App"),Bar=reg("StatusBar"),WV=reg("WebView"),Hap=reg("Haptics"),SR=reg("SpeechRecognition"),TTS=reg("TextToSpeech"),Cam=reg("Camera");
 
   function b64(blob){return new Promise(function(res,rej){var fr=new FileReader();fr.onload=function(){var s=String(fr.result);res(s.slice(s.indexOf(",")+1))};fr.onerror=rej;fr.readAsDataURL(blob)})}
   function hash(s){var h=0;for(var i=0;i<s.length;i++){h=(h*31+s.charCodeAt(i))|0}return Math.abs(h)%2000000000+1}
@@ -53,7 +53,7 @@
   /* ===== App updates =====
      NATIVE_VER changes only when Android-level code changes (needs a new APK).
      Everything else ships as a web update from GitHub Pages and loads on the next open. */
-  var NATIVE_VER=3;
+  var NATIVE_VER=4;
   var SITE="https://mfkhanpharm-art.github.io/Kharchnama-android/";
   var WEB_VER=+(window.KHN_WEB_VER||0);
   var BOOT_KEY="kharchnama.otaBoot";
@@ -83,6 +83,14 @@
     sample:sample,downloads:downloads,notify:notify,
     tap:function(){try{Hap.impact({style:"LIGHT"}).catch(function(){})}catch(e){}},
     notifRequest:function(){return Notif.requestPermissions()},
+    micRequest:async function(){var q=await SR.requestPermissions();return{granted:q.speechRecognition==="granted"}},
+    camRequest:async function(){var q=await Cam.requestPermissions({permissions:["camera","photos"]});return{granted:q.camera==="granted"}},
+    voice:{listen:async function(o){var p=await SR.checkPermissions();if(p.speechRecognition!=="granted"){var q=await SR.requestPermissions();if(q.speechRecognition!=="granted")throw new Error("permission denied")}
+      return SR.start({language:o.language||"en-IN",maxResults:3,prompt:o.prompt||"Speak now",partialResults:false,popup:true})}},
+    tts:{speak:function(o){var a={text:o.text,lang:o.lang||"en-IN",rate:o.rate||1,pitch:o.pitch||1,volume:1,category:"playback"};if(o.voice!=null)a.voice=o.voice;return TTS.speak(a)},voices:function(){return TTS.getSupportedVoices()},stop:function(){return TTS.stop()}},
+    camera:{get:async function(src){var r=await Cam.getPhoto({quality:80,width:1600,resultType:"base64",source:src==="photos"?"PHOTOS":src==="camera"?"CAMERA":"PROMPT",correctOrientation:true,saveToGallery:false});return{base64:r.base64String,dataUrl:"data:image/"+(r.format||"jpeg")+";base64,"+r.base64String}}},
+    ocr:function(b64){return Native.ocr({image:b64})},
+    google:{clientId:"",signIn:function(cid){return Native.googleSignIn({clientId:cid})},signOut:function(){return Native.googleSignOut()}},
     update:{check:updCheck,apply:updApply,bootOk:bootOk,webVer:WEB_VER,nativeVer:NATIVE_VER,openApk:function(url){return Native.openUrl({url:url})},appInfo:function(){return Native.appInfo()}},
     mapSrc:function(src){var f=String(src).split("/").pop();return VENDOR[f]||src},
     sms:{status:function(){return Native.smsStatus()},request:function(){return Native.requestSms()},read:function(since){return Native.readSms({since:Math.floor(since),limit:400})}},
