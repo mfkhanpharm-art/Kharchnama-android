@@ -2,7 +2,7 @@ name: Build Kharchnama APK
 
 on:
   push:
-    branches: [main]
+    branches: [main, native-check]
   workflow_dispatch:
 
 permissions:
@@ -67,6 +67,7 @@ jobs:
           path: Kharchnama-${{ github.run_number }}.apk
 
       - name: Publish download on the Releases page
+        if: github.ref == 'refs/heads/main'
         uses: softprops/action-gh-release@v2
         with:
           tag_name: build-${{ github.run_number }}
@@ -75,16 +76,19 @@ jobs:
           files: Kharchnama-${{ github.run_number }}.apk
 
       - name: Prepare update site
+        if: github.ref == 'refs/heads/main'
         env:
           NOTES: ${{ github.event.head_commit.message }}
         run: node scripts/make-site.js Kharchnama-${{ github.run_number }}.apk
 
       - uses: actions/upload-pages-artifact@v3
+        if: github.ref == 'refs/heads/main'
         with:
           path: site
 
   deploy-updates:
     needs: build
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-24.04
     environment:
       name: github-pages
