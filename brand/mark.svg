@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <!-- Kharchnama: an open ledger (nama) with a rising coin (kharch). The right page is a growing chart; the coin carries a pen nib: every rupee, written down. -->
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0E1B2E"/><stop offset="1" stop-color="#173554"/></linearGradient>
+    <radialGradient id="glow" cx="50%" cy="34%" r="45%"><stop offset="0" stop-color="#22A57E" stop-opacity=".55"/><stop offset="1" stop-color="#22A57E" stop-opacity="0"/></radialGradient>
+    <linearGradient id="coin" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F2CF5B"/><stop offset="1" stop-color="#C9A227"/></linearGradient>
+    <linearGradient id="pageL" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#FFFFFF"/><stop offset="1" stop-color="#DCEFE6"/></linearGradient>
+    <linearGradient id="pageR" x1="1" y1="0" x2="0" y2="0"><stop offset="0" stop-color="#FFFFFF"/><stop offset="1" stop-color="#DCEFE6"/></linearGradient>
+  </defs>
+  <g id="bgLayer"><rect width="512" height="512" rx="112" fill="url(#bg)"/><rect width="512" height="512" rx="112" fill="url(#glow)"/></g>
+  <g id="art">
+    <!-- book shadow -->
+    <path d="M256 404c-50-26-104-30-160-14v14c56-14 110-10 160 16 50-26 104-30 160-16v-14c-56-16-110-12-160 14z" fill="#071120" opacity=".45"/>
+    <!-- left page: ledger lines -->
+    <path d="M256 392c-48-26-100-30-152-16V210c52-14 104-10 152 16z" fill="url(#pageL)"/>
+    <path d="M128 252c36-7 70-4 104 9M128 284c36-7 70-4 104 9M128 316c36-7 70-4 104 9M128 348c36-7 70-4 104 9" stroke="#0E1B2E" stroke-opacity=".22" stroke-width="9" stroke-linecap="round" fill="none"/>
+    <!-- right page: rising chart -->
+    <path d="M256 392c48-26 100-30 152-16V210c-52-14-104-10-152 16z" fill="url(#pageR)"/>
+    <rect x="284" y="306" width="24" height="56" rx="7" fill="#22A57E"/>
+    <rect x="322" y="276" width="24" height="80" rx="7" fill="#12805C"/>
+    <rect x="360" y="240" width="24" height="108" rx="7" fill="#0F7B5F"/>
+    <!-- spine -->
+    <path d="M256 226v166" stroke="#0E1B2E" stroke-opacity=".35" stroke-width="5" stroke-linecap="round"/>
+    <!-- coin rising from the spine -->
+    <circle cx="256" cy="150" r="70" fill="#C9A227" opacity=".25"/>
+    <circle cx="256" cy="146" r="58" fill="url(#coin)"/>
+    <circle cx="256" cy="146" r="45" fill="none" stroke="#FFF3C4" stroke-opacity=".7" stroke-width="5"/>
+    <!-- pen nib inside the coin -->
+    <path d="M256 112c14 14 24 28 24 42 0 10-6 18-14 22l-10 14-10-14c-8-4-14-12-14-22 0-14 10-28 24-42z" fill="#0E1B2E"/>
+    <path d="M256 150v24" stroke="#F2CF5B" stroke-width="5" stroke-linecap="round"/>
+    <circle cx="256" cy="146" r="6" fill="#F2CF5B"/>
+  </g>
+</svg>

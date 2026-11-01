@@ -4,7 +4,7 @@
   var Cap=window.Capacitor;
   if(!Cap||!Cap.isNativePlatform||!Cap.isNativePlatform())return;
   var reg=function(n){return Cap.registerPlugin(n)};
-  var Native=reg("KharchaNative"),Notif=reg("LocalNotifications"),Files=reg("Filesystem"),Share=reg("Share"),App=reg("App"),Bar=reg("StatusBar"),WV=reg("WebView");
+  var Native=reg("KharchaNative"),Notif=reg("LocalNotifications"),Files=reg("Filesystem"),Share=reg("Share"),App=reg("App"),Bar=reg("StatusBar"),WV=reg("WebView"),Hap=reg("Haptics");
 
   function b64(blob){return new Promise(function(res,rej){var fr=new FileReader();fr.onload=function(){var s=String(fr.result);res(s.slice(s.indexOf(",")+1))};fr.onerror=rej;fr.readAsDataURL(blob)})}
   function hash(s){var h=0;for(var i=0;i<s.length;i++){h=(h*31+s.charCodeAt(i))|0}return Math.abs(h)%2000000000+1}
@@ -53,7 +53,7 @@
   /* ===== App updates =====
      NATIVE_VER changes only when Android-level code changes (needs a new APK).
      Everything else ships as a web update from GitHub Pages and loads on the next open. */
-  var NATIVE_VER=2;
+  var NATIVE_VER=3;
   var SITE="https://mfkhanpharm-art.github.io/Kharchnama-android/";
   var WEB_VER=+(window.KHN_WEB_VER||0);
   var BOOT_KEY="kharchnama.otaBoot";
@@ -81,6 +81,7 @@
 
   window.KN={
     sample:sample,downloads:downloads,notify:notify,
+    tap:function(){try{Hap.impact({style:"LIGHT"}).catch(function(){})}catch(e){}},
     notifRequest:function(){return Notif.requestPermissions()},
     update:{check:updCheck,apply:updApply,bootOk:bootOk,webVer:WEB_VER,nativeVer:NATIVE_VER,openApk:function(url){return Native.openUrl({url:url})},appInfo:function(){return Native.appInfo()}},
     mapSrc:function(src){var f=String(src).split("/").pop();return VENDOR[f]||src},

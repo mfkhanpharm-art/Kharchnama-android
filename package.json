@@ -19,7 +19,8 @@
     "jspdf": "2.5.1",
     "jspdf-autotable": "3.8.2",
     "pdfjs-dist": "2.16.105",
-    "xlsx": "0.18.5"
+    "xlsx": "0.18.5",
+    "@capacitor/haptics": "6.0.3"
   },
   "devDependencies": {
     "@capacitor/cli": "6.2.3"
