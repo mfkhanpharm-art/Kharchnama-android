@@ -460,6 +460,7 @@ ol.steps code{font-size:11.5px;background:var(--surface-2);padding:1px 4px;borde
 @keyframes pulse{50%{box-shadow:0 0 0 6px rgba(15,123,95,.18)}}
 .onb .avpick{background:#fff}
 @media (prefers-reduced-motion:reduce){#adv.popin svg,.avbubble,.avfig.hop svg,.micb.on{animation:none}}
+
 @media (prefers-reduced-motion:reduce){.sheet,.chat{animation:none}#adv svg,.chathead .fig svg{animation:none}.pins.shake{animation:none}.sw2,.sw2::after{transition:none}}
 </style>
 
@@ -1787,16 +1788,16 @@ function fgWeekend(r){const c=stats(r);let we=0,wd=0,nwe=0,nwd=0;for(let i=0;i<(
 function logoSVG(){return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Kharchnama"><g id="bgLayer"><rect width="512" height="512" rx="112" fill="#FFFFFF"/></g><defs> <linearGradient id="kmlb" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3A97F5"/><stop offset="1" stop-color="#1A6FEA"/></linearGradient> <linearGradient id="kmlg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4CC46A"/><stop offset="1" stop-color="#2FA651"/></linearGradient> <linearGradient id="kmly" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFD02A"/><stop offset="1" stop-color="#F9B712"/></linearGradient> <linearGradient id="kmlo" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#FF8A2B"/><stop offset="1" stop-color="#F26B16"/></linearGradient> <linearGradient id="kmlw" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#22417F"/><stop offset="1" stop-color="#132A5C"/></linearGradient> <linearGradient id="kmlc" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1B3670"/><stop offset="1" stop-color="#0F2147"/></linearGradient> </defs><g id="art" transform="translate(256 256) scale(1.02) translate(-257 -236)"><g stroke="#fff" stroke-width="10" stroke-linejoin="round" paint-order="stroke"><path d="M226.0 214.0L220.5 371.9A158 158 0 0 1 220.5 56.1Z" fill="url(#kmlb)"/><path d="M229.8 205.8L240.8 48.2A158 158 0 0 1 343.5 96.1Z" fill="url(#kmlg)"/><path d="M236.3 210.2L360.8 113.0A158 158 0 0 1 394.2 204.7Z" fill="url(#kmly)"/><path d="M237.8 216.3L395.4 227.3A158 158 0 0 1 388.0 265.1Z" fill="url(#kmlo)"/></g><g> <rect x="206" y="240" width="232" height="176" rx="30" fill="#fff"/> <rect x="214" y="248" width="216" height="160" rx="24" fill="url(#kmlw)"/> <path d="M214 272a24 24 0 0 1 24-24h168a24 24 0 0 1 24 24v6H214z" fill="#0F2147"/> <path d="M226 270h192" stroke="#2C4C8F" stroke-width="3"/> <rect x="228" y="286" width="188" height="108" rx="14" fill="none" stroke="#8FA6D6" stroke-width="3.5" stroke-dasharray="11 8" stroke-linecap="round"/> <rect x="350" y="300" width="96" height="62" rx="22" fill="#fff"/> <rect x="358" y="308" width="80" height="46" rx="16" fill="url(#kmlc)"/> <circle cx="384" cy="331" r="11" fill="#fff"/> </g></g></svg>'}
 /* ================= assistants: 10 avatars, rig, 40 gestures, voices ================= */
 const AVATARS=[
- {id:"m1",g:"m",style:"Classic",skin:"#F2C6A2",skinD:"#DDA781",hair:"#5B3A22",hs:"side",glasses:1,shirt:"#A9C8EE",shirtD:"#8FB3E3",tie:"#1F2D4A",pants:"#1F2D4A",shoes:"#1B1F2A",voice:{pitch:.92,rate:1,n:0}},
- {id:"m2",g:"m",style:"Young professional",skin:"#E3B08A",skinD:"#C98F68",hair:"#1E1A17",hs:"short",beard:"trim",beardC:"#1E1A17",shirt:"#FFFFFF",shirtD:"#E2E6EE",jacket:"#2B3A55",jacketD:"#22304A",pants:"#2B3A55",shoes:"#20160F",voice:{pitch:1,rate:1.06,n:1}},
- {id:"m3",g:"m",style:"Senior adviser",skin:"#E8B994",skinD:"#CF9C77",hair:"#C9CCD1",hs:"receding",glasses:1,beard:"moustache",beardC:"#B9BCC2",shirt:"#F4F1EA",shirtD:"#E2DDD2",vest:"#8A6E4B",vestD:"#735A3B",pants:"#5A4632",shoes:"#2A1D12",voice:{pitch:.8,rate:.92,n:2}},
- {id:"m4",g:"m",style:"Traditional",skin:"#D9A27C",skinD:"#BE8661",hair:"#121212",hs:"short",beard:"full",beardC:"#1A1512",kameez:"#EFE6D2",kameezD:"#DCCFB2",vest:"#2F4A3A",vestD:"#253C2E",pants:"#EFE6D2",shoes:"#3A2A1C",voice:{pitch:.86,rate:.96,n:3}},
- {id:"m5",g:"m",style:"Modern casual",skin:"#C68B63",skinD:"#A8714C",hair:"#2A1D16",hs:"curly",beard:"stubble",beardC:"#2A1D16",shirt:"#1C8C7A",shirtD:"#15705F",pants:"#C8B48A",shoes:"#F2F2F2",voice:{pitch:.97,rate:1.08,n:4}},
- {id:"f1",g:"f",style:"Professional",skin:"#F0C4A2",skinD:"#DDA683",hair:"#2B1B14",hs:"pony",shirt:"#FFFFFF",shirtD:"#E8EBF1",jacket:"#1E3466",jacketD:"#172A55",pants:"#3A4458",shoes:"#1B1F2A",voice:{pitch:1.15,rate:1.02,n:0}},
- {id:"f2",g:"f",style:"Hijab",skin:"#E6B591",skinD:"#CC9873",hijab:"#1F7A5C",hijabD:"#176148",coat:"#D8CBB5",coatD:"#C4B497",pants:"#3D3A36",shoes:"#2A221B",voice:{pitch:1.1,rate:.98,n:1}},
- {id:"f3",g:"f",style:"Shalwar kameez",skin:"#D9A27C",skinD:"#BE8661",hair:"#14100E",hs:"bun",kameez:"#8E2A3E",kameezD:"#72202F",trim:"#D9B45A",dupatta:"#E8C7A0",pants:"#E8C7A0",shoes:"#5A3A22",voice:{pitch:1.24,rate:1,n:2}},
+ {id:"m1",g:"m",style:"Classic",skin:"#F2C6A2",skinD:"#DDA781",hair:"#5B3A22",hs:"side",glasses:1,shirt:"#A9C8EE",shirtD:"#8FB3E3",tie:"#1F2D4A",pants:"#1F2D4A",shoes:"#1B1F2A",voice:{pitch:0.92,rate:1,n:0}},
+ {id:"m2",g:"m",style:"Young professional",skin:"#E3B08A",skinD:"#C98F68",hair:"#1E1A17",hs:"short",beard:"trim",beardC:"#1E1A17",shirt:"#FFFFFF",shirtD:"#E2E6EE",jacket:"#2B3A55",jacketD:"#22304A",pants:"#2B3A55",shoes:"#20160F",voice:{pitch:0.98,rate:1.06,n:1}},
+ {id:"m3",g:"m",style:"Senior adviser",skin:"#E8B994",skinD:"#CF9C77",hair:"#C9CCD1",hs:"receding",glasses:1,beard:"moustache",beardC:"#B9BCC2",shirt:"#F4F1EA",shirtD:"#E2DDD2",vest:"#8A6E4B",vestD:"#735A3B",pants:"#5A4632",shoes:"#2A1D12",voice:{pitch:0.8,rate:.92,n:2}},
+ {id:"m4",g:"m",style:"Traditional",skin:"#D9A27C",skinD:"#BE8661",hair:"#121212",hs:"short",beard:"full",beardC:"#1A1512",kameez:"#EFE6D2",kameezD:"#DCCFB2",vest:"#2F4A3A",vestD:"#253C2E",pants:"#EFE6D2",shoes:"#3A2A1C",voice:{pitch:0.86,rate:.96,n:3}},
+ {id:"m5",g:"m",style:"Modern casual",skin:"#C68B63",skinD:"#A8714C",hair:"#2A1D16",hs:"curly",beard:"stubble",beardC:"#2A1D16",shirt:"#1C8C7A",shirtD:"#15705F",pants:"#C8B48A",shoes:"#F2F2F2",voice:{pitch:0.95,rate:1.08,n:4}},
+ {id:"f1",g:"f",style:"Professional",skin:"#F0C4A2",skinD:"#DDA683",hair:"#2B1B14",hs:"pony",shirt:"#FFFFFF",shirtD:"#E8EBF1",jacket:"#1E3466",jacketD:"#172A55",pants:"#3A4458",shoes:"#1B1F2A",voice:{pitch:1.12,rate:1.02,n:0}},
+ {id:"f2",g:"f",style:"Hijab",skin:"#E6B591",skinD:"#CC9873",hijab:"#1F7A5C",hijabD:"#176148",coat:"#D8CBB5",coatD:"#C4B497",pants:"#3D3A36",shoes:"#2A221B",voice:{pitch:1.08,rate:.98,n:1}},
+ {id:"f3",g:"f",style:"Shalwar kameez",skin:"#D9A27C",skinD:"#BE8661",hair:"#14100E",hs:"bun",kameez:"#8E2A3E",kameezD:"#72202F",trim:"#D9B45A",dupatta:"#E8C7A0",pants:"#E8C7A0",shoes:"#5A3A22",voice:{pitch:1.2,rate:1,n:2}},
  {id:"f4",g:"f",style:"Senior adviser",skin:"#EDC0A0",skinD:"#D4A380",hair:"#D3D4D8",hs:"bob",glasses:1,shirt:"#9C8AC7",shirtD:"#8573B3",pearls:1,pants:"#4A4560",shoes:"#2A2533",voice:{pitch:1.04,rate:.93,n:3}},
- {id:"f5",g:"f",style:"Young modern",skin:"#C78E66",skinD:"#AC744F",hair:"#5A3824",hs:"wavy",shirt:"#E9A23B",shirtD:"#D18A26",jacket:"#5D7FA8",jacketD:"#4C6C93",pants:"#2E3F5C",shoes:"#F2F2F2",voice:{pitch:1.3,rate:1.07,n:4}}
+ {id:"f5",g:"f",style:"Young modern",skin:"#C78E66",skinD:"#AC744F",hair:"#5A3824",hs:"wavy",shirt:"#E9A23B",shirtD:"#D18A26",jacket:"#5D7FA8",jacketD:"#4C6C93",pants:"#2E3F5C",shoes:"#F2F2F2",voice:{pitch:1.25,rate:1.07,n:4}}
 ];
 function curAv(){const id=(S.settings&&S.settings.avatar)||"m1";return AVATARS.find(a=>a.id===id)||AVATARS[0]}
 function avName(av){return (av||curAv()).g==="f"?"Finza":"HisaabJi"}
@@ -1857,19 +1858,22 @@ function handHTML(k,av){const sk=av.skin,sd=av.skinD,f=(x1,y1,x2,y2,w)=>'<line x
   if(k==="point")return fist+f(1,7,1.2,16.5,2.4);if(k==="thumb")return fist+f(-3.4,1,-3.6,-7.5,2.7);
   if(k==="one")return fist+f(0,7,0,16.5,2.4);if(k==="two")return fist+f(-1.6,7,-2.4,16,2.3)+f(1.6,7,2.4,16,2.3);if(k==="three")return fist+f(-2.8,6.5,-4,15,2.2)+f(0,7,0,16.5,2.2)+f(2.8,6.5,4,15,2.2);
   return fist}
-function hairBack(av){const h=av.hair;switch(av.hs){
-  case "pony":return '<path d="M98 40C113 46 114 76 104 96C99 82 99 64 95 52Z" fill="'+h+'"/>';
-  case "bun":return '<circle cx="80" cy="24" r="9.5" fill="'+h+'"/>';
-  case "bob":return '<path d="M56 56C54 27 106 27 104 56L105 78C101 83 94 82 92 77L92 52H68L68 77C66 82 59 83 55 78Z" fill="'+h+'"/>';
-  case "wavy":return '<path d="M56 54C52 24 108 24 104 54L109 96C101 104 92 99 92 92L94 52H66L68 92C68 99 59 104 51 96Z" fill="'+h+'"/>';}return ""}
-function hairFront(av){const h=av.hair;switch(av.hs){
+function hairBack(av){const h=av.hair,dome='<path d="M56.5 52C53.5 23 106.5 23 103.5 52Z" fill="'+h+'"/>';switch(av.hs){
+  case "pony":return dome+'<path d="M97 38C114 42 117 70 109 98C107 104 101 106 99 100C104 84 103 62 95 50Z" fill="'+h+'"/><path d="M102 52C107 66 107 82 104 96" stroke="#fff" stroke-width="1.3" fill="none" opacity=".14" stroke-linecap="round"/><rect x="95.5" y="43" width="6" height="4.5" rx="2" transform="rotate(30 98 45)" fill="#C9A227"/>';
+  case "bun":return dome+'<circle cx="80" cy="21.5" r="10" fill="'+h+'"/><path d="M71 23.5C76 26.5 84 26.5 89 23.5" stroke="#D9B45A" stroke-width="2" fill="none" stroke-linecap="round"/><path d="M75 17C78 15 82 15 85 17" stroke="#fff" stroke-width="1.2" fill="none" opacity=".18" stroke-linecap="round"/>';
+  case "bob":return '<path d="M55.5 52C52.5 22 107.5 22 104.5 52C105.5 62 106.5 72 106 80C102.5 85 95.5 85 92.5 80L92 64H68L67.5 80C64.5 85 57.5 85 54 80C53.5 72 54.5 62 55.5 52Z" fill="'+h+'"/>';
+  case "wavy":return '<path d="M56.5 48C52.5 21 107.5 21 103.5 48C104.5 62 106.5 76 110.5 88C112.5 97 108 105 101.5 104.5C97.5 104 94.5 100 93 95.5C91 86 92 76 91 66H69C68 76 69 86 67 95.5C65.5 100 62.5 104 58.5 104.5C52 105 47.5 97 49.5 88C53.5 76 55.5 62 56.5 48Z" fill="'+h+'"/><path d="M105 62C107 74 109 84 109 92M55 62C53 74 51 84 51 92" stroke="#fff" stroke-width="1.3" fill="none" opacity=".13" stroke-linecap="round"/>';}return ""}
+const CAP_SIDE="M57 60C54.5 37 64 24.5 80 24.5C96 24.5 105.5 37 103 60C101.5 54 100 48 97 43C93 36.5 85 33.5 76 35.5C70 37 65 40.5 62 46C60 50 58.5 54.5 57 60Z";
+const CAP_MID="M57 60C54.5 37 64 24.5 80 24.5C96 24.5 105.5 37 103 60C101.5 52 99.5 45 96 40C92 35 86 32.5 80.5 32C74.5 32.5 68.5 35 64.5 40C61 45 58.5 52 57 60Z";
+function hairFront(av){const h=av.hair,sheen='<path d="M68 30C74 27 86 27 92 30" stroke="#fff" stroke-width="1.6" fill="none" opacity=".16" stroke-linecap="round"/>';switch(av.hs){
   case "side":return '<path d="M59 50C56 34 64 22 79 21C93 20 102 29 101 44L99 49C98 42 95 38 90 36C83 40 72 41 65 38C62 41 60 45 59 50Z" fill="'+h+'"/><path d="M66 27C72 22 86 21 93 26C87 25 80 26 74 30Z" fill="#fff" opacity=".12"/>';
   case "short":return '<path d="M59.5 47C58 30 68 23 80 23C92 23 102 30 100.5 47C98.5 39 94 34 80 34C66 34 61.5 39 59.5 47Z" fill="'+h+'"/>';
   case "receding":return '<path d="M59 52C58 42 60 36 64 33L67 44C64 46 62 49 61 53Z M101 52C102 42 100 36 96 33L93 44C96 46 98 49 99 53Z" fill="'+h+'"/><path d="M70 30C76 28 84 28 90 30" stroke="'+h+'" stroke-width="2" fill="none" opacity=".7"/>';
   case "curly":return [[64,37,7],[71,30,8],[80,28,8.5],[89,30,8],[96,37,7],[60,45,5],[100,45,5]].map(c=>'<circle cx="'+c[0]+'" cy="'+c[1]+'" r="'+c[2]+'" fill="'+h+'"/>').join("");
-  case "pony":return '<path d="M57 57C53 23 107 23 103 56C101 45 95 37 82 36.5C72 37 66 41 62 47C60 50 58 53 57 57Z" fill="'+h+'"/><path d="M66 31C72 27 86 26 94 31" stroke="#fff" stroke-width="1.5" opacity=".12" fill="none"/>';
-  case "bun":return '<path d="M59 50C57 29 103 29 101 50C98 40 91 33 80 33C69 33 62 40 59 50Z" fill="'+h+'"/>';
-  case "bob":case "wavy":return '<path d="M58 52C56 28 104 28 102 52C99 40 90 33 80 34C72 34 64 38 62 46C61 48 59 50 58 52Z" fill="'+h+'"/>';}return ""}
+  case "pony":return '<path d="'+CAP_SIDE+'" fill="'+h+'"/><path d="M62 46C67 39 75 36 84 36.5" stroke="#000" stroke-width=".9" fill="none" opacity=".18"/>'+sheen;
+  case "bun":return '<path d="'+CAP_MID+'" fill="'+h+'"/><path d="M80.3 25V32" stroke="#000" stroke-width="1" opacity=".25" stroke-linecap="round"/>'+sheen;
+  case "bob":return '<path d="'+CAP_SIDE+'" fill="'+h+'"/><path d="M57.5 50C55 61 55.5 71 59 78C61 70 61.5 60 61.5 51Z M102.5 50C105 61 104.5 71 101 78C99 70 98.5 60 98.5 51Z" fill="'+h+'"/><path d="M62 46C67 39 75 36 84 36.5" stroke="#000" stroke-width=".9" fill="none" opacity=".14"/>'+sheen;
+  case "wavy":return '<path d="'+CAP_MID+'" fill="'+h+'"/><path d="M58 48C54.5 62 56 76 60.5 86C61.5 76 61 62 62 52Z M102 48C105.5 62 104 76 99.5 86C98.5 76 99 62 98 52Z" fill="'+h+'"/><path d="M80.3 25V31.5" stroke="#000" stroke-width="1" opacity=".25" stroke-linecap="round"/>'+sheen;}return ""}
 function beardHTML(av){const c=av.beardC||av.hair;switch(av.beard){
   case "trim":return '<path d="M61 58C63 72 71 78.5 80 78.5C89 78.5 97 72 99 58C96 66 90 70.5 80 70.5C70 70.5 64 66 61 58Z" fill="'+c+'" opacity=".92"/><path d="M73 65.5C76 64 84 64 87 65.5" stroke="'+c+'" stroke-width="2.4" stroke-linecap="round"/>';
   case "full":return '<path d="M60 54C61 74 70 86 80 86C90 86 99 74 100 54C97 64 91 69 80 69C69 69 63 64 60 54Z" fill="'+c+'"/><path d="M72 65.5C76 63.5 84 63.5 88 65.5" stroke="'+c+'" stroke-width="3" stroke-linecap="round"/>';
@@ -1883,8 +1887,8 @@ function avatarSVG(av,o){o=o||{};const live=!!o.live;const sl=av.jacket||av.coat
   s+='<path d="M61 279H78V288H56C55 288 54.5 286.5 55.5 285C57 281.5 59 279 61 279Z" fill="'+av.shoes+'"/><path d="M82 279H99C101 279 103 281.5 104.5 285C105.5 286.5 105 288 104 288H82Z" fill="'+av.shoes+'"/>';
   s+='<g class="av-body">';
   // torso / tunic
-  if(tunic)s+='<path d="M54 104C54 94 62 88 72 87H88C98 88 106 94 106 104L110 238H50Z" fill="'+top+'"/><path d="M80 100V236" stroke="'+topD+'" stroke-width="1.2" opacity=".7"/>';
-  else s+='<path d="M54 104C54 94 62 88 72 87H88C98 88 106 94 106 104L108 184H52Z" fill="'+top+'"/><rect x="52" y="178" width="56" height="6" rx="2" fill="#141A26" opacity=".85"/>';
+  if(tunic)s+='<path d="M54 104C54 94 62 88 72 87H88C98 88 106 94 106 104L110 238H50Z" fill="'+top+'"/><path d="M80 100V236" stroke="'+topD+'" stroke-width="1.2" opacity=".7"/><path d="M97 90C103 93 106 98 106 104L110 238H100Z" fill="#000" opacity=".06"/>';
+  else s+='<path d="M54 104C54 94 62 88 72 87H88C98 88 106 94 106 104L108 184H52Z" fill="'+top+'"/><path d="M97 90C103 93 106 98 106 104L108 184H99Z" fill="#000" opacity=".06"/><rect x="52" y="178" width="56" height="6" rx="2" fill="#141A26" opacity=".85"/>';
   if(av.trim)s+='<path d="M72 89L80 104L88 89" fill="none" stroke="'+av.trim+'" stroke-width="2.4"/><path d="M50 232H110" stroke="'+av.trim+'" stroke-width="2.5"/>';
   if(av.jacket)s+='<path d="M54 104C54 94 62 88 72 87L77 100L75 184H52Z" fill="'+av.jacket+'"/><path d="M106 104C106 94 98 88 88 87L83 100L85 184H108Z" fill="'+av.jacket+'"/><path d="M72 87L77 100L71 108Z M88 87L83 100L89 108Z" fill="'+av.jacketD+'"/>';
   if(av.vest)s+='<path d="M56 100C56 94 64 90 72 89L78 112L76 '+(tunic?196:180)+'H55Z" fill="'+av.vest+'"/><path d="M104 100C104 94 96 90 88 89L82 112L84 '+(tunic?196:180)+'H105Z" fill="'+av.vest+'"/>'+[120,136,152].map(y=>'<circle cx="80.5" cy="'+y+'" r="1.6" fill="'+av.vestD+'"/>').join("");
@@ -1895,18 +1899,19 @@ function avatarSVG(av,o){o=o||{};const live=!!o.live;const sl=av.jacket||av.coat
   // neck + head
   s+='<g class="av-head">';
   if(av.hijab)s+='<path d="M55 54C55 25 105 25 105 54C105 74 102 86 108 98C96 104 64 104 52 98C58 86 55 74 55 54Z" fill="'+av.hijab+'"/>';
-  else s+=hairBack(av)+'<rect x="73" y="70" width="14" height="20" rx="3" fill="'+av.skinD+'"/>';
+  else s+=hairBack(av)+'<rect x="73" y="70" width="14" height="20" rx="3" fill="'+av.skinD+'"/><path d="M73 74H87V80C83 82.5 77 82.5 73 80Z" fill="#000" opacity=".1"/>';
   if(!av.hijab)s+='<ellipse cx="59" cy="54" rx="4" ry="6" fill="'+av.skinD+'"/><ellipse cx="101" cy="54" rx="4" ry="6" fill="'+av.skinD+'"/>'+(av.g==="f"?'<circle cx="59.5" cy="60.5" r="1.8" fill="#D9B45A"/><circle cx="100.5" cy="60.5" r="1.8" fill="#D9B45A"/>':"");
-  s+=av.hijab?'<ellipse cx="80" cy="54" rx="17.5" ry="21" fill="'+av.skin+'"/><path d="M61 46C64 31 96 31 99 46" stroke="'+av.hijabD+'" stroke-width="3" fill="none"/>':'<ellipse cx="80" cy="52" rx="20.5" ry="24" fill="'+av.skin+'"/>';
+  s+=av.hijab?'<ellipse cx="80" cy="54" rx="17.5" ry="21" fill="'+av.skin+'"/><path d="M61 46C64 31 96 31 99 46" stroke="'+av.hijabD+'" stroke-width="3" fill="none"/><path d="M62.5 70C66 80 74 84 80 84C86 84 94 80 97.5 70" stroke="'+av.hijabD+'" stroke-width="1.6" fill="none" opacity=".8"/><path d="M60 80C62 90 66 96 70 100M100 80C98 90 94 96 90 100" stroke="'+av.hijabD+'" stroke-width="1.3" fill="none" opacity=".7"/><circle cx="96.5" cy="76" r="1.7" fill="#E9D9A6" stroke="#B89A4E" stroke-width=".5"/><path d="M68 31C74 27 86 27 92 31" stroke="#fff" stroke-width="1.6" fill="none" opacity=".18" stroke-linecap="round"/>':'<ellipse cx="80" cy="52" rx="20.5" ry="24" fill="'+av.skin+'"/><path d="M95 36C101 44 102 60 96 69C92 74 87 76 82 76.5C90 72 97 62 97 50C97 44 96.5 40 95 36Z" fill="'+av.skinD+'" opacity=".22"/>';
   s+=beardHTML(av)+hairFront(av);
   s+='<g class="av-brows"><path d="M66 44.5C69 43 72.5 42.7 75 43.5M85 43.5C87.5 42.7 91 43 94 44.5" stroke="'+(av.hijab?"#3B2416":av.hs==="receding"||av.hs==="bob"?"#8B8D93":av.hair)+'" stroke-width="2" stroke-linecap="round" fill="none"/></g>';
-  s+='<g class="av-eyes"><ellipse class="eo" cx="72" cy="52" rx="2.2" ry="2.5" fill="#2B1B10"/><ellipse class="eo" cx="88" cy="52" rx="2.2" ry="2.5" fill="#2B1B10"/><path class="eh" d="M69 53C71 50.5 73 50.5 75 53M85 53C87 50.5 89 50.5 91 53" stroke="#2B1B10" stroke-width="1.8" fill="none" stroke-linecap="round" style="display:none"/><path class="ec" d="M69 52.5H75M85 52.5H91" stroke="#2B1B10" stroke-width="1.8" stroke-linecap="round" style="display:none"/></g>';
-  if(av.g==="f")s+='<path d="M69 49.5L67.5 48M91 49.5L92.5 48" stroke="#2B1B10" stroke-width="1"/>';
+  const iris=av.eyeC||"#4A2E1C",eye=(x)=>'<g class="eo"><ellipse cx="'+x+'" cy="52" rx="3.3" ry="2.7" fill="#fff"/><circle cx="'+x+'" cy="52.2" r="2.15" fill="'+iris+'"/><circle cx="'+x+'" cy="52.2" r="1.05" fill="#140C07"/><circle cx="'+(x+.8)+'" cy="51.3" r=".6" fill="#fff"/><path d="M'+(x-3.6)+' 51.4C'+(x-2)+' 48.9 '+(x+2)+' 48.9 '+(x+3.6)+' 51.4" stroke="#2B1B10" stroke-width="'+(av.g==="f"?1.5:1.1)+'" fill="none" stroke-linecap="round"/></g>';
+  s+='<g class="av-eyes">'+eye(72)+eye(88)+'<path class="eh" d="M69 53C71 50.5 73 50.5 75 53M85 53C87 50.5 89 50.5 91 53" stroke="#2B1B10" stroke-width="1.8" fill="none" stroke-linecap="round" style="display:none"/><path class="ec" d="M69 52.5C71 53.8 73 53.8 75 52.5M85 52.5C87 53.8 89 53.8 91 52.5" stroke="#2B1B10" stroke-width="1.6" fill="none" stroke-linecap="round" style="display:none"/></g>';
+  if(av.g==="f")s+='<path d="M68.5 50.6C67.8 50 67.2 49.3 66.9 48.5M91.5 50.6C92.2 50 92.8 49.3 93.1 48.5" stroke="#2B1B10" stroke-width="1" fill="none" stroke-linecap="round"/>';
   if(av.glasses)s+='<rect x="64" y="46.5" width="14.5" height="11" rx="3.5" fill="#fff" fill-opacity=".22" stroke="#141A26" stroke-width="2"/><rect x="81.5" y="46.5" width="14.5" height="11" rx="3.5" fill="#fff" fill-opacity=".22" stroke="#141A26" stroke-width="2"/><path d="M78.5 50.5C79.5 49.5 80.5 49.5 81.5 50.5M64 50L60 51M96 50L100 51" stroke="#141A26" stroke-width="1.8" stroke-linecap="round"/>';
   s+='<path d="M79.5 54.5C79 57.5 78.5 59 80.6 59.6" stroke="'+av.skinD+'" stroke-width="1.5" stroke-linecap="round" fill="none"/>';
   s+='<ellipse cx="67" cy="60" rx="3" ry="1.8" fill="#E8907A" opacity=".35"/><ellipse cx="93" cy="60" rx="3" ry="1.8" fill="#E8907A" opacity=".35"/>';
   const lip=av.g==="f"?"#B4475A":"#8A3B2A";
-  s+='<path class="mc" d="M73.5 64.5C77 68 83 68 86.5 64.5" stroke="'+lip+'" stroke-width="2.1" stroke-linecap="round" fill="none"/><ellipse class="mo" cx="80" cy="66" rx="4.6" ry="0.1" fill="#5A1E18" stroke="'+lip+'" stroke-width="1.2" style="display:none"/>';
+  s+=(av.g==="f"?'<path d="M75 66.2C78 69.2 82 69.2 85 66.2" stroke="'+lip+'" stroke-width="1.6" stroke-linecap="round" fill="none" opacity=".45"/>':'')+'<path class="mc" d="M73.5 64.5C77 68 83 68 86.5 64.5" stroke="'+lip+'" stroke-width="2.1" stroke-linecap="round" fill="none"/><ellipse class="mo" cx="80" cy="66" rx="4.6" ry="0.1" fill="#5A1E18" stroke="'+lip+'" stroke-width="1.2" style="display:none"/>';
   s+='</g>';
   // arms (positions set by the rig)
   ["r","l"].forEach(side=>{s+='<g class="arm-'+side+'"><line class="ua0" stroke="'+slD+'" stroke-width="14.6" stroke-linecap="round"/><line class="fa0" stroke="'+slD+'" stroke-width="13" stroke-linecap="round"/><line class="ua" stroke="'+sl+'" stroke-width="12.5" stroke-linecap="round"/><line class="fa" stroke="'+sl+'" stroke-width="11" stroke-linecap="round"/><line class="fa2" stroke="'+slD+'" stroke-width="1.2" stroke-linecap="round" opacity=".6"/><g class="hand"></g></g>'});
@@ -1965,10 +1970,19 @@ function gestScript(text){const t=text.toLowerCase();const out=[];const add=g=>{
   ["explain","beat","present","explain","nod","beat"].forEach(add);return out}
 /* ---- voice output ---- */
 let VOICES=null;
-async function loadVoices(){if(VOICES)return VOICES;try{if(NATIVE&&KN.tts){const r=await KN.tts.voices();VOICES=(r&&r.voices||[]).map((v,i)=>({i,name:v.name||v.voiceURI||"",lang:v.lang||""}))}else if(window.speechSynthesis){let v=speechSynthesis.getVoices();if(!v.length)await new Promise(r=>{speechSynthesis.onvoiceschanged=r;setTimeout(r,800)});VOICES=speechSynthesis.getVoices().map((x,i)=>({i,name:x.name,lang:x.lang,obj:x}))}}catch(e){}VOICES=VOICES||[];return VOICES}
-function pickVoice(av){const vs=(VOICES||[]).filter(v=>/^en/i.test(v.lang));if(!vs.length)return null;const pref=vs.filter(v=>/en[-_](IN|PK|GB)/i.test(v.lang));const pool=pref.length>=3?pref:vs;
-  const fem=/female|zira|aria|jenny|hazel|heera|susan|samantha|karen|moira|tessa|veena|neerja|libby|sonia|serena|kate|fiona/i,mal=/(^|\W)male|david|mark|guy|ravi|george|daniel|alex|fred|ryan|thomas|prabhat/i;
-  const g=pool.filter(v=>av.g==="f"?fem.test(v.name)&&!/\bmale\b/i.test(v.name.replace(/female/i,"")):mal.test(v.name)&&!fem.test(v.name));const list=g.length?g:pool;return list[av.voice.n%list.length]}
+async function loadVoices(){if(VOICES)return VOICES;try{if(NATIVE&&KN.tts){const r=await KN.tts.voices();VOICES=(r&&r.voices||[]).map((v,i)=>({i,name:v.name||v.voiceURI||"",uri:v.voiceURI||"",lang:v.lang||""}))}else if(window.speechSynthesis){let v=speechSynthesis.getVoices();if(!v.length)await new Promise(r=>{speechSynthesis.onvoiceschanged=r;setTimeout(r,800)});VOICES=speechSynthesis.getVoices().map((x,i)=>({i,name:x.name,lang:x.lang,obj:x}))}}catch(e){}VOICES=VOICES||[];return VOICES}
+/* Voice gender: Android's Google voices carry codes (en-in-x-end-local), not names, so known codes are mapped here. */
+const GV_M=/(^|[-_])(end|iol|iom|tpd|gbb|gbd|rjs|aub|aud|ahm|cxm)([-_]|$)/i,GV_F=/(^|[-_])(ahp|cxx|ena|iob|iog|sfg|tpc|tpf|gba|gbc|gbg|fis|aua|auc|afh)([-_]|$)/i;
+const NM_F=/female|woman|zira|aria|jenny|hazel|heera|susan|samantha|karen|moira|tessa|veena|neerja|libby|sonia|serena|kate|fiona|victoria|allison|ava|nicky|catherine|isha|kajal|swara|aditi|raveena|natasha|emma|olivia|amy|joanna|salli|kimberly|ivy|kendra|michelle|clara|emily|ana\b/i,
+      NM_M=/(^|[^e])male\b|\bman\b|david|mark|guy|ravi|george|daniel|alex\b|fred|ryan|thomas|prabhat|rishi|aaron|arthur|gordon|lee\b|oliver|james|brian|matthew|joey|justin|kevin|russell|christopher|eric|roger|steffan|madhur|hemant|valluvar|smtm\d|-m\d/i;
+function voiceGender(v){const n=(v.name||"")+" "+(v.uri||"");if(/female|smtf\d|-f\d/i.test(n))return "f";if(GV_M.test(n))return "m";if(GV_F.test(n))return "f";if(NM_M.test(n))return "m";if(NM_F.test(n))return "f";return ""}
+function pickVoice(av){const vs=(VOICES||[]).filter(v=>/^en/i.test(v.lang));if(!vs.length)return{v:null,match:false};
+  const rank=v=>(/en[-_](IN|PK)/i.test(v.lang)?3:/en[-_](GB|AU)/i.test(v.lang)?2:/en[-_]US/i.test(v.lang)?1:0)+(/network/i.test(v.name)?-.5:0);
+  const same=vs.filter(v=>voiceGender(v)===av.g).sort((x,y)=>rank(y)-rank(x));
+  if(same.length){const top=same.filter(v=>rank(v)>=rank(same[0])-1);const pool=top.length>=2?top:same;return{v:pool[av.voice.n%pool.length],match:true}}
+  const unk=vs.filter(v=>!voiceGender(v)).sort((x,y)=>rank(y)-rank(x));return{v:unk[0]||null,match:false}}
+/* pitch: when a voice of the right gender exists, small per-avatar variations; otherwise shift pitch so men sound deeper and women higher */
+function voicePitch(av,match){const p=av.voice.pitch;if(match)return av.g==="m"?Math.min(1,p):Math.max(1,p);return av.g==="m"?Math.min(.78,p-.18):Math.max(1.25,p+.15)}
 function speechText(t){return t.replace(/\*\*/g,"").replace(/^\s*[-•]\s*/gm,"").replace(/^\s*(\d+)\.\s*/gm,"$1, ").replace(/Rs\.? ?([\d,]+(\.\d+)?)/g,"$1 rupees").replace(/−/g,"minus ").replace(/(\d)k\b/g,"$1 thousand").replace(/\n+/g,". ").replace(/\.\s*\./g,".").slice(0,900)}
 function voiceOn(){return S.settings.voiceOn!==false}
 let speakSeq=0;
@@ -1976,9 +1990,9 @@ async function avSpeak(text,opts){opts=opts||{};const my=++speakSeq;const words=
   const script=gestOn()?gestScript(text):[];let gi=0;const nextG=()=>{if(my!==speakSeq||!AVR.speaking)return;if(script[gi]){avQueue(script[gi],true);gi++}setTimeout(nextG,2400+Math.random()*900)};
   AVR.speaking=true;avLoop();nextG();const done=()=>{if(my!==speakSeq)return;AVR.speaking=false;AVR.talkUntil=0;avQueue("hips",true)};
   if(!voiceOn()||opts.silent){AVR.talkUntil=performance.now()+Math.min(est,7000);setTimeout(done,Math.min(est,7000));return}
-  const av=curAv();const t=speechText(text);await loadVoices();const v=pickVoice(av);const rate=(av.voice.rate||1)*(S.settings.voiceRate||1);
-  try{if(NATIVE&&KN.tts){await KN.tts.speak({text:t,rate,pitch:av.voice.pitch,voice:v?v.i:undefined,lang:v?v.lang:"en-IN"});done();return}
-    if(window.speechSynthesis&&window.SpeechSynthesisUtterance){speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t);u.rate=rate;u.pitch=av.voice.pitch;if(v&&v.obj){u.voice=v.obj;u.lang=v.lang}u.onend=done;u.onerror=done;speechSynthesis.speak(u);setTimeout(done,est+4000);return}}catch(e){}
+  const av=curAv();const t=speechText(text);await loadVoices();const pv=pickVoice(av),v=pv.v,pitch=voicePitch(av,pv.match);const rate=(av.voice.rate||1)*(S.settings.voiceRate||1);
+  try{if(NATIVE&&KN.tts){await KN.tts.speak({text:t,rate,pitch,voice:v?v.i:undefined,lang:v?v.lang:"en-IN"});done();return}
+    if(window.speechSynthesis&&window.SpeechSynthesisUtterance){speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t);u.rate=rate;u.pitch=pitch;if(v&&v.obj){u.voice=v.obj;u.lang=v.lang}u.onend=done;u.onerror=done;speechSynthesis.speak(u);setTimeout(done,est+4000);return}}catch(e){}
   setTimeout(done,Math.min(est,7000))}
 function avStop(){speakSeq++;AVR.speaking=false;try{if(NATIVE&&KN.tts)KN.tts.stop();else if(window.speechSynthesis)speechSynthesis.cancel()}catch(e){}}
 function setAvatar(id){S.settings.avatar=id;ADV_NAME=avName();saveSettings();VOICES=VOICES||null;const fl=document.getElementById("advHost");if(fl)fl.innerHTML="";drawAdv();if(S.chatOpen){document.getElementById("chatHost").innerHTML="";renderChat()}render()}
@@ -2124,6 +2138,8 @@ function gClientId(){try{return localStorage.getItem("kharcha.gcid")||(window.KN
 async function googleSignIn(){if(!(NATIVE&&KN.google)){toast("Google sign-in works in the Kharchnama Android app.");return}const cid=gClientId();if(!cid){openPanel("gsetup",null,!!S.panel);return}
   try{const p=await KN.google.signIn(cid);S.settings.profile={name:p.name||"",givenName:p.givenName||(p.name||"").split(" ")[0],email:p.email||"",photo:p.photo||""};saveSettings();updHeaderProfile();if(S.panel)renderPanel();toast("Signed in as "+(p.email||p.name));avPlay("wave");avSpeak("Welcome, "+S.settings.profile.givenName+"! Nice to meet you.");if(ONB.step==="google")finishOnb()}
   catch(e){const c=e&&e.code||"";toast(/cancel/i.test(String(e&&e.message)+c)?"Sign-in cancelled.":/no_client/.test(c)?"Google sign-in isn't set up yet.":"Couldn't sign in: "+(e&&e.message||"try again"))}}
+function voiceNote(){loadVoices().then(()=>{const el=document.getElementById("vNote");if(!el)return;const av=curAv();const pv=pickVoice(av);
+  el.textContent=pv.match||!VOICES.length?"":"This phone has no "+(av.g==="f"?"female":"male")+" English voice installed yet, so "+avName(av)+"'s voice is tuned "+(av.g==="f"?"higher":"deeper")+". For a natural voice, open Android Settings, search “Text-to-speech”, choose Speech Services by Google, then Install voice data → English (India) and download its voices."})}
 function pAccount(){const p=S.settings.profile;const av=curAv();
   let b='<div class="card acct">'+(p&&p.email?'<span class="pbig">'+profileBadge()+'</span><div style="min-width:0"><b>'+esc(p.name||p.email)+'</b><small>'+esc(p.email)+'</small><span class="pill ok" style="margin:6px 0 0">Signed in with Google</span></div>':'<span class="pbig">'+I("user")+'</span><div style="min-width:0"><b>Not signed in</b><small>Sign in to personalise Kharchnama with your name and photo.</small></div>')+'</div>';
   b+=p&&p.email?'<button class="btn" data-gsignout>Sign out</button>':'<button class="btn gbtn" data-gsignin>'+I("google")+'Sign in with Google</button>';
@@ -2132,7 +2148,7 @@ function pAccount(){const p=S.settings.profile;const av=curAv();
     '<div class="toggle"><span>Greet me when I open the app</span><button class="sw2" role="switch" aria-checked="'+(S.settings.greetOnOpen!==false)+'" data-set="greetOnOpen" aria-label="Greeting"></button></div>'+
     '<div class="toggle"><span>Body gestures</span><button class="sw2" role="switch" aria-checked="'+(S.settings.gestures!==false)+'" data-set="gestures" aria-label="Gestures"></button></div>'+
     '<div class="grid2"><div class="field"><label for="vRate">Speaking speed</label><select id="vRate">'+[[.85,"Slower"],[1,"Normal"],[1.15,"Faster"]].map(([v,l])=>'<option value="'+v+'"'+((S.settings.voiceRate||1)==v?" selected":"")+'>'+l+'</option>').join("")+'</select></div><div class="field"><label for="vLang">Voice input</label><select id="vLang">'+[["en-IN","English (South Asia)"],["en-US","English (US)"],["en-GB","English (UK)"]].map(([v,l])=>'<option value="'+v+'"'+((S.settings.sttLang||"en-IN")===v?" selected":"")+'>'+l+'</option>').join("")+'</select></div></div>'+
-    '<button class="btn" data-vtest>'+I("volume")+'Hear '+avName(av)+'</button></div>';
+    '<button class="btn" data-vtest>'+I("volume")+'Hear '+avName(av)+'</button><div class="status" id="vNote" style="margin-top:8px"></div></div>';setTimeout(voiceNote,0);
   const links=[["prefs","sliders","Preferences"],["budgets","target","Budgets"],["catlib","grid","Expense headings"],["accounts","wallet","Wallets"],["recurring","repeat","Recurring & bills"],["lock","lock","App lock"],["backup","download","Backup & export"]];
   if(NATIVE)links.push(["sms","msg","SMS auto-import"],["updates","download","App updates"],["ai","camera","Photo reading"]);
   b+='<div class="card">'+h2("settings","Settings")+links.map(l=>'<button class="setrow" data-panel="'+l[0]+'">'+ico(l[1],"#475467")+'<span>'+l[2]+'</span>'+I("right")+'</button>').join("")+'</div>';
