@@ -2113,8 +2113,6 @@ function pickVoiceIn(av,langRe,mRe,fRe){const vs=(VOICES||[]).filter(v=>langRe.t
   const g=v=>{const n=(v.name||"")+" "+(v.uri||"");if(/female/i.test(n)||fRe.test(n))return "f";if(/\bmale\b/i.test(n)||mRe.test(n))return "m";return voiceGender(v)};
   const same=vs.filter(v=>g(v)===av.g).sort((a,b)=>(/network/i.test(a.name)?1:0)-(/network/i.test(b.name)?1:0));if(same.length)return{v:same[av.voice.n%same.length],match:true};
   const unk=vs.filter(v=>!g(v));return{v:unk[0]||vs[0],match:false}}
-function urSpeechPlan(text,av){const t=urSpeechText(text);let p=pickVoiceIn(av,/^ur/i,UR_GV_M,UR_GV_F);if(p&&p.v)return{t,v:p.v,match:p.match,lang:p.v.lang||"ur-PK"};
-  p=pickVoiceIn(av,/^hi/i,HI_GV_M,HI_GV_F);if(p&&p.v)return{t:toDevanagari(t),v:p.v,match:p.match,lang:p.v.lang||"hi-IN"};return{t,v:null,match:false,lang:"ur-PK"}}
 document.addEventListener("click",e=>{const b=e.target.closest("[data-onblang]");if(!b)return;const l=b.dataset.onblang;
   if(l==="en"&&isUr()){setLang("en");return}S.settings.lang=l;if(!S.settings.sttLangSet)S.settings.sttLang=l==="ur"?"ur-PK":"en-IN";saveSettings();try{lsSet("kharcha.lang",l)}catch(x){}APP_LANG=l;applyLang();try{render()}catch(x){}
   ONB.step="avatar";drawOnb();try{avPlay("wave");avSpeak(avIntro(curAv()))}catch(x){}});
@@ -2314,11 +2312,36 @@ const GV_M=/(^|[-_])(end|iol|iom|tpd|gbb|gbd|rjs|aub|aud|ahm|cxm)([-_]|$)/i,GV_F
 const NM_F=/female|woman|zira|aria|jenny|hazel|heera|susan|samantha|karen|moira|tessa|veena|neerja|libby|sonia|serena|kate|fiona|victoria|allison|ava|nicky|catherine|isha|kajal|swara|aditi|raveena|natasha|emma|olivia|amy|joanna|salli|kimberly|ivy|kendra|michelle|clara|emily|ana\b/i,
       NM_M=/(^|[^e])male\b|\bman\b|david|mark|guy|ravi|george|daniel|alex\b|fred|ryan|thomas|prabhat|rishi|aaron|arthur|gordon|lee\b|oliver|james|brian|matthew|joey|justin|kevin|russell|christopher|eric|roger|steffan|madhur|hemant|valluvar|smtm\d|-m\d/i;
 function voiceGender(v){const n=(v.name||"")+" "+(v.uri||"");if(/female|smtf\d|-f\d/i.test(n))return "f";if(GV_M.test(n))return "m";if(GV_F.test(n))return "f";if(NM_M.test(n))return "m";if(NM_F.test(n))return "f";return ""}
-function pickVoice(av){const vs=(VOICES||[]).filter(v=>/^en/i.test(v.lang));if(!vs.length)return{v:null,match:false};
-  const rank=v=>(/en[-_](IN|PK)/i.test(v.lang)?3:/en[-_](GB|AU)/i.test(v.lang)?2:/en[-_]US/i.test(v.lang)?1:0)+(/network/i.test(v.name)?-.5:0);
-  const same=vs.filter(v=>voiceGender(v)===av.g).sort((x,y)=>rank(y)-rank(x));
-  if(same.length){const top=same.filter(v=>rank(v)>=rank(same[0])-1);const pool=top.length>=2?top:same;return{v:pool[av.voice.n%pool.length],match:true}}
-  const unk=vs.filter(v=>!voiceGender(v)).sort((x,y)=>rank(y)-rank(x));return{v:unk[0]||null,match:false}}
+/* ================= choosing the assistant's voice =================
+   Android lists each voice as "English India" with its real code (e.g. en-in-x-end-network) in voiceURI.
+   Local voices that were never downloaded silently fall back to the phone's default (usually female),
+   so online voices are preferred when there is internet. The user can also pick a voice for HisaabJi and for Finza. */
+function vCode(v){return String((v&&(v.uri||v.name))||"")}
+function vShort(v){const m=vCode(v).match(/x-([a-z]+)-(local|network)/i);return m?m[1]+(m[2]==="network"?" · online":" · on phone"):vCode(v)}
+function vLangName(v){const l=(v.lang||"").toLowerCase();return /^ur/.test(l)?"اردو":/^hi/.test(l)?"Hindi":/en.(in|pk)/.test(l)?"English (India)":/en.gb/.test(l)?"English (UK)":/en.au/.test(l)?"English (Australia)":/en.us/.test(l)?"English (US)":l}
+function vGender(v){const n=vCode(v)+" "+(v.name||"");if(/female|smtf\d/i.test(n))return "f";if(/\bmale\b|smtm\d/i.test(n))return "m";
+  if(/^ur/i.test(v.lang||"")){if(UR_GV_M.test(n))return "m";if(UR_GV_F.test(n))return "f"}if(/^hi/i.test(v.lang||"")){if(HI_GV_M.test(n))return "m";if(HI_GV_F.test(n))return "f"}return voiceGender(v)}
+function vRank(v,regionRe){const online=typeof navigator==="undefined"||navigator.onLine!==false;const net=/network/i.test(vCode(v));return (regionRe&&regionRe.test(v.lang||"")?4:0)+(net?(online?1:-3):(online?0:1))}
+function vPickKey(av,ur){return (ur?"ur":"en")+"-"+av.g}
+function vUserPick(av,ur){const k=(S.settings.voicePick||{})[vPickKey(av,ur)];if(!k)return null;return (VOICES||[]).find(v=>vCode(v)===k)||null}
+function pickVoice(av){const own=vUserPick(av,false);if(own)return{v:own,match:true,own:true};const vs=(VOICES||[]).filter(v=>/^en/i.test(v.lang||""));if(!vs.length)return{v:null,match:false};
+  const R=/en[-_](IN|PK)/i,sorted=a=>a.sort((x,y)=>vRank(y,R)-vRank(x,R));const same=sorted(vs.filter(v=>vGender(v)===av.g));
+  if(same.length){const best=vRank(same[0],R);const pool=same.filter(v=>vRank(v,R)>=best);return{v:pool[av.voice.n%pool.length],match:true}}
+  const unk=sorted(vs.filter(v=>!vGender(v)));return{v:unk[0]||null,match:false}}
+function urVoicePick(av){const own=vUserPick(av,true);if(own)return{v:own,match:true,hi:/^hi/i.test(own.lang||"")};
+  const ur=(VOICES||[]).filter(v=>/^ur/i.test(v.lang||"")),hi=(VOICES||[]).filter(v=>/^hi/i.test(v.lang||""));const s=a=>{a.sort((x,y)=>vRank(y)-vRank(x));return a.filter(v=>vRank(v)>=vRank(a[0]))};
+  const urSame=s(ur.filter(v=>vGender(v)===av.g));if(urSame.length)return{v:urSame[av.voice.n%urSame.length],match:true,hi:false};
+  const hiSame=s(hi.filter(v=>vGender(v)===av.g));
+  if(av.g==="m"){if(hiSame.length)return{v:hiSame[av.voice.n%hiSame.length],match:true,hi:true};const u=s(ur.filter(v=>!vGender(v)));if(u.length)return{v:u[0],match:false,hi:false};const h=s(hi.filter(v=>!vGender(v)));if(h.length)return{v:h[0],match:false,hi:true};return{v:null,match:false,hi:false}}
+  const u=s(ur.filter(v=>vGender(v)!=="m"));if(u.length)return{v:u[av.voice.n%u.length],match:true,hi:false};if(hiSame.length)return{v:hiSame[av.voice.n%hiSame.length],match:true,hi:true};const h=s(hi.filter(v=>!vGender(v)));if(h.length)return{v:h[0],match:false,hi:true};return{v:null,match:false,hi:false}}
+function urSpeechPlan(text,av){const t=urSpeechText(text);const p=urVoicePick(av);if(p.v)return{t:p.hi?toDevanagari(t):t,v:p.v,match:p.match,lang:p.v.lang||(p.hi?"hi-IN":"ur-PK")};return{t,v:null,match:false,lang:"ur-PK"}}
+/* voice picker in Account & settings */
+function voiceOptions(av){const ur=isUr();const vs=(VOICES||[]).filter(v=>ur?/^(ur|hi)/i.test(v.lang||""):/^en/i.test(v.lang||""));
+  const g=v=>{const x=vGender(v);return x==="m"?LX("Male","مرد"):x==="f"?LX("Female","خاتون"):LX("Unknown","نامعلوم")};
+  return vs.sort((a,b)=>(vGender(b)===av.g)-(vGender(a)===av.g)||vLangName(a).localeCompare(vLangName(b))||vCode(a).localeCompare(vCode(b))).map(v=>({code:vCode(v),label:g(v)+" · "+vLangName(v)+" · "+vShort(v)}))}
+function fillVoicePick(){const el=document.getElementById("vPick");if(!el)return;const av=curAv();const cur=(S.settings.voicePick||{})[vPickKey(av,isUr())]||"";
+  el.innerHTML='<option value="">'+LX("Automatic","خودکار")+'</option>'+voiceOptions(av).map(o=>'<option value="'+esc(o.code)+'"'+(o.code===cur?" selected":"")+'>'+esc(o.label)+'</option>').join("")}
+document.addEventListener("change",e=>{if(e.target.id!=="vPick")return;const av=curAv();S.settings.voicePick=Object.assign({},S.settings.voicePick,{[vPickKey(av,isUr())]:e.target.value||undefined});if(!e.target.value)delete S.settings.voicePick[vPickKey(av,isUr())];saveSettings();avPlay("wave");avSpeak(avIntro(av))});
 /* pitch: when a voice of the right gender exists, small per-avatar variations; otherwise shift pitch so men sound deeper and women higher */
 function voicePitch(av,match){const p=av.voice.pitch;if(match)return av.g==="m"?Math.min(1,p):Math.max(1,p);return av.g==="m"?Math.min(.78,p-.18):Math.max(1.25,p+.15)}
 function speechText(t){return t.replace(/\*\*/g,"").replace(/^\s*[-•]\s*/gm,"").replace(/^\s*(\d+)\.\s*/gm,"$1, ").replace(/Rs\.? ?([\d,]+(\.\d+)?)/g,"$1 rupees").replace(/−/g,"minus ").replace(/(\d)k\b/g,"$1 thousand").replace(/\n+/g,". ").replace(/\.\s*\./g,".").slice(0,900)}
@@ -2476,8 +2499,8 @@ function gClientId(){try{return localStorage.getItem("kharcha.gcid")||(window.KN
 async function googleSignIn(){if(!(NATIVE&&KN.google)){toast("Google sign-in works in the Kharchnama Android app.");return}const cid=gClientId();if(!cid){openPanel("gsetup",null,!!S.panel);return}
   try{const p=await KN.google.signIn(cid);S.settings.profile={name:p.name||"",givenName:p.givenName||(p.name||"").split(" ")[0],email:p.email||"",photo:p.photo||""};saveSettings();updHeaderProfile();if(S.panel)renderPanel();toast("Signed in as "+(p.email||p.name));avPlay("wave");avSpeak(isUr()?"خوش آمدید، "+S.settings.profile.givenName+"! آپ سے مل کر خوشی ہوئی۔":"Welcome, "+S.settings.profile.givenName+"! Nice to meet you.");if(ONB.step==="google")finishOnb()}
   catch(e){const c=e&&e.code||"";toast(/cancel/i.test(String(e&&e.message)+c)?"Sign-in cancelled.":/no_client/.test(c)?"Google sign-in isn't set up yet.":"Couldn't sign in: "+(e&&e.message||"try again"))}}
-function voiceNote(){loadVoices().then(()=>{const el=document.getElementById("vNote");if(!el)return;const av=curAv();const pv=pickVoice(av);
-  el.textContent=pv.match||!VOICES.length?"":"This phone has no "+(av.g==="f"?"female":"male")+" English voice installed yet, so "+avName(av)+"'s voice is tuned "+(av.g==="f"?"higher":"deeper")+". For a natural voice, open Android Settings, search “Text-to-speech”, choose Speech Services by Google, then Install voice data → English (India) and download its voices."})}
+function voiceNote(){loadVoices().then(()=>{fillVoicePick();const el=document.getElementById("vNote");if(!el)return;const av=curAv();const ur=isUr();const pv=ur?urVoicePick(av):pickVoice(av);const male=av.g==="m";
+  el.textContent=!VOICES.length?"":pv.match?LX("If the voice doesn't sound right, choose another one above. It plays straight away.","اگر آواز ٹھیک نہ لگے تو اوپر سے کوئی اور آواز چنیں، فوراً سنائی دے گی۔"):ur?"اس فون میں ابھی "+(male?"مرد":"خاتون")+" کی آواز موجود نہیں، اس لیے آواز "+(male?"بھاری":"باریک")+" کی گئی ہے۔ قدرتی آواز کے لیے اینڈرائیڈ سیٹنگز میں Text-to-speech تلاش کریں، Speech Services by Google کھولیں، Install voice data میں ہندی اور اردو کی آوازیں ڈاؤن لوڈ کریں، پھر اوپر سے آواز چنیں۔":"This phone has no "+(male?"male":"female")+" English voice yet, so "+avName(av)+"'s voice is tuned "+(male?"deeper":"higher")+". For a natural voice, open Android Settings, search Text-to-speech, choose Speech Services by Google, then Install voice data → English (India), download the voices and pick one above."})}
 function pAccount(){const p=S.settings.profile;const av=curAv();
   let b='<div class="card langcard"><div class="row"><div><b>'+(isUr()?'زبان':'Language')+'</b><small class="status" style="display:block">'+(isUr()?'Language':'زبان')+'</small></div>'+langSwitchHTML()+'</div></div>'+'<div class="card acct">'+(p&&p.email?'<span class="pbig">'+profileBadge()+'</span><div style="min-width:0"><b>'+esc(p.name||p.email)+'</b><small>'+esc(p.email)+'</small><span class="pill ok" style="margin:6px 0 0">Signed in with Google</span></div>':'<span class="pbig">'+I("user")+'</span><div style="min-width:0"><b>Not signed in</b><small>Sign in to personalise Kharchnama with your name and photo.</small></div>')+'</div>';
   b+=p&&p.email?'<button class="btn" data-gsignout>Sign out</button>':'<button class="btn gbtn" data-gsignin>'+I("google")+'Sign in with Google</button>';
@@ -2486,7 +2509,7 @@ function pAccount(){const p=S.settings.profile;const av=curAv();
     '<div class="toggle"><span>Greet me when I open the app</span><button class="sw2" role="switch" aria-checked="'+(S.settings.greetOnOpen!==false)+'" data-set="greetOnOpen" aria-label="Greeting"></button></div>'+
     '<div class="toggle"><span>Body gestures</span><button class="sw2" role="switch" aria-checked="'+(S.settings.gestures!==false)+'" data-set="gestures" aria-label="Gestures"></button></div>'+
     '<div class="grid2"><div class="field"><label for="vRate">Speaking speed</label><select id="vRate">'+[[.85,"Slower"],[1,"Normal"],[1.15,"Faster"]].map(([v,l])=>'<option value="'+v+'"'+((S.settings.voiceRate||1)==v?" selected":"")+'>'+l+'</option>').join("")+'</select></div><div class="field"><label for="vLang">Voice input</label><select id="vLang">'+[["ur-PK","اردو (پاکستان)"],["en-IN","English (South Asia)"],["en-US","English (US)"],["en-GB","English (UK)"]].map(([v,l])=>'<option value="'+v+'"'+((S.settings.sttLang||(isUr()?"ur-PK":"en-IN"))===v?" selected":"")+'>'+l+'</option>').join("")+'</select></div></div>'+
-    '<button class="btn" data-vtest>'+I("volume")+'Hear '+avName(av)+'</button><div class="status" id="vNote" style="margin-top:8px"></div></div>';setTimeout(voiceNote,0);
+    '<button class="btn" data-vtest>'+I("volume")+'Hear '+avName(av)+'</button><div class="field" style="margin-top:10px"><label for="vPick">'+(isUr()?avNm(avName(av))+" کی آواز":"Voice for "+avName(av))+'</label><select id="vPick"><option value="">'+LX("Automatic","خودکار")+'</option></select></div><div class="status" id="vNote" style="margin-top:8px"></div></div>';setTimeout(voiceNote,0);
   const links=[["prefs","sliders","Preferences"],["budgets","target","Budgets"],["catlib","grid","Expense headings"],["accounts","wallet","Wallets"],["recurring","repeat","Recurring & bills"],["lock","lock","App lock"],["backup","download","Backup & export"]];
   if(NATIVE)links.push(["sms","msg","SMS auto-import"],["updates","download","App updates"],["ai","camera","Photo reading"]);
   b+='<div class="card">'+h2("settings","Settings")+links.map(l=>'<button class="setrow" data-panel="'+l[0]+'">'+ico(l[1],"#475467")+'<span>'+l[2]+'</span>'+I("right")+'</button>').join("")+'</div>';
