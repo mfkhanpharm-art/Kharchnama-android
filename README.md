@@ -6,6 +6,9 @@
 
 Personal expense book with a speaking AI financial adviser: **HisaabJi** (5 male avatars) or **Finza** (5 female avatars), each with its own voice and about 40 body gestures. This is the Android build of the Kharchnama app.
 
+## Languages
+English or **Urdu (اردو)**: choose on first launch, or switch any time in Account & settings → Language. In Urdu the screens run right to left, and HisaabJi and Finza understand Urdu, Roman Urdu and English, answer in Urdu and speak Urdu. Voice entries work in Urdu too ("کل پیٹرول پر بارہ سو روپے خرچ کیے"). If the phone has no Urdu voice, a Hindi voice reads the Urdu replies, which sounds the same when spoken.
+
 ## What the Android app adds
 - **Voice entries**: say "spent 1,200 on petrol yesterday from cash" or "milk 500 and chicken 1500". The app fills the entry and you confirm before it is saved.
 - **Talking adviser**: ask by voice; HisaabJi or Finza answers out loud and moves while speaking. The adviser greets you each time the app opens.

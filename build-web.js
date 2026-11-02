@@ -14,6 +14,11 @@ const fontCss=[];
   const blocks=css.split("/*").filter(b=>/-latin-\d+-normal \*\//.test(b));
   blocks.forEach(b=>{const block="/*"+b;(block.match(/\.\/files\/[\w.-]+\.woff2?/g)||[]).forEach(f=>copy(nm(`@fontsource/${fam}/files/${path.basename(f)}`),path.join(www,"fonts",path.basename(f))));
     fontCss.push(block.replace(/\.\/files\//g,"fonts/"))})}));
+// Urdu fonts (Arabic-script subset only): Naskh for the screens, Nastaliq for the assistant's words
+[["noto-naskh-arabic",[400,600,700]],["noto-nastaliq-urdu",[400,700]]].forEach(([fam,ws])=>ws.forEach(w=>{
+  const css=fs.readFileSync(nm(`@fontsource/${fam}/${w}.css`),"utf8");
+  css.split("/*").filter(b=>/-arabic-\d+-normal \*\//.test(b)).forEach(b=>{const block="/*"+b;(block.match(/\.\/files\/[\w.-]+\.woff2?/g)||[]).forEach(f=>copy(nm(`@fontsource/${fam}/files/${path.basename(f)}`),path.join(www,"fonts",path.basename(f))));
+    fontCss.push(block.replace(/\.\/files\//g,"fonts/"))})}));
 fs.writeFileSync(path.join(www,"fonts.css"),fontCss.join("\n"));
 let app=fs.readFileSync(path.join(root,"web","app.html"),"utf8");
 app=app.replace(/<link rel="preconnect"[^>]*>\s*/,"").replace(/<link rel="stylesheet" href="https:\/\/fonts\.googleapis\.com[^>]*>/,'<link rel="stylesheet" href="fonts.css">');
