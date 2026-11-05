@@ -19,8 +19,12 @@
       for(var i=0;i<opts.images.length;i++){var bl=opts.images[i];parts.push({type:"image",source:{type:"base64",media_type:bl.type||"image/jpeg",data:await b64(bl)}})}
       parts.push({type:"text",text:String(last.content)});last.content=parts}
     var stream=typeof opts.onText==="function";var res;
+    var body={model:getModel(),max_tokens:opts.maxTokens||4096,stream:stream,messages:msgs};
+    if(opts.system)body.system=opts.system;
+    /* live web search for current prices, rates and news (billed by Anthropic per search) */
+    if(opts.web)body.tools=[{type:"web_search_20250305",name:"web_search",max_uses:opts.webMax||4,user_location:{type:"approximate",country:"PK",timezone:"Asia/Karachi"}}];
     try{res=await fetch("https://api.anthropic.com/v1/messages",{method:"POST",signal:opts.signal,headers:{"content-type":"application/json","x-api-key":key,"anthropic-version":"2023-06-01","anthropic-dangerous-direct-browser-access":"true"},
-      body:JSON.stringify({model:getModel(),max_tokens:opts.maxTokens||4096,stream:stream,messages:msgs})})}
+      body:JSON.stringify(body)})}
     catch(e){throw{code:"unavailable",message:"No internet connection"}}
     if(!res.ok){var t="";try{t=(await res.json()).error.message}catch(e){}throw{code:res.status===401||res.status===403?"bad_key":res.status===429?"rate_limited":"unavailable",message:t||("HTTP "+res.status)}}
     if(!stream){var j=await res.json();return{text:(j.content||[]).filter(function(c){return c.type==="text"}).map(function(c){return c.text}).join(""),truncated:j.stop_reason==="max_tokens"}}
@@ -28,10 +32,13 @@
     for(;;){var r=await rd.read();if(r.done)break;buf+=dec.decode(r.value,{stream:true});var idx;
       while((idx=buf.indexOf("\n\n"))>=0){var ev=buf.slice(0,idx);buf=buf.slice(idx+2);
         var line=ev.split("\n").filter(function(l){return l.indexOf("data:")===0})[0];if(!line)continue;var d;try{d=JSON.parse(line.slice(5))}catch(e){continue}
-        if(d.type==="content_block_delta"&&d.delta&&d.delta.type==="text_delta"){text+=d.delta.text;opts.onText({text:text,delta:d.delta.text})}
+        if(d.type==="content_block_start"&&d.content_block&&d.content_block.type==="server_tool_use"){if(opts.onStatus)opts.onStatus("search")}
+        else if(d.type==="content_block_start"&&d.content_block&&d.content_block.type==="web_search_tool_result"){if(opts.onStatus)opts.onStatus("read")}
+        else if(d.type==="content_block_delta"&&d.delta&&d.delta.type==="text_delta"){text+=d.delta.text;opts.onText({text:text,delta:d.delta.text})}
         else if(d.type==="error")throw{code:"unavailable",message:(d.error&&d.error.message)||"Stream error"}}}
     return{text:text,truncated:false}}
   sample.limits=async function(){return{images:!!getKey()}};
+  sample.hasKey=function(){return !!getKey()};sample.web=true;
 
   /* Files: write to app cache, then open Android's share sheet (save to Files, Drive, WhatsApp…). */
   var downloads={save:async function(o){var data=o.data instanceof Blob?await b64(o.data):btoa(unescape(encodeURIComponent(String(o.data))));
